@@ -1,0 +1,79 @@
+.root {
+  display: flex;
+  padding: 2em 2em 2em 2em;
+  width: 100vw;
+  height: 100vh;
+  
+  justify-content: center;
+  .warper {
+    display: flex;
+    width: 50%;
+    height: 55%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    flex-direction: row;
+    border-radius: 20px;
+    
+      
+    .imgwarp{
+        display: flex;
+        flex: 0.5;
+        background-color: #e0e0e0;
+        border-radius: 20px 0 0 20px;
+        align-items: center;
+        justify-content: center;
+        img{
+            width: 250px;
+        }
+        
+    }
+    .formwarp{
+        display: flex;
+        flex: 0.5;
+        flex-direction: column;
+        padding: 1em 2em 5em 2em;
+        border-radius: 20px 20px 20px 20px;
+        h1{
+            font-weight: 700;
+            span{
+                color: rgb(27, 27, 27);
+            }
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            input{
+                height: 3.5em;
+                margin: .5em 0 .5em 0;
+                border-radius: 4px;
+                border: 1px solid silver ;
+                padding-left: 30px;
+            }
+            input:focus{
+                outline: none;
+                border-color: rgb(129, 129, 129);
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
+            span{
+                font-size: small;
+                color: silver;
+                margin: .5em .5em .5em 0;
+            }
+            button{
+                height: 3.5em;
+                margin: .5em 0 .5em 0;
+                border-radius: 4px;
+                background-color: rgb(39, 39, 39);
+                padding-left: 30px;
+                border: none;
+                color: aliceblue;
+                cursor: pointer;
+                margin-top: 2em;
+            }
+            button:hover{
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
+            
+        }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+$themeColor: #4a494b;
+$themeFont: "Karla", sans-serif;
+$secFont: "Karla", sans-serif;
+.rootcontainer{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    
+    .product{
+        display: flex;
+        flex-direction: column;
+        background-color: #f1f1f1;
+        width: 300px;
+        height: 400px;
+        align-items: center;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+        cursor: pointer;
+        border-radius: 15px;
+        margin-top: 2rem;
+        transition: all .5s;
+        img{
+            width: 10em;
+            height: auto;
+        }
+        h1{
+            color: #686669;
+            font-size: 25px;
+            transition: all .5s;
+            font-weight: 700;
+        }
+        button{
+            height: 1.8rem;
+            width: 10em;
+            background-color: #fc5271;
+            border-style: none;
+            font-size: 1.2em;
+            font-family: $themeFont;
+            border-radius: 15px;
+            color: white;
+        }
+    }
+    .product:hover{
+        background-color: #4a494b;
+        a{
+            color: #ffffff;
+        }
+        h1{
+            color: #ffff;
+            
+        }
+    }
+}
