@@ -6,7 +6,7 @@ function EditProduct() {
     
     return (
         <div>
-            sssssss
+            sssssssss
         </div>
     )
 }
