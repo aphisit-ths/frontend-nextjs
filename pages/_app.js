@@ -40,7 +40,7 @@ MyApp.getInitialProps = async ({ ctx ,router }) => {
   const token = cookies && cookies.jwt;
 
   if(!token){
-    if(router.pathname === '/cart' ){
+    if(router.pathname === '/cart' || router.pathname === '/manageproducts'){
       ctx.res.writeHead(302,{location:"/signin"})
       ctx.res.end()
     }
@@ -70,7 +70,7 @@ MyApp.getInitialProps = async ({ ctx ,router }) => {
       }
     `,
   };
-  const response = await fetch("http://localhost:4444/graphql", {
+  const response = await fetch("http://localhost:4444/graphql", { 
     //Gql Post เสมอ
     method: "post",
     headers: {
@@ -84,11 +84,10 @@ MyApp.getInitialProps = async ({ ctx ,router }) => {
     const result = await response.json();
     return { user: result.data.user};
   } else {
-    if(router.pathname === '/cart'){
+    if(router.pathname === '/cart' || router.pathname === '/manageproducts'){
       ctx.res.writeHead(302,{location:"/signin"})
       ctx.res.end()
     }
-    
     return null;
   }
 };

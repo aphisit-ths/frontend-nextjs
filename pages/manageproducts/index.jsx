@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../appstate/AuthProvider";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import Link from "next/link";
 import Loader from "../../components/loader/Loader";
+
 const ME = gql`
   query ME {
     user {
@@ -21,12 +22,23 @@ const ME = gql`
   }
 `;
 function UserProducts() {
+  const [update_product, setUpdate_product] = useState(true);
+  const onclick_update = () => {
+    setUpdate_product(!update_product)
+    
+    ;
+  };
   const { data, loading, error } = useQuery(ME);
   if (error) console.log(error);
   if (loading) return <Loader />;
   const { id, name, products } = data.user;
   return (
-    <section className="container mx-auto p-6 font-mono">
+    <section className="flex flex-col container mx-auto p-6 font-mono mt-10">
+      <div className="self-end m-6">
+        <p className="uppercase border-gray-700 hover:text-yellow-300 cursor-pointer">
+          Add more +
+        </p>
+      </div>
       <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
         <div className="w-full overflow-x-auto">
           <table className="w-full">
@@ -56,12 +68,10 @@ function UserProducts() {
                         ></div>
                       </div>
                       <div>
-                        <p
-                          key={index}
-                          className="font-semibold text-black text-2xl uppercase"
-                        >
+                        <p className="font-semibold text-black text-2xl uppercase">
                           {prod.desc}
                         </p>
+
                         <p className="text-xs text-gray-600">
                           {prod.createdAt}
                         </p>
@@ -79,16 +89,13 @@ function UserProducts() {
                   </td>
 
                   <td className="px-4 py-3 text-xs border place-items-center  ">
-                    <Link
-                      key={prod.id}
-                      href="/manageproducts/[EditProduct]"
-                      as={`/manageproducts/${prod.id}`}
+                    <span
+                      onClick={onclick_update}
+                      className=" px-4 py-1 font-semibold leading-tight hover:bg-blue-400 hover:shadow-lg  text-black-700 bg-gray-400 rounded-sm cursor-pointer  "
                     >
-                      <span className=" px-4 py-1 font-semibold leading-tight hover:bg-blue-400 hover:shadow-lg  text-black-700 bg-gray-400 rounded-sm cursor-pointer  ">
-                        {" "}
-                        Edit{" "}
-                      </span>
-                    </Link>
+                      {" "}
+                      Edit{" "}
+                    </span>
                   </td>
                 </tr>
               ))}
