@@ -38,13 +38,18 @@ MyApp.getInitialProps = async ({ ctx ,router }) => {
   const cookies = headers && cookie.parse(headers.cookie || "");
 
   const token = cookies && cookies.jwt;
-
+  
   if(!token){
     if(router.pathname === '/cart' || router.pathname === '/manageproducts'){
       ctx.res.writeHead(302,{location:"/signin"})
       ctx.res.end()
     }
     return null
+  }else{
+    if(router.pathname === '/signin'){
+      ctx.res.writeHead(302,{location:"/manageproducts"})
+      ctx.res.end()
+    }
   }
   //สร้างไว้ก่อนเพื่อรอ Client Side
   const QUERY_USER = {
