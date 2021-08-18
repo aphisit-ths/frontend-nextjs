@@ -4,8 +4,7 @@ import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import Link from "next/link";
 import Loader from "../../components/loader/Loader";
-import Image from "next/image";
-
+import ItmesList from './itemslist'
 const ME = gql`
   query ME {
     user {
@@ -26,7 +25,7 @@ function UserProducts() {
   const [update_product, setUpdate_product] = useState(true);
   const onclick_update = () => {
     setUpdate_product(!update_product)
-    
+      console.log(update_product)
     ;
   };
   const { data, loading, error } = useQuery(ME);
@@ -53,52 +52,7 @@ function UserProducts() {
             </thead>
             <tbody className="bg-white">
               {products.map((prod, index) => (
-                <tr key={index} className="text-gray-700">
-                  <td className="px-4 py-3 border">
-                    <div className="flex items-center text-sm">
-                      <div className="relative w-9 h-9 mr-3 rounded-full md:block">
-                        <Image
-                          className="object-cover w-full h-full rounded-full"
-                          src={prod.imgUrl}
-                          alt=""
-                          loading={prod.desc}
-                        />
-                        <div
-                          className="absolute inset-0 rounded-full shadow-inner"
-                          aria-hidden="true"
-                        ></div>
-                      </div>
-                      <div>
-                        <p className="font-semibold text-black text-2xl uppercase">
-                          {prod.desc}
-                        </p>
-
-                        <p className="text-xs text-gray-600">
-                          {prod.createdAt}
-                        </p>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-4 py-3 text-ms font-semibold border">
-                    {prod.price}
-                  </td>
-                  <td className="px-4 py-3 text-xs border">
-                    <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm">
-                      {" "}
-                      Acceptable{" "}
-                    </span>
-                  </td>
-
-                  <td className="px-4 py-3 text-xs border place-items-center  ">
-                    <span
-                      onClick={onclick_update}
-                      className=" px-4 py-1 font-semibold leading-tight hover:bg-blue-400 hover:shadow-lg  text-black-700 bg-gray-400 rounded-sm cursor-pointer  "
-                    >
-                      {" "}
-                      Edit{" "}
-                    </span>
-                  </td>
-                </tr>
+                <ItmesList prod={prod} index={index}></ItmesList>
               ))}
             </tbody>
           </table>
