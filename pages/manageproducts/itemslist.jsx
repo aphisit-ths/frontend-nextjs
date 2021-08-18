@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import Image from 'next/image'
+
+import { useMutation } from '@apollo/react-hooks'
+import fetch from 'isomorphic-unfetch'
+import gql from 'graphql-tag'
+
 function ItemList({ prod, index }) {
- 
+  const [productData,setProductData] = useState(prod)
+  console.log(productData)
   const [updating, setUpdate_product] = useState(true);
   const onclick_update = () => {
     setUpdate_product(!updating);
   };
+
+  const handleChange = e =>
+  setProductData({ ...productData, [e.target.name]: e.target.value })
   return (
     <>
       <tr key={index} className="text-gray-700">
