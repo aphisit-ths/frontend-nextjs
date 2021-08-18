@@ -6,6 +6,8 @@ import apolloClient from "../../apollo/apolloClient";
 import { ThreeHorseLoading } from "react-loadingg";
 import infoStyle from "../../styles/prodinfo.module.scss";
 import Link from 'next/link'
+import Image from "next/image";
+
 const QUERY_PRODUCT = gql`
   query QUERY_PRODUCT($id: ID!) {
     product(id: $id) {
@@ -32,7 +34,7 @@ const Product = () => {
       </div>
       <div className={infoStyle.warpper}>
         <div className={infoStyle.warpimg}>
-          <img src={data.product.imgUrl} alt={data.product.desc} />
+          <Image src={data.product.imgUrl} alt={data.product.desc}  width={200} height={300}  />
         </div>
         <div className={infoStyle.warpinfo}>
           <h2>{data.product.desc}</h2>

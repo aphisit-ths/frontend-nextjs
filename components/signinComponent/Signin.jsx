@@ -6,7 +6,7 @@ import gql from "graphql-tag";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import Cookies from "js-cookie";
 import Router from "next/router";
-
+import Image from "next/image"
 import { AuthContext } from "../../appstate/AuthProvider";
 const SIGN_IN = gql`
   mutation SIGN_IN($email: String!, $password: String!) {
@@ -30,7 +30,8 @@ const SIGN_IN = gql`
       jwt
     }
   }
-`;
+`
+
 function Signin() {
   const [userInfo, setuserInfo] = useState({
     email: "",
@@ -73,9 +74,11 @@ function Signin() {
     <div className={signinStyle.root}>
       <div className={signinStyle.warper}>
         <div className={signinStyle.imgwarp}>
-          <img
+          <Image
             src="https://ouch-cdn2.icons8.com/EN_pjM5vsufniT-C7q2cKLuG9njBfdlz1daJRHcdVIA/rs:fit:784:941/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNjg2/LzMwN2UwY2M3LTlj/MTItNDA4Zi05YWFi/LTVkZDdhNDVlZTE0/MS5wbmc.png"
             alt=""
+            width={1500}
+            height={2000}
           />
         </div>
         <div className={signinStyle.formwarp}>
@@ -99,7 +102,7 @@ function Signin() {
             />
             <Link href="/signup">
               <a>
-                Don't have an account yet? <span> Sign Up</span>
+                Dont have an account yet? <span> Sign Up</span>
               </a>
             </Link>
             <button type="submit">Submit</button>

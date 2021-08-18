@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import Link from "next/link";
 import Loader from "../../components/loader/Loader";
+import Image from "next/image";
 
 const ME = gql`
   query ME {
@@ -56,7 +57,7 @@ function UserProducts() {
                   <td className="px-4 py-3 border">
                     <div className="flex items-center text-sm">
                       <div className="relative w-9 h-9 mr-3 rounded-full md:block">
-                        <img
+                        <Image
                           className="object-cover w-full h-full rounded-full"
                           src={prod.imgUrl}
                           alt=""
