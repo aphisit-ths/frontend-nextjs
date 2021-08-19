@@ -4,8 +4,6 @@ import Image from "next/image";
 import { useMutation } from "@apollo/react-hooks";
 import fetch from "isomorphic-unfetch";
 import gql from "graphql-tag";
-
-
 const UPDATE_PRODUCT = gql`
   mutation($id: ID!,$desc:String , $price:Float $imgUrl:String){
   updateProduct(id: $id, desc: $desc , price: $price ,imgUrl: $imgUrl) {
@@ -23,7 +21,6 @@ function ItemList({ prod }) {
 
   const [updateProduct,{loading,error}] = useMutation(UPDATE_PRODUCT,{
     onCompleted: data =>{
-      console.log(data)
       setProductData(data.updateProduct)
     }
   })
@@ -132,12 +129,11 @@ function ItemList({ prod }) {
           className="input border text-sm border-gray-400 m-1 px-1 pl-3 mr-2  appearance-none rounded w-12  h-9 hover:bg-gray-200  uppercase " type="text"
           value={amoutState}
           /> */}
-          <span className="p-2 mr-2 text-xl border-2" >{amoutState}</span>
+          <span className="p-1 mr-2 text-xl border-2" >{amoutState}</span>
           <span className="p-2 mr-2 font-semibold leading-tight text-lg rounded-md bg-gray-100 cursor-pointer hover:bg-gray-200" onClick={addAmount}>
             +
           </span>
         </td>
-
         <td className="px-4 py-3 text-xs border place-items-center  ">
           {!updating ? (
             <>
