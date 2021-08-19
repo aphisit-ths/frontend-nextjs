@@ -24,14 +24,13 @@ const ME = gql`
 function UserProducts() {
   const [update_product, setUpdate_product] = useState(true);
   const onclick_update = () => {
-    setUpdate_product(!update_product)
-      console.log(update_product)
-    ;
-  };
+    setUpdate_product(!update_product) }
+
   const { data, loading, error } = useQuery(ME);
   if (error) console.log(error);
   if (loading) return <Loader />;
   const { id, name, products } = data.user;
+  
   return (
     <section className="flex flex-col container mx-auto p-6 font-mono mt-10">
       <div className="self-end m-6">
@@ -51,8 +50,8 @@ function UserProducts() {
               </tr>
             </thead>
             <tbody className="bg-white">
-              {products.map((prod, index) => (
-                <ItmesList prod={prod} index={index}></ItmesList>
+              {products.map((prod) => (
+                <ItmesList prod={prod} key={prod.id} ></ItmesList>
               ))}
             </tbody>
           </table>
