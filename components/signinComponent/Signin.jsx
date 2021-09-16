@@ -31,7 +31,6 @@ const SIGN_IN = gql`
     }
   }
 `
-
 function Signin() {
   const [userInfo, setuserInfo] = useState({
     email: "",

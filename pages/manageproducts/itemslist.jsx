@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Image from "next/image";
-
 import { useMutation } from "@apollo/react-hooks";
 import fetch from "isomorphic-unfetch";
 import gql from "graphql-tag";
@@ -13,7 +12,6 @@ const UPDATE_PRODUCT = gql`
   }
 }
 `
-
 
 function ItemList({ prod }) {
   const [productData, setProductData] = useState(prod);
