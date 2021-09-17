@@ -1,11 +1,17 @@
-import React from "react";
-// import  "../../jnevbar.module.scss";
+import React, { useContext } from "react";
+import { AuthContext } from "../../appstate/AuthProvider";
+import UserDropdown from "../userDropdown/UserDropdown";
 import Link from "next/link";
 export default function ProjectNav() {
+  const { user, signout } = useContext(AuthContext);
+  console.log(user);
   return (
     <div className="flex bg-gray-50 m-w-full h-20 px-7 py-2 shadow-lg lg:auto">
       <Link href="/" passHref>
-        <div className="flex-col align-middle justify-center w-30 h-full bg-gray-50  cursor-pointer"ease-in duration-150 >
+        <div
+          className="flex-col align-middle justify-center w-30 h-full bg-gray-50  cursor-pointer  ease-in
+          duration-150"
+        >
           <svg
             width="71"
             height="49"
@@ -40,16 +46,24 @@ export default function ProjectNav() {
         </h2>
       </div>
       <div className="flex flex-row bg-gray-50 w-1/6 h-full items-center justify-center ml-12  cursor-pointer ease-in duration-150 ">
-        <Link href="/signin" passHref>
-          <span className="px-3 font-display font-extralight mr-5 hover:text-yellow-500 cursor-pointer ease-in duration-150   ">
-            ลงชื่อเข้าใช้
-          </span>
-        </Link>
-        <Link href="signup" passHref>
-          <span className="bg-kmitl-normal hover:bg-kmitl-hover hover:shadow-lg font-display font-thin text-white py-2 px-4 rounded-full cursor-pointer ease-in duration-150 ">
-            ลงทะบียน
-          </span>
-        </Link>
+        {!user ? (
+          <>
+            <Link href="/signin" passHref>
+              <span className="px-3 font-display font-extralight mr-5 hover:text-yellow-500 cursor-pointer ease-in duration-150   ">
+                ลงชื่อเข้าใช้
+              </span>
+            </Link>
+            <Link href="signup" passHref>
+              <span className="bg-kmitl-normal hover:bg-kmitl-hover hover:shadow-lg font-display font-thin text-white py-2 px-4 rounded-full cursor-pointer ease-in duration-150 ">
+                ลงทะบียน
+              </span>
+            </Link>
+          </>
+        ) : (
+          <>
+            <UserDropdown user={user} signout={signout} ></UserDropdown>
+          </>
+        )}
       </div>
     </div>
   );
