@@ -42,7 +42,7 @@ export default function ProjectNav() {
       <div className="flex flex-row bg-gray-50 w-1/6 h-full items-center justify-center ml-12  cursor-pointer ease-in duration-150 ">
         <Link href="/signin" passHref>
           <span className="px-3 font-display font-extralight mr-5 hover:text-yellow-500 cursor-pointer ease-in duration-150   ">
-            ลงชื้อเข้าใช้
+            ลงชื่อเข้าใช้
           </span>
         </Link>
         <Link href="signup" passHref>
