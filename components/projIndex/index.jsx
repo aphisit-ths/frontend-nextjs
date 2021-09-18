@@ -54,7 +54,7 @@ export default function ProjectNav() {
               </span>
             </Link>
             <Link href="signup" passHref>
-              <span className="bg-kmitl-normal hover:bg-kmitl-hover hover:shadow-lg font-display font-thin text-white py-2 px-4 rounded-full cursor-pointer ease-in duration-150 ">
+              <span className="bg-kmitl-normal hover:bg-opacity-60 hover:shadow-lg font-display font-thin text-white py-2 px-6  rounded-full cursor-pointer ease-in duration-150 ">
                 ลงทะบียน
               </span>
             </Link>

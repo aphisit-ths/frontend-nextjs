@@ -100,12 +100,11 @@ function Signupform() {
       console.log(error);
     }
   };
-
   return (
-    <div className={signupStyle.root}>
-      <div className="flex flex-col rounded-md shadow-md w-2/4 h-5/6  ease-in duration-150   py-6  ">
+    <div className="flex justify-center p-5 h-screen w-screen ">
+      <div className="flex flex-col rounded-md shadow-md w-full sm:w-full md:w-2/3 xl:w-1/3  h-5/6 py-6  ">
         <div className="flex flex-col items-center w-full h-80 ">
-          <h1 className="text-5xl text-displaycolor font-display font-normal py-6 ">
+          <h1 className=" text-2xl md:text-3xl xl:3xl text-displaycolor font-display font-normal py-6 ">
             ลงทะเบียนผู้ใช้
           </h1>
           <form
@@ -114,11 +113,11 @@ function Signupform() {
             type="form"
             onSubmit={handleSubmit}
           >
-            <span className="font-display tracking-wide font-light text-lg ">
-              ชื่อเล่น
+            <span className="font-display tracking-wide font-light text-lg md:text-xl ">
+              ชื่อเล่น:
             </span>
             <input
-              className="border-1 h-14 mb-6 mx-5 p-5 rounded-md outline-none bg-gray-50 "
+              className="border-2 h-10 w-full md:h-14 mb-6 mx-5 p-5 rounded-md outline-none bg-gray-50    "
               type="text"
               name="name"
               placeholder="นามแฝงที่จะใช้ในแอพพลิเคชั่น"
@@ -127,22 +126,22 @@ function Signupform() {
               required
             />
             <span className="font-display tracking-wide font-light text-lg ">
-              อีเมล
-            </span>
+              อีเมล:
+            </span> 
             <input
-              className=" border-2 h-14 mb-6 mx-5 p-5 rounded-md outline-none bg-gray-50"
+              className=" border-2 h-10 w-full md:h-14 mb-6 mx-5 p-5 rounded-md  outline-none bg-gray-50"
               type="text"
-              name="email"
-              placeholder="email"
+              name="email"  
+              placeholder="อีเมล"
               value={userInfo.email}
               onChange={handleChange}
               required
             />
             <span className="font-display tracking-wide font-light text-lg ">
-              รหัสผ่าน
+              รหัสผ่าน:
             </span>
             <input
-              className="  border-2 h-14 mb-6 mx-5 p-5 rounded-lg outline-none bg-gray-50 "
+              className="  border-2 h-10 w-full md:h-14 mb-6 mx-5 p-5  rounded-lg outline-none bg-gray-50 "
               type="password"
               name="password"
               placeholder="รหัสผ่าน"
@@ -172,7 +171,7 @@ function Signupform() {
             <button
               type="submit"
               disabled={loading}
-              className=" mx-4 my-4 flex flex-row items-center justify-center bg-gray-200 hover:bg-gray-400 ease-in duration-150 hover:shadow-xl  text-gray-600  hover:text-white py-3 px-4 border font-display font-normal   rounded-3xl"
+              className=" mx-4 my-4 flex flex-row items-center justify-center bg-gray-200 hover:bg-gray-400 ease-in duration-150 hover:shadow-xl  text-gray-600  hover:text-white py-3 px-4 border font-display text-sm md:text-lg rounded-3xl"
             >
               <Googlesvg></Googlesvg>
               ลงทะเบียนด้วย Google
