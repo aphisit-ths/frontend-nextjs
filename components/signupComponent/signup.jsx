@@ -178,9 +178,9 @@ function Signupform() {
             </button>
           </form>
           <Link href="/signin" passHref>
-            <span className="font-display text-sm font-light cursor-pointer text-gray-400">
+            <span className="font-display text-xs md:text-sm font-light cursor-pointer text-gray-400">
               หากมีผู้ใช้บัญชีผู้ใช้อยู่แล้ว ?{" "}
-              <span className="font-display text-sm font-medium text-gray-500">
+              <span className="font-display text-xs  md:text-sm  font-medium text-gray-500">
                 เข้าสู่ระบบ
               </span>{" "}
             </span>

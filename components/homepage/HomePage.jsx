@@ -1,5 +1,4 @@
 import React from "react";
-
 export default function HomePage() {
   return (
     <>
@@ -36,7 +35,6 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-
         <div className="flex-1 flex flex-col w-full h-full justify-center items-center">
           <div className="self-center content-center ">
             

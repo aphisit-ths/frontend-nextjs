@@ -7,11 +7,7 @@ export default function UserDropdown() {
   return (
     <div className="text-right z-30 ">
       <Menu as="div" className="relative inline-block text-left">
-        
         <div>
-        
-
-
           <Menu.Button className="inline-flex justify-center w-full  px-6 py-2 text-sm shadow-md font-medium text-white bg-yellow-400 rounded-full hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             <ChevronDownIcon
               className="w-5 h-5 ml-2 -mr-1 text-violet-200 hover:text-violet-100"
@@ -29,7 +25,6 @@ export default function UserDropdown() {
           leaveTo="transform opacity-0 scale-95"
         >
           <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            
             <div className="px-1 py-1 ">
               <Menu.Item>
                 {({ active }) => (
@@ -130,9 +125,7 @@ export default function UserDropdown() {
                       active ? "bg-gray-600 text-white " : "text-gray-600"
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
-                    <span className=" font-display">
-                      ลงทะเบียนผู้ใช้
-                    </span>
+                    <span className=" font-display">ลงทะเบียนผู้ใช้</span>
                   </button>
                 )}
               </Menu.Item>
@@ -369,20 +362,19 @@ function DeleteActiveIcon(props) {
 function SignOutIcon(props) {
   return (
     <svg
-    {...props}
-    viewBox="0 0 20 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <rect
-      x="5"
-      y="6"
-      width="10"
-      height="10"
-      fill="#FFE69C"
-      stroke="#FFE69C"
-      
-    />
+      {...props}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        x="5"
+        y="6"
+        width="10"
+        height="10"
+        fill="#FFE69C"
+        stroke="#FFE69C"
+      />
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
