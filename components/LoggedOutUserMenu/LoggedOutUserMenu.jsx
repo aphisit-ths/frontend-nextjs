@@ -1,7 +1,7 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import link from "next/link";
+import Link from "next/link";
 import React from "react";
 export default function UserDropdown() {
   return (
@@ -26,6 +26,7 @@ export default function UserDropdown() {
         >
           <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="px-1 py-1 ">
+              <Link href="signin" passHref>
               <Menu.Item>
                 {({ active }) => (
                   <button
@@ -48,6 +49,8 @@ export default function UserDropdown() {
                   </button>
                 )}
               </Menu.Item>
+              </Link>
+              
             </div>
             <div className="px-1 py-1">
               <Menu.Item>
@@ -118,6 +121,7 @@ export default function UserDropdown() {
               </Menu.Item>
             </div>
             <div className="px-1 py-1">
+              <Link href="signup" passHref>
               <Menu.Item>
                 {({ active }) => (
                   <button
@@ -129,6 +133,8 @@ export default function UserDropdown() {
                   </button>
                 )}
               </Menu.Item>
+              </Link>
+              
             </div>
           </Menu.Items>
         </Transition>
