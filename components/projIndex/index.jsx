@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../appstate/AuthProvider";
 import UserDropdown from "../userDropdown/UserDropdown";
+import LoggedOutUserMenu from "../LoggedOutUserMenu/LoggedOutUserMenu";
 import Link from "next/link";
 export default function ProjectNav() {
   const { user, signout } = useContext(AuthContext);
   console.log(user);
   return (
-    <div className="flex bg-gray-50   md:h-20 md:w-full  px-7 py-2 shadow-lg m-1 ">
+    <div className=" flex bg-gray-50 h-20   w-screen  px-7 py-2 shadow-lg m-0 ">
       <Link href="/" passHref>
         <div
           className="flex-col align-middle justify-center w-30 h-full bg-gray-50  cursor-pointer  ease-in
@@ -31,7 +32,7 @@ export default function ProjectNav() {
         </div>
       </Link>
 
-      <div className="flex flex-row bg-gray-50 w-4/6 h-full items-center justify-end ml-12 ">
+      <div className="hidden xl:flex flex-row bg-gray-50 w-4/6 h-full items-center justify-end ml-12 ">
         <Link href="/#" passHref>
           <h1 className="px-3 font-display font-extralight text-sm md:text-lg hover:text-yellow-500 cursor-pointer ease-in duration-150  ">
             รีวิววิชาเลือก
@@ -45,6 +46,7 @@ export default function ProjectNav() {
           รีวิวที่อ่านหนังสือ
         </h2>
       </div>
+
       <div className="hidden xl:flex flex-row bg-gray-50 w-1/6 h-full items-center justify-center ml-12 cursor-pointer ease-in duration-150  ">
         {!user ? (
           <>
@@ -54,18 +56,28 @@ export default function ProjectNav() {
               </span>
             </Link>
             <Link href="signup" passHref>
-              <span className="bg-kmitl-normal  hover:bg-opacity-60 hover:shadow-lg font-display  font-thin text-white py-2 px-6  rounded-full cursor-pointer ease-in duration-150 ">
+              <span className="bg-yellow-300  hover:bg-opacity-60 hover:shadow-lg font-display  font-thin text-white py-2 px-6  rounded-full cursor-pointer ease-in duration-150 ">
                 ลงทะบียน
               </span>
             </Link>
           </>
         ) : (
           <>
-            <UserDropdown user={user} signout={signout} ></UserDropdown>
+            <UserDropdown user={user} signout={signout}></UserDropdown>
           </>
         )}
       </div>
-      
+      <div className="flex xl:hidden flex-row bg-gray-50 w-full h-full items-center self-center justify-end ml-12 cursor-pointer ease-in duration-150  ">
+        {!user ? (
+          <>
+            <LoggedOutUserMenu></LoggedOutUserMenu>
+          </>
+        ) : (
+          <>
+            <UserDropdown user={user} signout={signout}></UserDropdown>
+          </>
+        )}
+      </div>
     </div>
   );
 }
