@@ -8,7 +8,7 @@ export default function UserDropdown() {
     <div className="text-right z-30 ">
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="inline-flex justify-center w-full  px-6 py-2 text-sm shadow-md font-medium text-white bg-yellow-400 rounded-full hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+          <Menu.Button className="inline-flex justify-center w-full  px-6 py-2 text-sm shadow-md font-medium text-white bg-kmitl-normal rounded-full hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             <ChevronDownIcon
               className="w-5 h-5 ml-2 -mr-1 text-violet-200 hover:text-violet-100"
               aria-hidden="true"
@@ -26,31 +26,31 @@ export default function UserDropdown() {
         >
           <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="px-1 py-1 ">
-              <Link href="signin" passHref>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    className={`${
-                      active ? "bg-gray-500 text-white" : "text-gray-900"
-                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                  >
-                    {active ? (
-                      <EditActiveIcon
-                        className="w-5 h-5 mr-2"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <EditInactiveIcon
-                        className="w-5 h-5 mr-2"
-                        aria-hidden="true"
-                      />
-                    )}
-                    เข้าสู่ระบบ
-                  </button>
-                )}
-              </Menu.Item>
+              <Link href="/signin" passHref>
+                
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${
+                        active ? "bg-gray-500 text-white" : "text-gray-900"
+                      } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                    >
+                      {active ? (
+                        <EditActiveIcon
+                          className="w-5 h-5 mr-2"
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        <EditInactiveIcon
+                          className="w-5 h-5 mr-2"
+                          aria-hidden="true"
+                        />
+                      )}
+                      เข้าสู่ระบบ
+                    </button>
+                  )}
+                </Menu.Item>
               </Link>
-              
             </div>
             <div className="px-1 py-1">
               <Menu.Item>
@@ -121,20 +121,19 @@ export default function UserDropdown() {
               </Menu.Item>
             </div>
             <div className="px-1 py-1">
-              <Link href="signup" passHref>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    className={`${
-                      active ? "bg-gray-600 text-white " : "text-gray-600"
-                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                  >
-                    <span className=" font-display">ลงทะเบียนผู้ใช้</span>
-                  </button>
-                )}
-              </Menu.Item>
+              <Link href="/signup">
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${
+                        active ? "bg-gray-600 text-white " : "text-gray-600"
+                      } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                    >
+                      <span className=" font-display">ลงทะเบียนผู้ใช้</span>
+                    </button>
+                  )}
+                </Menu.Item>
               </Link>
-              
             </div>
           </Menu.Items>
         </Transition>
@@ -179,53 +178,6 @@ function EditActiveIcon(props) {
   );
 }
 
-function DuplicateInactiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M4 4H12V12H4V4Z"
-        fill="#EDE9FE"
-        stroke="#FFE69C"
-        strokeWidth="2"
-      />
-      <path
-        d="M8 8H16V16H8V8Z"
-        fill="#EDE9FE"
-        stroke="#FFE69C"
-        strokeWidth="2"
-      />
-    </svg>
-  );
-}
-
-function DuplicateActiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M4 4H12V12H4V4Z"
-        fill="#FFE69C"
-        stroke="#FFE69C"
-        strokeWidth="2"
-      />
-      <path
-        d="M8 8H16V16H8V8Z"
-        fill="#FFE69C"
-        stroke="#FFE69C"
-        strokeWidth="2"
-      />
-    </svg>
-  );
-}
 
 function ArchiveInactiveIcon(props) {
   return (
@@ -319,28 +271,7 @@ function MoveActiveIcon(props) {
   );
 }
 
-function DeleteInactiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        x="5"
-        y="6"
-        width="10"
-        height="10"
-        fill="#EDE9FE"
-        stroke="#FFE69C"
-        strokeWidth="2"
-      />
-      <path d="M3 6H17" stroke="#FFE69C" strokeWidth="2" />
-      <path d="M8 6V4H12V6" stroke="#FFE69C" strokeWidth="2" />
-    </svg>
-  );
-}
+
 
 function DeleteActiveIcon(props) {
   return (

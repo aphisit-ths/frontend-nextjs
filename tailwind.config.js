@@ -6,7 +6,8 @@ module.exports = {
     "components/signupComponent/signup.jsx",
     "components/signupComponent/signup.jsx",
     "components/LoggedOutUserMenu/LoggedOutUserMenu.jsx",
-    "components/homepage/HomePage.jsx"
+    "components/homepage/HomePage.jsx",
+    
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {

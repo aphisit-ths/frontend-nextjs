@@ -8,8 +8,8 @@ export default function UserDropdown({ user, signout }) {
     <div className="text-right z-30 ">
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="inline-flex justify-center w-full  px-6 py-2 text-sm shadow-md font-medium text-white bg-gray-700 rounded-lg hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-          {user.name}
+          <Menu.Button className="inline-flex justify-center w-full  px-6 py-2 text-sm shadow-md font-medium text-white bg-kmitl-normal rounded-lg hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+            {user.name}
             <ChevronDownIcon
               className="w-5 h-5 ml-2 -mr-1 text-violet-200 hover:text-violet-100"
               aria-hidden="true"
@@ -25,8 +25,8 @@ export default function UserDropdown({ user, signout }) {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <div className="px-1 py-1 ">
+          <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right font-display bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <div className="px-1 py-1 font-display  ">
               <Menu.Item>
                 {({ active }) => (
                   <button
@@ -45,7 +45,7 @@ export default function UserDropdown({ user, signout }) {
                         aria-hidden="true"
                       />
                     )}
-                    Edit
+                    แก้ใขโปรไฟล์
                   </button>
                 )}
               </Menu.Item>
@@ -57,22 +57,22 @@ export default function UserDropdown({ user, signout }) {
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
                     {active ? (
-                      <DuplicateActiveIcon
+                      <Notification
                         className="w-5 h-5 mr-2"
                         aria-hidden="true"
                       />
                     ) : (
-                      <DuplicateInactiveIcon
+                      <Notification
                         className="w-5 h-5 mr-2"
                         aria-hidden="true"
                       />
                     )}
-                    Duplicate
+                    การแจ้งเตือน
                   </button>
                 )}
               </Menu.Item>
             </div>
-            <div className="px-1 py-1">
+            <div className="px-1 py-1 font-display ">
               <Menu.Item>
                 {({ active }) => (
                   <button
@@ -81,17 +81,11 @@ export default function UserDropdown({ user, signout }) {
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
                     {active ? (
-                      <ArchiveActiveIcon
-                        className="w-5 h-5 mr-2"
-                        aria-hidden="true"
-                      />
+                      <Review className="w-5 h-5 mr-2" aria-hidden="true" />
                     ) : (
-                      <ArchiveInactiveIcon
-                        className="w-5 h-5 mr-2"
-                        aria-hidden="true"
-                      />
+                      <Review className="w-5 h-5 mr-2" aria-hidden="true" />
                     )}
-                    Archive
+                    รีวิวที่วิชาเลือก
                   </button>
                 )}
               </Menu.Item>
@@ -103,33 +97,52 @@ export default function UserDropdown({ user, signout }) {
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
                     {active ? (
-                      <MoveActiveIcon
-                        className="w-5 h-5 mr-2"
-                        aria-hidden="true"
-                      />
+                      <Review className="w-5 h-5 mr-2" aria-hidden="true" />
                     ) : (
-                      <MoveInactiveIcon
-                        className="w-5 h-5 mr-2"
-                        aria-hidden="true"
-                      />
+                      <Review className="w-5 h-5 mr-2" aria-hidden="true" />
                     )}
-                    Move
+                    รีวิวที่อ่านหนังสือ
+                  </button>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <button
+                    className={`${
+                      active ? "bg-gray-500 text-white" : "text-gray-900"
+                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                  >
+                    {active ? (
+                      <Review className="w-5 h-5 mr-2" aria-hidden="true" />
+                    ) : (
+                      <Review className="w-5 h-5 mr-2" aria-hidden="true" />
+                    )}
+                    รีวิวร้านอาหาร
                   </button>
                 )}
               </Menu.Item>
             </div>
-            <div className="px-1 py-1">
+            <div className="px-1 py-1  font-display">
               <Menu.Item>
                 {({ active }) => (
                   <button
-                    onClick={signout}
+                  onClick={signout}
                     className={`${
-                      active ? "bg-gray-600 text-white " : "text-red-600-"
+                      active ? "bg-gray-500 text-white" : "text-red-500"
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
-                    <span className=" font-display">
-                      ออกจากระบบ
-                    </span>
+                    {active ? (
+                      <SignOutIcon
+                        className="w-5 h-5 mr-2"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      <SignOutIcon
+                        className="w-5 h-5 mr-2"
+                        aria-hidden="true"
+                      />
+                    )}
+                    ออกจากระบบ
                   </button>
                 )}
               </Menu.Item>
@@ -152,7 +165,7 @@ function EditInactiveIcon(props) {
       <path
         d="M4 13V16H7L16 7L13 4L4 13Z"
         fill="#EDE9FE"
-        stroke="#A78BFA"
+        stroke="#434343"
         strokeWidth="2"
       />
     </svg>
@@ -170,7 +183,7 @@ function EditActiveIcon(props) {
       <path
         d="M4 13V16H7L16 7L13 4L4 13Z"
         fill="#8B5CF6"
-        stroke="#C4B5FD"
+        stroke="#434343"
         strokeWidth="2"
       />
     </svg>
@@ -188,13 +201,13 @@ function DuplicateInactiveIcon(props) {
       <path
         d="M4 4H12V12H4V4Z"
         fill="#EDE9FE"
-        stroke="#A78BFA"
+        stroke="#434343"
         strokeWidth="2"
       />
       <path
         d="M8 8H16V16H8V8Z"
         fill="#EDE9FE"
-        stroke="#A78BFA"
+        stroke="#434343"
         strokeWidth="2"
       />
     </svg>
@@ -212,153 +225,15 @@ function DuplicateActiveIcon(props) {
       <path
         d="M4 4H12V12H4V4Z"
         fill="#8B5CF6"
-        stroke="#C4B5FD"
+        stroke="#434343"
         strokeWidth="2"
       />
       <path
         d="M8 8H16V16H8V8Z"
         fill="#8B5CF6"
-        stroke="#C4B5FD"
+        stroke="#434343"
         strokeWidth="2"
       />
-    </svg>
-  );
-}
-
-function ArchiveInactiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        x="5"
-        y="8"
-        width="10"
-        height="8"
-        fill="#EDE9FE"
-        stroke="#A78BFA"
-        strokeWidth="2"
-      />
-      <rect
-        x="4"
-        y="4"
-        width="12"
-        height="4"
-        fill="#EDE9FE"
-        stroke="#A78BFA"
-        strokeWidth="2"
-      />
-      <path d="M8 12H12" stroke="#A78BFA" strokeWidth="2" />
-    </svg>
-  );
-}
-
-function ArchiveActiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        x="5"
-        y="8"
-        width="10"
-        height="8"
-        fill="#8B5CF6"
-        stroke="#C4B5FD"
-        strokeWidth="2"
-      />
-      <rect
-        x="4"
-        y="4"
-        width="12"
-        height="4"
-        fill="#8B5CF6"
-        stroke="#C4B5FD"
-        strokeWidth="2"
-      />
-      <path d="M8 12H12" stroke="#A78BFA" strokeWidth="2" />
-    </svg>
-  );
-}
-
-function MoveInactiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M10 4H16V10" stroke="#A78BFA" strokeWidth="2" />
-      <path d="M16 4L8 12" stroke="#A78BFA" strokeWidth="2" />
-      <path d="M8 6H4V16H14V12" stroke="#A78BFA" strokeWidth="2" />
-    </svg>
-  );
-}
-
-function MoveActiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M10 4H16V10" stroke="#C4B5FD" strokeWidth="2" />
-      <path d="M16 4L8 12" stroke="#C4B5FD" strokeWidth="2" />
-      <path d="M8 6H4V16H14V12" stroke="#C4B5FD" strokeWidth="2" />
-    </svg>
-  );
-}
-
-function DeleteInactiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        x="5"
-        y="6"
-        width="10"
-        height="10"
-        fill="#EDE9FE"
-        stroke="#A78BFA"
-        strokeWidth="2"
-      />
-      <path d="M3 6H17" stroke="#A78BFA" strokeWidth="2" />
-      <path d="M8 6V4H12V6" stroke="#A78BFA" strokeWidth="2" />
-    </svg>
-  );
-}
-
-function DeleteActiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        x="5"
-        y="6"
-        width="10"
-        height="10"
-        fill="#8B5CF6"
-        stroke="#C4B5FD"
-        strokeWidth="2"
-      />
-      <path d="M3 6H17" stroke="#C4B5FD" strokeWidth="2" />
-      <path d="M8 6V4H12V6" stroke="#C4B5FD" strokeWidth="2" />
     </svg>
   );
 }
@@ -366,25 +241,55 @@ function DeleteActiveIcon(props) {
 function SignOutIcon(props) {
   return (
     <svg
-    {...props}
-    viewBox="0 0 20 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <rect
-      x="5"
-      y="6"
-      width="10"
-      height="10"
-      fill="#8B5CF6"
-      stroke="#C4B5FD"
-      
-    />
+      {...props}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth={2}
-        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+        d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"
+      />
+    </svg>
+  );
+}
+
+function Notification(props) {
+  return (
+    <svg
+      {...props}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+      />
+    </svg>
+  );
+}
+
+function Review(props) {
+  return (
+    <svg
+      {...props}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
       />
     </svg>
   );

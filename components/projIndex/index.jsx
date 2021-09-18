@@ -5,7 +5,7 @@ import LoggedOutUserMenu from "../LoggedOutUserMenu/LoggedOutUserMenu";
 import Link from "next/link";
 export default function ProjectNav() {
   const { user, signout } = useContext(AuthContext);
-  console.log(user);
+  
   return (
     <div className=" flex bg-gray-50 h-20   w-screen  px-7 py-2 shadow-lg m-0 ">
       <Link href="/" passHref>
@@ -32,9 +32,9 @@ export default function ProjectNav() {
         </div>
       </Link>
 
-      <div className="hidden xl:flex flex-row bg-gray-50 w-4/6 h-full items-center justify-end ml-12 ">
+      <div className="hidden xl:flex flex-row bg-gray-50 w-4/6 h-full items-center xl:text-base justify-end ml-12 ">
         <Link href="/#" passHref>
-          <h1 className="px-3 font-display font-extralight text-sm md:text-lg hover:text-yellow-500 cursor-pointer ease-in duration-150  ">
+          <h1 className="px-3 font-display font-extralight text-sm md:text-lg hover:text-yellow-500 xl:text-base cursor-pointer ease-in duration-150  ">
             รีวิววิชาเลือก
           </h1>
         </Link>
@@ -46,17 +46,16 @@ export default function ProjectNav() {
           รีวิวที่อ่านหนังสือ
         </h2>
       </div>
-
-      <div className="hidden xl:flex flex-row bg-gray-50 w-1/6 h-full items-center justify-center ml-12 cursor-pointer ease-in duration-150  ">
+      <div className="hidden xl:flex flex-row bg-gray-50 w-1/6 h-full items-center justify-center xl:text-base ml-12 cursor-pointer ease-in duration-150  ">
         {!user ? (
           <>
             <Link href="/signin" passHref>
-              <span className="px-3 font-display  md:text-lg font-extralight mr-1 md:mr-3 xl:mr-5 hover:text-yellow-500 cursor-pointer ease-in duration-150   ">
-                ลงชื่อเข้าใช้
+              <span className="px-3 font-display  md:text-lg font-extralight mr-1 md:mr-3 xl:mr-5 xl:text-base hover:text-yellow-500 cursor-pointer ease-in duration-150   ">
+                เข้าสู่ระบบ
               </span>
             </Link>
             <Link href="signup" passHref>
-              <span className="bg-yellow-300  hover:bg-opacity-60 hover:shadow-lg font-display  font-thin text-white py-2 px-6  rounded-full cursor-pointer ease-in duration-150 ">
+              <span className="bg-kmitl-normal  hover:bg-opacity-60 hover:shadow-lg font-display xl:text-base  font-thin text-white py-2 px-6  rounded-full cursor-pointer ease-in duration-150 ">
                 ลงทะบียน
               </span>
             </Link>

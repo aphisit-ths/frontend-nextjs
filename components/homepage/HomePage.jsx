@@ -1,9 +1,10 @@
 import React from "react";
+import Link from "next/link";
 export default function HomePage() {
   return (
     <>
-      <div className="flex flex-col md:flex-col-reverse xl:flex-row w-screen md:items-center h-screen p-9 m-9">
-        <div className="flex-1 items-center justify-center self-center">
+      <div className="flex flex-col md:flex-col xl:flex-row w-screen md:items-center h-screen p-9 m-9">
+        <div className="flex items-center justify-center self-center">
           <div className="px-6">
             <h1 className="font-display text-xl md:text-2xl lg:text-3xl ">
               มาแลกเปลี่ยนประสบการณ์
@@ -28,18 +29,16 @@ export default function HomePage() {
                 />
               </div>
             </div>
-            <div className="mt-6 ">
-              <div className="   h-12 md:h-20 flex xl:hidden w-1/2 text-xl justify-center items-center font-display text-white hover:bg-opacity-50 cursor-pointer bg-kmitl-normal rounded-full shadow-md">
-                เข้าสู่ระบบ
+            <Link href="signin" passHref>
+              <div className="mt-6 ">
+                <div className="   h-12 md:h-20 flex xl:hidden w-1/2 text-xl justify-center items-center font-display text-white hover:bg-opacity-50 cursor-pointer bg-kmitl-normal rounded-full shadow-md">
+                  เข้าสู่ระบบ
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
-        <div className="flex-1 flex flex-col w-full h-full justify-center items-center">
-          <div className="self-center content-center ">
-            
-          </div>
-        </div>
+        
       </div>
     </>
   );
@@ -53,7 +52,6 @@ function Logo(props) {
       data-name="Layer 1"
       {...props}
       viewBox="0 0 892.70784 705.62662"
-
     >
       <polygon
         points="561.335 643.116 547.84 643.115 541.42 591.063 561.338 591.064 561.335 643.116"
