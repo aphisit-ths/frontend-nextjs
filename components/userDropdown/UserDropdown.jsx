@@ -5,10 +5,10 @@ import { ChevronDownIcon } from "@heroicons/react/solid";
 import React from "react";
 export default function UserDropdown({ user, signout }) {
   return (
-    <div className="text-right fixed">
+    <div className="text-right z-30 fixed">
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="inline-flex justify-center w-full  px-6 py-2 text-sm font-medium text-white bg-yellow-300 rounded-lg hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+          <Menu.Button className="inline-flex justify-center w-full  px-6 py-2 text-sm shadow-md font-medium text-white bg-gray-300 rounded-lg hover:bg-opacity-70 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             {user.name}
             <ChevronDownIcon
               className="w-5 h-5 ml-2 -mr-1 text-violet-200 hover:text-violet-100"
@@ -124,21 +124,10 @@ export default function UserDropdown({ user, signout }) {
                   <button
                     onClick={signout}
                     className={`${
-                      active ? "bg-red-200 text-white" : "text-gray-900"
+                      active ? "bg-gray-600 text-white " : "text-red-600-"
                     } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                   >
-                    {active ? (
-                      <SignOutIcon
-                        className="w-5 h-5 mr-2 text-violet-400"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <SignOutIcon
-                        className="w-5 h-5 mr-2 text-violet-400"
-                        aria-hidden="true"
-                      />
-                    )}
-                    <span className="text-red-600 font-display">
+                    <span className=" font-display">
                       ออกจากระบบ
                     </span>
                   </button>

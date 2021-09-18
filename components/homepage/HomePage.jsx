@@ -1,9 +1,9 @@
 import React from "react";
-import style from "../../styles/homepage.module.scss";
+
 export default function HomePage() {
   return (
     <>
-      <div className="flex flex-col-reverse md:flex-col-reverse xl:flex-row w-screen md:items-center h-screen p-9">
+      <div className="flex flex-col-reverse md:flex-col-reverse xl:flex-row w-screen md:items-center h-screen p-9 m-9">
         <div className="flex-1 items-center justify-center self-center">
           <div className="px-6">
             <h1 className="font-display text-xl md:text-2xl lg:text-3xl ">
@@ -20,7 +20,7 @@ export default function HomePage() {
               ๆ น้อง ๆ รออ่านอยู่นะ{" "}
             </span>
             <div className="mt-6">
-              <div className=" h-12 md:h-20 flex items-center rounded-full shadow-md">
+              <div className="hidden  h-12 md:h-20 xl:flex items-center rounded-full shadow-md">
                 <input
                   type="text"
                   className="rounded-l-full w-full placeholder-opacity-50 py-2 px-6 text-gray-700 leading-tight focus:outline-none"
@@ -29,12 +29,17 @@ export default function HomePage() {
                 />
               </div>
             </div>
+            <div className="mt-6 ">
+              <div className="   h-12 md:h-20 flex xl:hidden w-1/2 text-xl justify-center items-center font-display text-white hover:bg-opacity-50 cursor-pointer bg-kmitl-normal rounded-full shadow-md">
+                เข้าสู่ระบบ
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="flex-1 flex flex-col w-full h-full justify-center items-center">
           <div className="self-center content-center ">
-            <Logo className=""></Logo>
+            <Logo className="m-2 w-full"></Logo>
           </div>
         </div>
       </div>
@@ -45,7 +50,8 @@ export default function HomePage() {
 function Logo(props) {
   return (
     <svg
-    height="400"
+    {...props}
+
       viewBox="0 0 605 395"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
