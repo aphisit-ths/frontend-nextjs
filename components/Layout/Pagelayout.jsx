@@ -23,7 +23,7 @@ export default function Pagelayout({ children }) {
         ></link>
       </Head>
       <ProjectNav />
-      <div className={style.sections}>{children}</div>
+      {children}
     </div>
   );
 }

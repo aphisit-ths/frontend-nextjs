@@ -1,46 +1,51 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 export default function HomePage() {
   return (
-    <>
-      <div className="flex flex-col md:flex-col xl:flex-row w-screen md:items-center h-screen p-9 m-9">
-        <div className="flex items-center justify-center self-center">
-          <div className="px-6">
-            <h1 className="font-display text-xl md:text-2xl lg:text-3xl ">
-              มาแลกเปลี่ยนประสบการณ์
-            </h1>
-            <h2 className="font-display text-xl md:text-2xl lg:text-3xl ">
-              ที่เกิดขึ้นรอบรั้ว
-              <span className="font-display text-xl md:text-2xl lg:text-3xl text-kmitl-normal ">
-                พระจอมเกล้าลาดกระบัง
-              </span>
-            </h2>
-            <span className="font-display text-sm hover:transform translate-x-4 translate-y-4  md:text-2xl lg:text-3xl max-w-xs min-w-min font-thin text-gray-400 ">
-              ถ้าเกิดคุณอยากอ่านหรือ มีอะไรอยากจะมาแนะนำเราก็อย่ารอช้า มีเพื่อน
-              ๆ น้อง ๆ รออ่านอยู่นะ{" "}
+    <div className="flex m-0 flex-col-reverse xl:flex-row justify-end sm:items-center xl:w-screen xl:items-center xl:max-w-screen-2xl md:items-start xl:justify-center  h-screen p-9 xl:m-9 xl:space-x-11">
+      <div className="flex w-90 items-center justify-center xl:m-1  ">
+        <div className="px-1 ">
+          <h1 className="font-display text-xl md:text-2xl lg:text-3xl ">
+            มาแลกเปลี่ยนประสบการณ์
+          </h1>
+          <h2 className="font-display text-sm md:text-2xl lg:text-3xl ">
+            ที่เกิดขึ้นรอบรั้ว
+            <span className="font-display text-sm md:text-2xl lg:text-3xl text-kmitl-normal ">
+              พระจอมเกล้าลาดกระบัง
             </span>
-            <div className="mt-6">
-              <div className="hidden  h-12 md:h-20 xl:flex items-center rounded-full shadow-md">
-                <input
-                  type="text"
-                  className="rounded-l-full w-full placeholder-opacity-50 py-2 px-6 text-gray-700 leading-tight focus:outline-none"
-                  id="search"
-                  placeholder="วันนี้จะอ่านเรื่องอะไรดี ?"
-                />
+          </h2>
+          <span className="font-display text-sm hover:transform translate-x-4 translate-y-4  md:text-2xl lg:text-3xl  font-thin text-gray-400 ">
+            มีอะไรอยากจะมาแนะนำก็อย่ารอช้ามีเพื่อน ๆ น้อง ๆ รออ่านอยู่นะ{" "}
+          </span>
+          <div className="mt-6">
+            <div className="hidden  h-12 md:h-20 xl:flex items-center rounded-full shadow-md">
+              <input
+                type="text"
+                className="rounded-l-full w-full placeholder-opacity-50 py-2 px-6 text-gray-700 leading-tight focus:outline-none"
+                id="search"
+                placeholder="วันนี้จะอ่านเรื่องอะไรดี ?"
+              />
+            </div>
+          </div>
+          <Link href="signin" passHref>
+            <div className="mt-6 ">
+              <div className="   h-12 md:h-20 flex xl:hidden w-1/2 text-xl xl:text-4xl justify-center items-center font-display text-white hover:bg-opacity-50 cursor-pointer bg-kmitl-normal rounded-xl shadow-md">
+                เข้าสู่ระบบ
               </div>
             </div>
-            <Link href="signin" passHref>
-              <div className="mt-6 ">
-                <div className="   h-12 md:h-20 flex xl:hidden w-1/2 text-xl justify-center items-center font-display text-white hover:bg-opacity-50 cursor-pointer bg-kmitl-normal rounded-full shadow-md">
-                  เข้าสู่ระบบ
-                </div>
-              </div>
-            </Link>
-          </div>
+          </Link>
         </div>
-        
       </div>
-    </>
+      <div className=" p-5 bg-yellow-200 xl:w-25 h-90 xl:self-center xl:justify-center rounded-full items-center ">
+        <Image 
+          alt="kmitl"
+          src="https://ouch-cdn2.icons8.com/bv8rsZVWeYALjU5X252t31yZfJRoZKlXklxKga3lGfM/rs:fit:784:784/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvNDU3/LzVjMmYyZmExLWM4/ZTUtNGZiZi05MmVi/LWEwYWNjOWZmOGFk/MC5zdmc.png"
+          width={600}
+          height={600}
+        ></Image>
+      </div>
+    </div>
   );
 }
 
