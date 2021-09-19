@@ -113,7 +113,7 @@ function Signupform() {
             type="form"
             onSubmit={handleSubmit}
           >
-            <span className="font-display tracking-wide font-light text-lg md:text-xl ">
+            <span className="font-display tracking-wide mx-5 font-bold text-lg  ">
               ชื่อเล่น:
             </span>
             <input
@@ -125,7 +125,7 @@ function Signupform() {
               onChange={handleChange}
               required
             />
-            <span className="font-display tracking-wide font-light text-lg ">
+            <span className="font-display tracking-wide mx-5 font-bold text-lg ">
               อีเมล:
             </span> 
             <input
@@ -137,7 +137,7 @@ function Signupform() {
               onChange={handleChange}
               required
             />
-            <span className="font-display tracking-wide font-light text-lg ">
+            <span className="font-display tracking-wide mx-5 font-bold text-lg ">
               รหัสผ่าน:
             </span>
             <input
@@ -171,7 +171,7 @@ function Signupform() {
             <button
               type="submit"
               disabled={loading}
-              className=" mx-4 my-4 flex flex-row items-center justify-center bg-gray-200 hover:bg-gray-400 ease-in duration-150 hover:shadow-xl  text-gray-600  hover:text-white py-3 px-4 border font-display text-xs md:text-lg rounded-3xl"
+              className=" mx-4 my-4 flex flex-row items-center justify-center bg-gray-200 hover:bg-gray-400 ease-in duration-150 hover:shadow-xl  text-gray-600  hover:text-white py-3 px-4 border font-display text-xs xl:text-sm rounded-3xl"
             >
               <Googlesvg></Googlesvg>
               ลงทะเบียนด้วย Google

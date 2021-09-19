@@ -74,7 +74,7 @@ function Signin() {
 <div className="flex justify-center p-5 h-screen w-screen ">
       <div className="flex flex-col rounded-md shadow-md w-full sm:w-full md:w-2/3 xl:w-1/3  h-5/6 py-6  ">
         <div className="flex flex-col items-center w-full h-80 ">
-          <h1 className=" text-2xl md:text-3xl xl:3xl text-displaycolor font-display font-normal py-6 ">
+          <h1 className="  text-3xl text-displaycolor font-display font-normal py-3">
             ลงทะเบียนผู้ใช้
           </h1>
           <form
@@ -84,7 +84,7 @@ function Signin() {
             onSubmit={handleSubmit}
           >
             
-            <span className="font-display tracking-wide font-light text-lg ">
+            <span className="font-display mx-5 tracking-wide font-normal text-lg ">
               อีเมล:
             </span> 
             <input
@@ -96,7 +96,7 @@ function Signin() {
               onChange={handleChange}
               required
             />
-            <span className="font-display tracking-wide font-light text-lg ">
+            <span className="font-display tracking-wide mx-5 mb-2 font-normal text-lg ">
               รหัสผ่าน:
             </span>
             <input
@@ -108,6 +108,7 @@ function Signin() {
               onChange={handleChange}
               required
             />
+            
             {error && (
               <Alert className="mb-5" severity="error">{error.graphQLErrors[0].message}</Alert>
             )}
@@ -122,7 +123,7 @@ function Signin() {
             <button
               type="submit"
               disabled={loading}
-              className=" mx-4 my-4 flex flex-row items-center justify-center bg-gray-200 hover:bg-gray-400 ease-in duration-150 hover:shadow-xl  text-gray-600  hover:text-white py-3 px-4 border font-display text-xs md:text-lg rounded-3xl"
+              className=" mx-4 my-4 flex flex-row items-center justify-center bg-gray-200 hover:bg-gray-400 ease-in duration-150 hover:shadow-xl  text-gray-600  hover:text-white py-3 px-4 border font-display text-xs xl:text-sm rounded-3xl"
             >
               <Googlesvg></Googlesvg>
               เข้าสู่ระบบนด้วย Google

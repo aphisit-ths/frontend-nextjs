@@ -121,7 +121,7 @@ export default function UserDropdown() {
               </Menu.Item>
             </div>
             <div className="px-1 py-1">
-              <Link href="/signup">
+              <Link href="/signup" passHref>
                 <Menu.Item>
                   {({ active }) => (
                     <button

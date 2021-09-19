@@ -7,7 +7,7 @@ export default function ProjectNav() {
   const { user, signout } = useContext(AuthContext);
   
   return (
-    <div className=" flex bg-gray-50 h-20   w-screen  px-7 py-2 shadow-lg m-0 ">
+    <div className=" flex bg-gray-50 h-20   w-screen  px-7 py-2 shadow-lg m-0 z-50 ">
       <Link href="/" passHref>
         <div
           className="flex-col align-middle justify-center w-30 h-full bg-gray-50  cursor-pointer  ease-in
