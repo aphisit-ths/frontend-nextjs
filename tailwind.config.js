@@ -8,11 +8,14 @@ module.exports = {
     "components/LoggedOutUserMenu/LoggedOutUserMenu.jsx",
     "components/homepage/HomePage.jsx",
     "components/select_topic/Select_Topic.jsx"
-    
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      
+      animation: {
+        'bounce-slow': 'bounce 3s ease-in-out infinite',
+       },
       borderWidth: {
         "1": "1.5px",
       },
@@ -26,6 +29,13 @@ module.exports = {
       fontFamily: {
         display: ["'Prompt'"],
       },
+      gridTemplateColumns: {
+        // Simple 16 column grid
+       '16': 'repeat(16, minmax(0, 1fr))',
+
+        // Complex site-specific column configuration
+       'content': '200px minmax(auto, 200px) ',
+      }
     },
   },
   variants: {

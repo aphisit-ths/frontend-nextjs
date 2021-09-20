@@ -3,50 +3,92 @@ import Link from "next/link";
 import Image from "next/image";
 export default function HomePage() {
   return (
-    <div className="flex m-0 flex-col-reverse xl:flex-row justify-end sm:items-center xl:w-screen xl:items-center xl:max-w-screen-2xl md:items-start xl:justify-center  h-screen p-9 xl:m-9 xl:space-x-11">
-      <div className="flex w-90 items-center justify-center xl:m-1  ">
-        <div className="px-1 ">
-          <h1 className="font-display text-xl md:text-2xl lg:text-3xl ">
-            มาแลกเปลี่ยนประสบการณ์
-          </h1>
-          <h2 className="font-display text-sm md:text-2xl lg:text-3xl ">
-            ที่เกิดขึ้นรอบรั้ว
-            <span className="font-display text-sm md:text-2xl lg:text-3xl text-kmitl-normal ">
-              พระจอมเกล้าลาดกระบัง
-            </span>
-          </h2>
-          <span className="font-display text-sm hover:transform translate-x-4 translate-y-4  md:text-2xl lg:text-3xl  font-thin text-gray-400 ">
-            มีอะไรอยากจะมาแนะนำก็อย่ารอช้ามีเพื่อน ๆ น้อง ๆ รออ่านอยู่นะ{" "}
-          </span>
-          <div className="mt-6">
-            <div className="hidden  h-12 md:h-20 xl:flex items-center rounded-full shadow-md">
-              <input
-                type="text"
-                className="rounded-l-full w-full placeholder-opacity-50 py-2 px-6 text-gray-700 leading-tight focus:outline-none"
-                id="search"
-                placeholder="วันนี้จะอ่านเรื่องอะไรดี ?"
-              />
+    <>
+      <div className="flex  min-h-screen   justify-center items-start xl:items-center p-5">
+        <div className="grid grid-rows-content  xl:grid-cols-2 w-full  gap-1 justify-center  md:items-center h-screen m-5   ">
+          <div className="flex items-center sm:items-center sm:justify-center ">
+            <div className="px-1 flex flex-col items-center justify-center xl:items-start  ">
+              <h1 className="font-display text-xl md:text-2xl lg:text-2xl ">
+                มาแลกเปลี่ยนประสบการณ์
+              </h1>
+              <h2 className="font-display text-sm md:text-2xl lg:text-2xl ">
+                ที่เกิดขึ้นรอบรั้ว
+                <span className="font-display text-sm md:text-2xl lg:text-2xl text-kmitl-normal ">
+                  พระจอมเกล้าลาดกระบัง
+                </span>
+              </h2>
+              <span className="font-display text-xs  md:text-2xl lg:text-2xl  font-thin text-gray-400 ">
+                มีอะไรอยากจะมาแนะนำก็อย่ารอช้ามีเพื่อน ๆ น้อง ๆ รออ่านอยู่นะ{" "}
+              </span>
+              <Link href="select-topic" passHref>
+                <h1 className="bg-kmitl-normal rounded-full text-xs md:text-xl font-light font-display hover:bg-opacity-40 text-gray-50 px-20 py-4 my-2 cursor-pointer">
+                  เลือกรีวิวที่สนใจ
+                </h1>
+              </Link>
             </div>
           </div>
-          <Link href="signin" passHref>
-            <div className="mt-6 ">
-              <div className="   h-12 md:h-20 flex xl:hidden w-1/2 text-xl xl:text-4xl justify-center items-center font-display text-white hover:bg-opacity-50 cursor-pointer bg-kmitl-normal rounded-xl shadow-md">
-                เข้าสู่ระบบ
-              </div>
+          <div className="p-4 rounded">
+            {" "}
+            <div className=" flex p-5 bg-yellow-200 xl:w-25 h-90 xl:self-center xl:justify-center rounded-full items-end ">
+              <Image
+                className="animate-bounce-slow "
+                alt="kmitl"
+                src="https://ouch-cdn2.icons8.com/bv8rsZVWeYALjU5X252t31yZfJRoZKlXklxKga3lGfM/rs:fit:784:784/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvNDU3/LzVjMmYyZmExLWM4/ZTUtNGZiZi05MmVi/LWEwYWNjOWZmOGFk/MC5zdmc.png"
+                width={600}
+                height={600}
+              ></Image>
             </div>
-          </Link>
+          </div>
         </div>
       </div>
-      <div className=" p-5 bg-yellow-200 xl:w-25 h-90 xl:self-center xl:justify-center rounded-full items-center ">
-        <Image 
-          alt="kmitl"
-          src="https://ouch-cdn2.icons8.com/bv8rsZVWeYALjU5X252t31yZfJRoZKlXklxKga3lGfM/rs:fit:784:784/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvNDU3/LzVjMmYyZmExLWM4/ZTUtNGZiZi05MmVi/LWEwYWNjOWZmOGFk/MC5zdmc.png"
-          width={600}
-          height={600}
-        ></Image>
-      </div>
-    </div>
+    </>
   );
+
+  // return (
+  //   <div className="flex m-0 flex-col-reverse xl:flex-row justify-end sm:items-center xl:w-screen xl:items-center xl:max-w-screen-2xl md:items-start xl:justify-center  h-screen p-9 xl:m-9 xl:space-x-11">
+  //     <div className="flex w-90 items-center justify-center xl:m-1  ">
+  //       <div className="px-1 ">
+  //         <h1 className="font-display text-xl md:text-2xl lg:text-3xl ">
+  //           มาแลกเปลี่ยนประสบการณ์
+  //         </h1>
+  //         <h2 className="font-display text-sm md:text-2xl lg:text-3xl ">
+  //           ที่เกิดขึ้นรอบรั้ว
+  //           <span className="font-display text-sm md:text-2xl lg:text-3xl text-kmitl-normal ">
+  //             พระจอมเกล้าลาดกระบัง
+  //           </span>
+  //         </h2>
+  //         <span className="font-display text-sm hover:transform translate-x-4 translate-y-4  md:text-2xl lg:text-3xl  font-thin text-gray-400 ">
+  //           มีอะไรอยากจะมาแนะนำก็อย่ารอช้ามีเพื่อน ๆ น้อง ๆ รออ่านอยู่นะ{" "}
+  //         </span>
+  //         <div className="mt-6">
+  //           <div className="hidden  h-12 md:h-20 xl:flex items-center rounded-full shadow-md">
+  //             <input
+  //               type="text"
+  //               className="rounded-l-full w-full placeholder-opacity-50 py-2 px-6 text-gray-700 leading-tight focus:outline-none"
+  //               id="search"
+  //               placeholder="วันนี้จะอ่านเรื่องอะไรดี ?"
+  //             />
+  //           </div>
+  //         </div>
+  //         <Link href="signin" passHref>
+  //           <div className="mt-6 ">
+  //             <div className="   h-12 md:h-20 flex xl:hidden w-1/2 text-xl xl:text-4xl justify-center items-center font-display text-white hover:bg-opacity-50 cursor-pointer bg-kmitl-normal rounded-xl shadow-md">
+  //               เข้าสู่ระบบ
+  //             </div>
+  //           </div>
+  //         </Link>
+  //       </div>
+  //     </div>
+  //     <div className=" p-5 bg-yellow-200 xl:w-25 h-90 xl:self-center xl:justify-center rounded-full items-center ">
+  //       <Image
+  //         alt="kmitl"
+  //         src="https://ouch-cdn2.icons8.com/bv8rsZVWeYALjU5X252t31yZfJRoZKlXklxKga3lGfM/rs:fit:784:784/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvNDU3/LzVjMmYyZmExLWM4/ZTUtNGZiZi05MmVi/LWEwYWNjOWZmOGFk/MC5zdmc.png"
+  //         width={600}
+  //         height={600}
+  //       ></Image>
+  //     </div>
+  //   </div>
+  // );
 }
 
 function Logo(props) {
