@@ -113,7 +113,7 @@ function Signupform() {
             type="form"
             onSubmit={handleSubmit}
           >
-            <span className="font-display tracking-wide mx-5 font-bold text-lg  ">
+            <span className="font-display tracking-wide mx-5 font-normal text-sm xl:text-lg text-displaycolor  ">
               ชื่อเล่น:
             </span>
             <input
@@ -125,7 +125,7 @@ function Signupform() {
               onChange={handleChange}
               required
             />
-            <span className="font-display tracking-wide mx-5 font-bold text-lg ">
+            <span className="font-display tracking-wide mx-5 font-normal text-sm xl:text-lg text-displaycolor ">
               อีเมล:
             </span> 
             <input
@@ -137,7 +137,7 @@ function Signupform() {
               onChange={handleChange}
               required
             />
-            <span className="font-display tracking-wide mx-5 font-bold text-lg ">
+            <span className="font-display tracking-wide mx-5 font-normal text-sm xl:text-lg text-displaycolor ">
               รหัสผ่าน:
             </span>
             <input
@@ -164,14 +164,14 @@ function Signupform() {
             <button
               type="submit"
               disabled={loading}
-              className=" mx-4  bg-kmitl-normal hover:bg-kmitl-hover hover:shadow-xl ease-in duration-150 text-gray-50  hover:text-white py-3 px-4 border font-display font-normal   rounded-3xl"
+              className=" mx-4  bg-kmitl-normal hover:bg-kmitl-hover hover:shadow-xl ease-in duration-150 text-gray-50  hover:text-white py-3 w-full border font-display font-normal   rounded-3xl"
             >
               ลงทะเบียนผู้ใช้
             </button>
             <button
               type="submit"
               disabled={loading}
-              className=" mx-4 my-4 flex flex-row items-center justify-center bg-gray-200 hover:bg-gray-400 ease-in duration-150 hover:shadow-xl  text-gray-600  hover:text-white py-3 px-4 border font-display text-xs xl:text-sm rounded-3xl"
+              className=" mx-4 my-4 flex flex-row items-center justify-center bg-gray-200 hover:bg-gray-400 ease-in duration-150 hover:shadow-xl  text-gray-600  hover:text-white py-3 w-full border font-display text-xs xl:text-sm rounded-3xl"
             >
               <Googlesvg></Googlesvg>
               ลงทะเบียนด้วย Google

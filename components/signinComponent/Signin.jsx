@@ -71,11 +71,11 @@ function Signin() {
     }
   };
   return (
-<div className="flex justify-center p-5 h-screen w-screen ">
-      <div className="flex flex-col rounded-md shadow-md w-full sm:w-full md:w-2/3 xl:w-1/3  h-5/6 py-6  ">
-        <div className="flex flex-col items-center w-full h-80 ">
-          <h1 className="  text-3xl text-displaycolor font-display font-normal py-3">
-            ลงทะเบียนผู้ใช้
+<div className="flex justify-center p-5  w-screen ">
+      <div className="flex flex-col rounded-md shadow-md w-full sm:w-full md:w-2/3 xl:w-1/3   py-10  ">
+        <div className="flex flex-col items-center w-full  ">
+          <h1 className=" text-2xl md:text-3xl text-displaycolor font-display font-normal py-3">
+            เข้าสู่ระบบ
           </h1>
           <form
             action=""
@@ -83,8 +83,7 @@ function Signin() {
             type="form"
             onSubmit={handleSubmit}
           >
-            
-            <span className="font-display mx-5 tracking-wide font-normal text-lg ">
+            <span className="font-display mx-5 tracking-wide font-normal text-sm xl:text-xl">
               อีเมล:
             </span> 
             <input
@@ -96,11 +95,11 @@ function Signin() {
               onChange={handleChange}
               required
             />
-            <span className="font-display tracking-wide mx-5 mb-2 font-normal text-lg ">
+            <span className="font-display tracking-wide mx-5 mb-2 font-normal text-sm xl:text-xl">
               รหัสผ่าน:
             </span>
             <input
-              className="  border-2 h-10 w-full md:h-14 mb-6 mx-5 p-5  rounded-lg outline-none bg-gray-50 "
+              className="  border-2 h-8 w-full md:h-14 mb-6 mx-5 p-5  rounded-lg outline-none bg-gray-50 "
               type="password"
               name="password"
               placeholder="รหัสผ่าน"
@@ -116,14 +115,14 @@ function Signin() {
             <button
               type="submit"
               disabled={loading}
-              className=" mx-4  bg-kmitl-normal hover:bg-kmitl-hover hover:shadow-xl ease-in duration-150 text-gray-50  hover:text-white py-3 px-4 border font-display font-normal   rounded-3xl"
+              className=" mx-4  bg-kmitl-normal hover:bg-kmitl-hover hover:shadow-xl ease-in duration-150 text-gray-50  hover:text-white py-4 border font-display text-sm xl:font-normal  w-full  rounded-3xl"
             >
               เข้าสู่ระบบ
             </button>
             <button
               type="submit"
               disabled={loading}
-              className=" mx-4 my-4 flex flex-row items-center justify-center bg-gray-200 hover:bg-gray-400 ease-in duration-150 hover:shadow-xl  text-gray-600  hover:text-white py-3 px-4 border font-display text-xs xl:text-sm rounded-3xl"
+              className=" mx-4 my-4 flex flex-row items-center justify-center bg-gray-200 hover:bg-gray-400 ease-in duration-150 hover:shadow-xl  text-gray-600  hover:text-white py-4 w-full border font-display text-xs xl:text-sm rounded-3xl"
             >
               <Googlesvg></Googlesvg>
               เข้าสู่ระบบนด้วย Google
