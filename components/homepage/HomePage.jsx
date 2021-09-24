@@ -1,11 +1,13 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Signin from "../signinComponent/Signin";
+
+import { ChevronDownIcon } from "@heroicons/react/solid";
+import Contents from "./content";
 export default function HomePage() {
   return (
     <>
-      <div className="flex  min-h-screen   justify-center items-start xl:items-center p-5">
+      <div className="flex  min-h-screen   justify-center items-start xl:items-center p-5 overscroll-contain">
         <div className="grid grid-rows-content  xl:grid-cols-2 w-full  gap-1 justify-center  md:items-center h-screen m-5   ">
           <div className="flex items-center sm:items-center sm:justify-center ">
             <div className="px-1 flex flex-col items-center justify-center xl:items-start  ">
@@ -39,14 +41,32 @@ export default function HomePage() {
                 height={600}
               ></Image>
             </div>
+            <a href="#content">
+              <DownIcon className="w-10 h-10"></DownIcon>
+            </a>
           </div>
         </div>
       </div>
-      
+      <Contents></Contents>
     </>
   );
-   
- 
 }
 
-
+function DownIcon(params) {
+  return (
+    <svg
+      {...params}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M19 9l-7 7-7-7"
+      />
+    </svg>
+  );
+}

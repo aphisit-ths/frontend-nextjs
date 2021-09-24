@@ -1,14 +1,17 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/Link"
 function Select_Topic() {
   return (
     <>
       <div className="flex flex-col  sm:flex-row justify-start bg-gray-100 w-screen h-screen p-20 space-y-10 sm:space-y-0 sm:space-x-10  items-center sm:justify-center overflow-y-scroll ">
+      <Link href="reviewsubjects" >
         <div className="w-60 h-60  bg-white block p-4 border-1 border-gray-500 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 ">
           <div className="flex flex-row  w-50 h-1/2 space-x-2 items-center justify-center ">
-            <div className="flex-1 ml-5  items-center    justify-center">
-              <Toppic className=" self-center w-20 h-20 rounded-full bg-purple-300 "></Toppic>
+            <div className="mx-2  items-center    justify-center">
+              <Toppic className=" self-center w-16 h-16 rounded-full bg-yellow-100 "></Toppic>
             </div>
+            
             <div className="flex-1 font-display text-xl text-gray-600 ">
               วิชาเลือก
             </div>
@@ -20,10 +23,11 @@ function Select_Topic() {
             <RightArrow className=""></RightArrow>
           </div>
         </div>
+        </Link>
         <div className="w-60 h-60  bg-white block p-4 border-1 border-gray-500 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 ">
           <div className="flex flex-row  w-50 h-1/2 space-x-2 items-center justify-center ">
-            <div className="flex-1 ml-5  items-center    justify-center">
-              <Toppic className=" self-center w-20 h-20 rounded-full bg-red-300 "></Toppic>
+            <div className="mx-2  items-center    justify-center">
+              <Toppic className=" self-center w-16 h-16 rounded-full bg-yellow-100"></Toppic>
             </div>
             <div className="flex-1 font-display text-xl text-gray-600 ">
               ร้านอาหาร
@@ -38,8 +42,8 @@ function Select_Topic() {
         </div>
         <div className="w-60 h-60  bg-white block p-4 border-1 border-gray-500 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 ">
           <div className="flex flex-row  w-50 h-1/2 space-x-1 items-center justify-center ">
-            <div className="flex-1 ml-5  items-center    justify-center">
-              <Toppic className=" self-center w-20 h-20 rounded-full bg-green-300 "></Toppic>
+            <div className="mx-2  items-center    justify-center">
+              <Toppic className=" self-center w-16 h-16 rounded-full bg-yellow-100 "></Toppic>
             </div>
             <div className="flex-1 font-display text-lg text-gray-600 ">
               ที่อ่านหนังสือ

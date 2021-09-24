@@ -1,8 +1,9 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import React from "react";
-import Navbar from "../Navbar/Navbar";
+
 import Head from "next/head";
 import ProjectNav from "../projIndex/index";
-import style from "../../styles/sections.module.scss";
+
 
 export default function Pagelayout({ children }) {
   return (
@@ -23,6 +24,7 @@ export default function Pagelayout({ children }) {
         ></link>
       </Head>
       <ProjectNav />
+
       {children}
     </div>
   );
