@@ -30,7 +30,7 @@ export default function Navbar() {
         {user && <>
         <Link href="/manageproducts"><a>Hello, {user.name}</a></Link>
           
-        <a onClick={signout}>Sign Out</a>
+        <a onClick={signout}>Sign Ou</a>
         </>}
         {!user && (
           <>

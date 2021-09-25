@@ -16,13 +16,30 @@ $secFont: "Karla", sans-serif;
         height: 400px;
         align-items: center;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-        cursor: pointer;
         border-radius: 15px;
         margin-top: 2rem;
         transition: all .5s;
+        padding: 10px;
+        
+        a{
+            font-size: 1.3em;
+            font-weight: 700;
+            color: white;
+            justify-items: center;
+            text-transform: uppercase;
+            z-index: 3;
+            position: static;
+            transition: all .5s;
+            background-color: #494949;
+            margin: .3em 0 0 0;
+            border-radius: 15px;
+            padding:.3em 1em .3em 1em ;
+            cursor: pointer;
+        }
         img{
             width: 10em;
             height: auto;
+            padding-bottom: 30px;
         }
         h1{
             color: #686669;
@@ -30,25 +47,26 @@ $secFont: "Karla", sans-serif;
             transition: all .5s;
             font-weight: 700;
         }
-        button{
-            height: 1.8rem;
-            width: 10em;
-            background-color: #fc5271;
-            border-style: none;
-            font-size: 1.2em;
-            font-family: $themeFont;
-            border-radius: 15px;
-            color: white;
-        }
+       span{
+           padding-top: 6px;
+           font-size: 15px;
+           transition: all .5s;
+           cursor: crosshair;
+       }
     }
     .product:hover{
         background-color: #4a494b;
+        
         a{
-            color: #ffffff;
+            color: #4a494b;
+            background-color: white;
+            
         }
         h1{
             color: #ffff;
-            
+        }
+        span{
+            color: #f1f1f1;
         }
     }
 }
