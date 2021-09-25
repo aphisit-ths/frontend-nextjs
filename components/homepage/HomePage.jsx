@@ -1,8 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-
-import { ChevronDownIcon } from "@heroicons/react/solid";
+import { motion } from "framer-motion";
 import Contents from "./content";
 export default function HomePage() {
   return (
@@ -33,13 +32,25 @@ export default function HomePage() {
           <div className="p-4 rounded">
             {" "}
             <div className=" flex p-5 bg-yellow-200 xl:w-25 h-90 xl:self-center xl:justify-center rounded-full items-end ">
-              <Image
-                className="animate-bounce-slow "
-                alt="kmitl"
-                src="https://ouch-cdn2.icons8.com/bv8rsZVWeYALjU5X252t31yZfJRoZKlXklxKga3lGfM/rs:fit:784:784/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvNDU3/LzVjMmYyZmExLWM4/ZTUtNGZiZi05MmVi/LWEwYWNjOWZmOGFk/MC5zdmc.png"
-                width={600}
-                height={600}
-              ></Image>
+              <motion.div
+                animate={{
+                  scale: [1, 1.1, 1],
+                  y:[1,3,2,1]
+                }}
+                transition={{
+                  ease: "linear",
+                  repeat: "Infinity ",
+                  duration: "2",
+                }}
+              >
+                <Image
+                  className=""
+                  alt="kmitl"
+                  src="https://ouch-cdn2.icons8.com/bv8rsZVWeYALjU5X252t31yZfJRoZKlXklxKga3lGfM/rs:fit:784:784/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvNDU3/LzVjMmYyZmExLWM4/ZTUtNGZiZi05MmVi/LWEwYWNjOWZmOGFk/MC5zdmc.png"
+                  width={600}
+                  height={600}
+                ></Image>
+              </motion.div>
             </div>
             <a href="#content">
               <DownIcon className="w-10 h-10"></DownIcon>
