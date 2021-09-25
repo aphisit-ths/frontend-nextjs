@@ -34,7 +34,7 @@ export default function HomePage() {
             <div className=" flex p-5 bg-yellow-200 xl:w-25 h-90 xl:self-center xl:justify-center rounded-full items-end ">
               <motion.div
                 animate={{
-                  scale: [1, 1.1, 1],
+                  scale: [1, 1.2, 1],
                   y:[1,3,2,1]
                 }}
                 transition={{
