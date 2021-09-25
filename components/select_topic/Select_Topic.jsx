@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/Link"
+import Link from "next/link"
 function Select_Topic() {
   return (
     <>
-      <div className="flex flex-col  sm:flex-row justify-start bg-gray-100 w-screen h-screen p-20 space-y-10 sm:space-y-0 sm:space-x-10  items-center sm:justify-center overflow-y-scroll ">
-      <Link href="reviewsubjects" >
+      <div className="flex flex-col  sm:flex-row justify-start bg-gray-800 w-screen h-screen p-20 space-y-10 sm:space-y-0 sm:space-x-10  items-center sm:justify-center overflow-y-scroll ">
+      
+      <Link href="reviewsubjects" passHref>
         <div className="w-60 h-60  bg-white block p-4 border-1 border-gray-500 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 ">
           <div className="flex flex-row  w-50 h-1/2 space-x-2 items-center justify-center ">
             <div className="mx-2  items-center    justify-center">
@@ -24,6 +25,7 @@ function Select_Topic() {
           </div>
         </div>
         </Link>
+
         <div className="w-60 h-60  bg-white block p-4 border-1 border-gray-500 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 ">
           <div className="flex flex-row  w-50 h-1/2 space-x-2 items-center justify-center ">
             <div className="mx-2  items-center    justify-center">
