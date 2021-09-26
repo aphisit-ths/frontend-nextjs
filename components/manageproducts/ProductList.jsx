@@ -8,12 +8,7 @@ function ProductList({ prod }) {
       <td className="px-4 py-3 border">
         <div className="flex items-center text-sm">
           <div className="relative w-10 h-10 mr-3 rounded-full md:block">
-            <img
-              className="object-cover w-full h-full rounded-full"
-              src={prod.imgUrl}
-              alt=""
-              loading={prod.desc}
-            />
+           
             <div
               className="absolute inset-0 rounded-full shadow-inner"
               aria-hidden="true"
