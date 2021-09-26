@@ -9,7 +9,8 @@ module.exports = {
     "components/homepage/HomePage.jsx",
     "components/select_topic/Select_Topic.jsx",
     "components/subject_review/index.jsx",
-    "components/subject_review/moreDropdown.jsx"
+    "components/subject_review/moreDropdown.jsx",
+    "components/homepage/content.jsx"
     
   ],
   darkMode: false, // or 'media' or 'class'

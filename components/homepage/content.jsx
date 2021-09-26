@@ -7,7 +7,6 @@ export default function Contents() {
                 <div className="flex bg-gray-50 p-52 rounded-2xl shadow-2xl" ></div>
                 <div className="flex bg-gray-50 p-52 rounded-2xl shadow-2xl" ></div>
                 <div className="flex bg-gray-50 p-52 rounded-2xl shadow-2xl" ></div>
-                
             </div>
         </div>
     )
