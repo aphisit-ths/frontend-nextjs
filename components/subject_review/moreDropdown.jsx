@@ -2,9 +2,9 @@ import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
-export default function DropDown({ comment }) {
+export default function DropDown({ comment ,index }) {
   return (
-    <div className="bg-gray-200 rounded-xl shadow-sm flex justify-center items-center ">
+    <div key={index} className="bg-gray-200 rounded-xl shadow-sm flex justify-center items-center ">
       <Menu as="div" className=" inline-block text-left">
         <div className="rounded-sm  ">
           <Menu.Button className="flex flex-row px-3 ">

@@ -1,10 +1,10 @@
+import { Subject } from "@material-ui/icons";
 import React, { useState } from "react";
 import SelectList from "./commentsList";
 import DropDown from "./moreDropdown";
+
 export default function Review_Subject() {
-const [like, setLike] = useState(0)
-
-
+  const [like, setLike] = useState(0);
   const subjects = [
     {
       course_id: "90594041",
@@ -42,6 +42,9 @@ const [like, setLike] = useState(0)
           year: "2661",
         },
       ],
+      homework_rate:[50,80,100,60,50],
+      content_rate:[60,80,10,30,60],
+      lecturer_rate:[50,60,80,60,80]
     },
     {
       course_id: "90593007",
@@ -56,8 +59,15 @@ const [like, setLike] = useState(0)
     },
   ];
   //  bg-gradient-to-br  from-yellow-200 via-yellow-300 to-yellow-500 p-2 xl-p-10
-  const { comments } = subjects[0];
-  console.log(comments);
+  const { comments ,homework_rate ,content_rate ,lecturer_rate} = subjects[0];
+
+  const find_avg = (arr) => {
+    return arr.reduce((sum, value) => sum + value, 0) / arr.length;
+  };
+  const avg_homework = find_avg(homework_rate).toFixed(0);
+  const avg_content = find_avg(content_rate).toFixed(0);
+  const avg_lecturer = find_avg(lecturer_rate).toFixed(0);
+
   return (
     <>
       <div className=" flex flex-col bg-gray-800   items-center p-6 ">
@@ -95,10 +105,10 @@ const [like, setLike] = useState(0)
               >
                 <div
                   className=" bg-yellow-400   w-6 py-1  text-white rounded-3xl"
-                  style={{ width: "36%" }}
+                  style={{ width: `${avg_homework}%` }}
                 ></div>
               </div>
-              <p> 45%</p>
+              <p> {avg_homework}%</p>
             </div>
           </div>
 
@@ -113,10 +123,10 @@ const [like, setLike] = useState(0)
               >
                 <div
                   className=" bg-purple-600 text-xs  w-6 py-1  text-white rounded-3xl"
-                  style={{ width: "75%" }}
+                  style={{ width: `${avg_content}%`}}
                 ></div>
               </div>
-              <p>75%</p>
+              <p>{avg_content}%</p>
             </div>
           </div>
 
@@ -131,10 +141,10 @@ const [like, setLike] = useState(0)
               >
                 <div
                   className=" bg-green-500 text-xs  w-6 py-1  text-white rounded-3xl"
-                  style={{ width: "62%" }}
+                  style={{width: `${avg_lecturer}%` }}
                 ></div>
               </div>
-              <p>62%</p>
+              <p>{avg_lecturer}%</p>
             </div>
           </div>
           <div className="min-w-full w-4/6 inline-flex items-end justify-end px-2 xl:pl-6 my-6 ">
@@ -144,14 +154,14 @@ const [like, setLike] = useState(0)
           </div>
         </div>
         {/* -------------------------commnets section ------------------------------------------------------------*/}
-        {comments.map((_comment, index) => (
+        {comments.map((_comment ,index) => (
           <>
-            <div className="bg-gray-50 w-full lg:w-2/5  max-h-full rounded-xl flex flex-col  p-6 px-2  shadow-lg my-10   space-y-3 ">
+          
+            <div key={_comment.owner}   className="bg-gray-50 w-full lg:w-2/5  max-h-full rounded-xl flex flex-col  p-6 px-2  shadow-lg my-10   space-y-3 ">
               <div className=" w-full inline-flex flex-warp font-display  items-center px-2 xl:px-6  ">
                 {_comment.comment}
               </div>
-
-              <div className="min-w-full w-4/6  inline-flex items-center px-2 xl:px-6  my-2   ">
+              <div   className="min-w-full w-4/6  inline-flex items-center px-2 xl:px-6  my-2   ">
                 <p className="text-sm font-display font-light text-gray-400">
                   {" "}
                   โดย {_comment.owner}{" "}
@@ -161,16 +171,16 @@ const [like, setLike] = useState(0)
                 <div className="flex justify-center items-center">
                   <div
                     className="rounded-full bg-green-300 hover:bg-green-200 p-2 mr-2 cursor-pointer "
-                    onClick={()=> {
-                        setLike(like+1)
+                    onClick={() => {
+                      setLike(like + 1);
                     }}
                   >
-                    <Like className="w-6 h-6 "></Like>
+                    <Like key={index} className="w-6 h-6 "></Like>
                   </div>
                   {like}
                 </div>
 
-                <DropDown comment={_comment}></DropDown>
+                <DropDown  comment={_comment} key={index} ></DropDown>
               </div>
             </div>
           </>
