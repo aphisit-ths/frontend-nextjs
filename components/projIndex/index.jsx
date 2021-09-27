@@ -33,16 +33,16 @@ export default function ProjectNav() {
       </Link>
 
       <div className="hidden xl:flex flex-row bg-gray-50 w-4/6 h-full items-center xl:text-base justify-end ml-12 ">
-        <Link href="/#" passHref>
-          <h1 className="px-3 font-display font-extralight text-sm md:text-lg hover:text-yellow-500 xl:text-base cursor-pointer ease-in duration-150  ">
+        <Link href="/reviewsubjects" passHref>
+          <h1 className="px-3 font-display font-normal text-gray-600 text-sm md:text-lg hover:text-yellow-500 xl:text-base cursor-pointer ease-in duration-150  ">
             รีวิววิชาเลือก
           </h1>
         </Link>
 
-        <span className="px-3 font-display  font-extralight hover:text-yellow-500 cursor-pointer ease-in duration-150 ">
+        <span className="px-3 font-display font-normal text-gray-600 hover:font-semibold  hover:text-yellow-500 cursor-pointer ease-in duration-150 ">
           รีวิวร้านอาหาร{" "}
         </span>
-        <h2 className="px-3 font-display font-extralight hover:text-yellow-500 cursor-pointer ease-in duration-150   ">
+        <h2 className="px-3 font-display font-normal text-gray-600 hover:text-yellow-500 cursor-pointer ease-in duration-150   ">
           รีวิวที่อ่านหนังสือ
         </h2>
       </div>
@@ -50,7 +50,7 @@ export default function ProjectNav() {
         {!user ? (
           <>
             <Link href="/signin" passHref>
-              <span className="px-3 font-display  md:text-lg font-extralight mr-1 md:mr-3 xl:mr-5 xl:text-base hover:text-yellow-500 cursor-pointer ease-in duration-150   ">
+              <span className="px-3 font-display  md:text-lg font-normal text-gray-600 mr-1 md:mr-3 xl:mr-5 xl:text-base hover:text-yellow-500 cursor-pointer ease-in duration-150   ">
                 เข้าสู่ระบบ
               </span>
             </Link>
