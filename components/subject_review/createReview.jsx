@@ -36,7 +36,6 @@ export default function CreateReview({ subjects }) {
           type="form"
           action=""
           onSubmit={handleSubmit}
-          
           className="bg-gray-50 w-full lg:w-3/6  max-h-full rounded-xl flex flex-col  p-6 px-2  shadow-lg my-10 space-y-3 "
         >
           <div className="min-w-full w-4/6 inline-flex items-center px-2 xl:px-6  ">
