@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps, apollo ,user }) {
 
 MyApp.getInitialProps = async ({ ctx ,router }) => {
   //Client Side
-  console.log(ctx)
+  
   if (process.browser) {
     return __NEXT_DATA__.props.pageProps;
   }
