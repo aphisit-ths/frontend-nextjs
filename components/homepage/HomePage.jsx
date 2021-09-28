@@ -14,6 +14,7 @@ export default function HomePage() {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1 }}
+                
                 className="font-display text-2xl md:text-4xl lg:text-5xl text-white "
               >
                 มาแลกเปลี่ยนประสบการณ์
