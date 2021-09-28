@@ -11,8 +11,8 @@ module.exports = {
     "components/subject_review/subject.jsx",
     "components/subject_review/moreDropdown.jsx",
     "components/homepage/content.jsx",
-    "pages/reviewsubjects/index.jsx"
-    
+    "pages/reviewsubjects/index.jsx",
+    "components/foodreview/index.jsx"
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {

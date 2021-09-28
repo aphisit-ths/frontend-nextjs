@@ -24,7 +24,6 @@ export default function Pagelayout({ children }) {
         
       </Head>
       <ProjectNav />
-
       {children}
     </div>
   );
