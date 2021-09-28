@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../appstate/AuthProvider";
-import UserDropdown from "../userDropdown/UserDropdown";
-import LoggedOutUserMenu from "../LoggedOutUserMenu/LoggedOutUserMenu";
+import UserDropdown from "./userDropdown/UserDropdown";
+import LoggedOutUserMenu from "./LoggedOutUserMenu/LoggedOutUserMenu";
 import Link from "next/link";
 export default function ProjectNav() {
   const { user, signout } = useContext(AuthContext);
-  
   return (
     <div className=" flex bg-gray-50 h-20   w-screen  px-7 py-2 shadow-lg m-0 z-50 ">
       <Link href="/" passHref>

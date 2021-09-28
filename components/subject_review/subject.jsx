@@ -5,7 +5,7 @@ import DropDown from "./moreDropdown";
 import Link from "next/link";
 export default function Review_Subject({subjects}) {
   const [like, setLike] = useState(0);
-  console.log(subjects)
+ 
   //  bg-gradient-to-br  from-yellow-200 via-yellow-300 to-yellow-500 p-2 xl-p-10
   const { comments, homework_rate, content_rate, lecturer_rate } = subjects[0];
   const find_avg = (arr) => {

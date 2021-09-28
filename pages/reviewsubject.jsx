@@ -58,7 +58,6 @@ export default function SubjectReview() {
   return (
     <div>
       <Review_Subject subjects={subjects} />
-     
     </div>
   );
 }

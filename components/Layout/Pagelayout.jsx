@@ -1,8 +1,7 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import React from "react";
-
 import Head from "next/head";
-import ProjectNav from "../projIndex/index";
+import ProjectNav from "../navigator_bar/index";
 
 
 export default function Pagelayout({ children }) {
