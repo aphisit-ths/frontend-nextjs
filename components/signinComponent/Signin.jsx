@@ -48,7 +48,7 @@ function Signin() {
             email: "",
             password: "",
           });
-        Router.push("/products");
+        Router.push("/select-topic");
       }
     },
   });
