@@ -6,6 +6,7 @@ import apolloClient from "../apollo/apolloClient";
 import fetch from "isomorphic-unfetch";
 import cookie from "cookie";
 import 'tailwindcss/tailwind.css'
+
 // function MyApp({ Component, pageProps ,apollo }) {
 //   return (
 //     <ApolloProvider client={apollo}>
@@ -27,11 +28,13 @@ function MyApp({ Component, pageProps, apollo ,user }) {
     </ApolloProvider>
   );
 }
+
 MyApp.getInitialProps = async ({ ctx ,router }) => {
   //Client Side
+  console.log(ctx)
   if (process.browser) {
     return __NEXT_DATA__.props.pageProps;
-  }
+  } 
 
   const { headers } = ctx.req;
 
@@ -75,6 +78,7 @@ MyApp.getInitialProps = async ({ ctx ,router }) => {
       }
     `,
   };
+
   const response = await fetch("http://localhost:4444/graphql", { 
     //Gql Post เสมอ
     method: "post",

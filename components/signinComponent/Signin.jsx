@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import signinStyle from "../../styles/signin.module.scss";
 import Link from "next/link";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
