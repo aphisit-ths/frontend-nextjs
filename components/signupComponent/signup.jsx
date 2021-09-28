@@ -80,16 +80,15 @@ function Signupform() {
           password: "",
         });
       }
-      console.log(data);
+      
     },
   });
-
+  
   const handleChange = (e) => {
     setuserInfo({
       ...userInfo,
       [e.target.name]: e.target.value,
     });
-    console.log(userInfo);
   };
 
   const handleSubmit = async (e) => {
@@ -101,9 +100,9 @@ function Signupform() {
     }
   };
   return (
-    <div className="flex justify-center p-5 h-screen w-screen ">
-      <div className="flex flex-col rounded-md shadow-md w-full sm:w-full md:w-2/3 xl:w-1/3  h-5/6 py-6  ">
-        <div className="flex flex-col items-center w-full h-80 ">
+    <div className="flex justify-center p-5 w-screen ">
+      <div className="flex flex-col rounded-md shadow-md w-full sm:w-full md:w-2/3 xl:w-1/3 min-h-1/2 py-6  ">
+        <div className="flex flex-col items-center w-full  ">
           <h1 className=" text-2xl md:text-3xl xl:3xl text-displaycolor font-display font-normal py-6 ">
             ลงทะเบียนผู้ใช้
           </h1>
@@ -127,11 +126,11 @@ function Signupform() {
             />
             <span className="font-display tracking-wide mx-5 font-normal text-sm xl:text-lg text-displaycolor ">
               อีเมล:
-            </span> 
+            </span>
             <input
               className=" border-2 h-10 w-full md:h-14 mb-6 mx-5 p-5 rounded-md  outline-none bg-gray-50"
               type="text"
-              name="email"  
+              name="email"
               placeholder="อีเมล"
               value={userInfo.email}
               onChange={handleChange}
@@ -150,10 +149,15 @@ function Signupform() {
               required
             />
             {error && (
-              <Alert className="mb-5" severity="error">{error.graphQLErrors[0].message}</Alert>
+              <Alert className="mb-5" severity="error">
+                {error.graphQLErrors[0].message}
+              </Alert>
             )}
             <label className="inline-flex items-center space-x-3 mb-5">
-              <input className="form-checkbox focus:ring-4 rounded-xl" type="checkbox" />
+              <input
+                className="form-checkbox focus:ring-4 rounded-xl"
+                type="checkbox"
+              />
               <h1 className="font-display text-lg font-light">
                 ยอมรับ{" "}
                 <span className="font-display text-lg text-yellow-300 cursor-pointer ">
@@ -176,15 +180,16 @@ function Signupform() {
               <Googlesvg></Googlesvg>
               ลงทะเบียนด้วย Google
             </button>
+            
           </form>
           <Link href="/signin" passHref>
-            <span className="font-display text-xs md:text-sm font-light cursor-pointer text-gray-400">
-              หากมีผู้ใช้บัญชีผู้ใช้อยู่แล้ว ?{" "}
-              <span className="font-display text-xs  md:text-sm  font-medium text-gray-500">
-                เข้าสู่ระบบ
-              </span>{" "}
-            </span>
-          </Link>
+              <span className="font-display  text-xs md:text-sm font-light cursor-pointer text-gray-400">
+                หากมีผู้ใช้บัญชีผู้ใช้อยู่แล้ว ?{" "}
+                <span className="font-display text-xs  md:text-sm  font-medium text-gray-500">
+                  เข้าสู่ระบบ
+                </span>{" "}
+              </span>
+            </Link>
         </div>
       </div>
     </div>

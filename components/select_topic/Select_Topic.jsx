@@ -1,32 +1,50 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link"
+import Link from "next/link";
+import { motion } from "framer-motion";
+
 function Select_Topic() {
   return (
     <>
-      <div className="flex flex-col  sm:flex-row justify-start bg-gray-800 w-screen h-screen p-20 space-y-10 sm:space-y-0 sm:space-x-10  items-center sm:justify-center overflow-y-scroll ">
-      
-      <Link href="reviewsubjects" passHref>
-        <div className="w-60 h-60  bg-white block p-4 border-1 border-gray-500 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 ">
-          <div className="flex flex-row  w-50 h-1/2 space-x-2 items-center justify-center ">
-            <div className="mx-2  items-center    justify-center">
-              <Toppic className=" self-center w-16 h-16 rounded-full bg-yellow-100 "></Toppic>
-            </div>
+      <div className="flex flex-col  sm:flex-row justify-start bg-gradient-to-tl from-gray-700  to-gray-900 w-screen h-screen p-20 space-y-10 sm:space-y-0 sm:space-x-10  items-center sm:justify-center overflow-y-scroll ">
+        <Link href="reviewsubjects" passHref>
+          <motion.div
+            initial={{ y: -10, x: -10 }}
+            animate={{ y: 0, x: 0 }}
+            transition={{ duration: 0.2 }}
+            whileHover={{
+              scale: [1,1.4,1.2],
+              rotate: [0, 0, 30, 30, 0],
+              transition: { duration: 0.5 },
+            }}
             
-            <div className="flex-1 font-display text-xl text-gray-600 ">
-              วิชาเลือก
+            className="w-60 h-60  bg-white block p-4 border-1 border-gray-500 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 "
+          >
+            <div className="flex flex-row  w-50 h-1/2 space-x-2 items-center justify-center ">
+              <div className="mx-2  items-center    justify-center">
+                <Toppic className=" self-center w-16 h-16 rounded-full bg-yellow-100 "></Toppic>
+              </div>
+              <div className="flex-1 font-display text-xl text-gray-600 ">
+                วิชาเลือก
+              </div>
             </div>
-          </div>
-          <div className="inline-flex flex-row w-50 h-1/2 px-2 py-2 space-x-1 ">
-            <h1 className="font-display text-sm text-gray-500 ">
-              ไม่รู้จะลงวิชาใหนดีหรือ อยากแบ่งบันประสบการณ์ ในรายวิชาต่างๆ{" "}
-            </h1>
-            <RightArrow className=""></RightArrow>
-          </div>
-        </div>
+            <div className="inline-flex flex-row w-50 h-1/2 px-2 py-2 space-x-1 ">
+              <h1 className="font-display text-sm text-gray-500 ">
+                ไม่รู้จะลงวิชาใหนดีหรือ อยากแบ่งบันประสบการณ์ ในรายวิชาต่างๆ{" "}
+              </h1>
+              <RightArrow className=""></RightArrow>
+            </div>
+          </motion.div>
         </Link>
 
-        <div className="w-60 h-60  bg-white block p-4 border-1 border-gray-500 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 ">
+        <motion.div  initial={{ y: -10, x: -10 }}
+            animate={{ y: 0, x: 0 }}
+            transition={{ duration: 0.2 }}
+            whileHover={{
+              scale: [1,1.4,1.2],
+              rotate: [0, 0, 30, 30, 0],
+              transition: { duration: 0.5 },
+            }} className="w-60 h-60  bg-white block p-4 border-1 border-gray-500 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 ">
           <div className="flex flex-row  w-50 h-1/2 space-x-2 items-center justify-center ">
             <div className="mx-2  items-center    justify-center">
               <Toppic className=" self-center w-16 h-16 rounded-full bg-yellow-100"></Toppic>
@@ -37,12 +55,19 @@ function Select_Topic() {
           </div>
           <div className="inline-flex flex-row w-50 h-1/2 px-2 py-2 space-x-1 ">
             <h1 className="font-display text-sm text-gray-500 ">
-            หิวแล้วไม่รู้จะทานอะไรหรืออยากแนะนำร้านอร่อยๆ เชิญทางนี้เลย{" "}
+              หิวแล้วไม่รู้จะทานอะไรหรืออยากแนะนำร้านอร่อยๆ เชิญทางนี้เลย{" "}
             </h1>
             <RightArrow className=""></RightArrow>
           </div>
-        </div>
-        <div className="w-60 h-60  bg-white block p-4 border-1 border-gray-500 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 ">
+        </motion.div>
+        <motion.div  initial={{ y: -10, x: -10 }}
+            animate={{ y: 0, x: 0 }}
+            transition={{ duration: 0.2 }}
+            whileHover={{
+              scale: [1,1.4,1.2],
+              rotate: [0, 0, 30, 30, 0],
+              transition: { duration: 0.5 },
+            }} className="w-60 h-60  bg-white block p-4 border-1 border-gray-500 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 ">
           <div className="flex flex-row  w-50 h-1/2 space-x-1 items-center justify-center ">
             <div className="mx-2  items-center    justify-center">
               <Toppic className=" self-center w-16 h-16 rounded-full bg-yellow-100 "></Toppic>
@@ -53,11 +78,11 @@ function Select_Topic() {
           </div>
           <div className="inline-flex flex-row w-50 h-1/2 px-2 py-2 space-x-1 ">
             <h1 className="font-display text-sm text-gray-500 ">
-            จะสอบแล้วไม่รู้จะอ่านหนังสือที่ไหนหรือมีสถานที่สุดเจ๋งอยากแนะนำ{" "}
+              จะสอบแล้วไม่รู้จะอ่านหนังสือที่ไหนหรือมีสถานที่สุดเจ๋งอยากแนะนำ{" "}
             </h1>
             <RightArrow className=""></RightArrow>
           </div>
-        </div>
+        </motion.div>
       </div>
     </>
   );

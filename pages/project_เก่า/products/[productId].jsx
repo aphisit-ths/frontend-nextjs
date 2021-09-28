@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import apolloClient from "../../apollo/apolloClient";
+import apolloClient from "../../../apollo/apolloClient";
 import { ThreeHorseLoading } from "react-loadingg";
 import infoStyle from "../../styles/prodinfo.module.scss";
 import Link from 'next/link'

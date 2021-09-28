@@ -1,63 +1,19 @@
+import { Subject } from "@material-ui/icons";
 import React, { useState } from "react";
 import SelectList from "./commentsList";
 import DropDown from "./moreDropdown";
-export default function Review_Subject() {
-const [like, setLike] = useState(0)
-
-
-  const subjects = [
-    {
-      course_id: "90594041",
-      eng_name: "การเขียนข้อเสนอโครงการวิจัย",
-      thai_name: "Writing Research Proposal",
-      comments: [
-        {
-          comment:
-            "มีแต่งงานค่ะ ทุกสัปดาห์ที่เรียน ง่าย แต่มีโปรเจกต์งานที่อาจารย์สุ่มเพื่อนจากต่างคณะด้วยก็ ถ้าได้เพื่อนดีก็จะช่วยทำงาน แต่ถ้าเพื่อนแย่ก็จะรู้สึกแบบเราที่กำลังพิมพ์อยู่ค่ะ แชทหนักขวามากเลย😭 งงทำไมอ่านไม่ตอบ เฮ้อ",
-          owner: "โอ๊ตนะครับ",
-          grade: "C",
-          section: "2",
-          year: "2661",
-        },
-        {
-          comment:
-            "เป็นวิชาที่เน้น grammar เป็นอย่างมากต้องตรวจคำศัพท์ให้ดีๆ เนื้อหาสามารถนำไปพัฒนาต่อยอดได้ งานส่วนใหญ่จะเป็นงานคู่เป็นการเก็บคะแแนนไปในตัว ส่วนการทำข้อสอบมิดเทอมกับไฟนอลจะต้องแบ่งเวลาทำให้ดีๆ เพราะต้องเขียน essay ใน part สุดท้าย โดยอ. Caroline เป็นคนที่ไม่ flexible กับการตอบคำถามในควิซมากๆ ซึ่งตอนทำควิซครึ่งหนึ่ง คำตอบที่เราใส่ไปเมื่อเช็คกับเพื่อนเซคอื่นๆ เพื่อนก็ตอบแบบที่เราตอบ เมื่อไปสอบถามอ. เราพบว่า อ. ต้องการให้ vocab นี้อยู่ลำดับแรกแล้วตามด้วยคำอื่นๆ",
-          owner: "โอ๊ตอีกคน",
-          grade: "A",
-          section: "2",
-          year: "2661",
-        },
-        {
-          comment: "ปวดหัวหน่อย แต่ก็รอดมาได้",
-          owner: "โอ๊ตร้างโคลนนิ่ง",
-          grade: "A",
-          section: "2",
-          year: "2661",
-        },
-        {
-          comment: "จารสอนเยี่ยมยอด",
-          owner: "โอด",
-          grade: "A",
-          section: "2",
-          year: "2661",
-        },
-      ],
-    },
-    {
-      course_id: "90593007",
-      eng_name: "Series in Daily Life",
-      thai_name: "ดูละครแล้วย้อนดูตัว",
-    },
-    {
-      course_id: "90594041",
-      eng_name: "การเขียนข้อเสนอโครงการวิจัย",
-      thai_name: "Writing Research Proposal",
-      __v: { $numberInt: "0" },
-    },
-  ];
+import Link from "next/link";
+export default function Review_Subject({subjects}) {
+  const [like, setLike] = useState(0);
+ 
   //  bg-gradient-to-br  from-yellow-200 via-yellow-300 to-yellow-500 p-2 xl-p-10
-  const { comments } = subjects[0];
-  console.log(comments);
+  const { comments, homework_rate, content_rate, lecturer_rate } = subjects[0];
+  const find_avg = (arr) => {
+    return arr.reduce((sum, value) => sum + value, 0) / arr.length;
+  };
+  const avg_homework = find_avg(homework_rate).toFixed(0);
+  const avg_content = find_avg(content_rate).toFixed(0);
+  const avg_lecturer = find_avg(lecturer_rate).toFixed(0);
   return (
     <>
       <div className=" flex flex-col bg-gray-800   items-center p-6 ">
@@ -95,10 +51,10 @@ const [like, setLike] = useState(0)
               >
                 <div
                   className=" bg-yellow-400   w-6 py-1  text-white rounded-3xl"
-                  style={{ width: "36%" }}
+                  style={{ width: `${avg_homework}%` }}
                 ></div>
               </div>
-              <p> 45%</p>
+              <p> {avg_homework}%</p>
             </div>
           </div>
 
@@ -113,10 +69,10 @@ const [like, setLike] = useState(0)
               >
                 <div
                   className=" bg-purple-600 text-xs  w-6 py-1  text-white rounded-3xl"
-                  style={{ width: "75%" }}
+                  style={{ width: `${avg_content}%` }}
                 ></div>
               </div>
-              <p>75%</p>
+              <p>{avg_content}%</p>
             </div>
           </div>
 
@@ -131,28 +87,31 @@ const [like, setLike] = useState(0)
               >
                 <div
                   className=" bg-green-500 text-xs  w-6 py-1  text-white rounded-3xl"
-                  style={{ width: "62%" }}
+                  style={{ width: `${avg_lecturer}%` }}
                 ></div>
               </div>
-              <p>62%</p>
+              <p>{avg_lecturer}%</p>
             </div>
           </div>
           <div className="min-w-full w-4/6 inline-flex items-end justify-end px-2 xl:pl-6 my-6 ">
-            <h1 className="font-display font-normal shadow-lg text-lg lg:text-xl my-6 px-16 py-1 rounded-3xl bg-yellow-400 transition ease-in  hover:bg-gray-800 hover:text-gray-50 cursor-pointer  ">
-              รีวิว
-            </h1>
+            <Link href="/createreview" passHref>
+              <h1 className="font-display font-normal shadow-sm text-lg lg:text-base my-6 mr-14 px-5 py-2 rounded-3xl bg-green-400 text-gray-50 transition ease-in  hover:bg-gray-800 hover:text-gray-50 cursor-pointer  ">
+                รีวิววิชานี้
+              </h1>
+            </Link>
           </div>
         </div>
         {/* -------------------------commnets section ------------------------------------------------------------*/}
         {comments.map((_comment, index) => (
           <>
-            <div className="bg-gray-50 w-full lg:w-2/5  max-h-full rounded-xl flex flex-col  p-6 px-2  shadow-lg my-10   space-y-3 ">
+            <div  keys={index}
+              className="bg-gray-50 w-full lg:w-2/5  max-h-full rounded-xl flex flex-col  p-6 px-2  shadow-lg my-10   space-y-3 "
+            >
               <div className=" w-full inline-flex flex-warp font-display  items-center px-2 xl:px-6  ">
                 {_comment.comment}
               </div>
-
               <div className="min-w-full w-4/6  inline-flex items-center px-2 xl:px-6  my-2   ">
-                <p className="text-sm font-display font-light text-gray-400">
+                <p  className="text-sm font-display font-light text-gray-400">
                   {" "}
                   โดย {_comment.owner}{" "}
                 </p>
@@ -161,16 +120,15 @@ const [like, setLike] = useState(0)
                 <div className="flex justify-center items-center">
                   <div
                     className="rounded-full bg-green-300 hover:bg-green-200 p-2 mr-2 cursor-pointer "
-                    onClick={()=> {
-                        setLike(like+1)
+                    onClick={() => {
+                      setLike(like + 1);
                     }}
                   >
-                    <Like className="w-6 h-6 "></Like>
+                    <Like  className="w-6 h-6 "></Like>
                   </div>
                   {like}
                 </div>
-
-                <DropDown comment={_comment}></DropDown>
+                <DropDown comment={_comment} ></DropDown>
               </div>
             </div>
           </>

@@ -34,12 +34,12 @@ MyApp.getInitialProps = async ({ ctx ,router }) => {
   console.log(ctx)
   if (process.browser) {
     return __NEXT_DATA__.props.pageProps;
-  } 
+  }
   const { headers } = ctx.req;
   const cookies = headers && cookie.parse(headers.cookie || "");
   const token = cookies && cookies.jwt;
   if(!token){
-    if(router.pathname === '/cart' || router.pathname === '/manageproducts'){
+    if(router.pathname === '/userprofile' || router.pathname === '/555'){
       ctx.res.writeHead(302,{location:"/signin"})
       ctx.res.end()
     }
