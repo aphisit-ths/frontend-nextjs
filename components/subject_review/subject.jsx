@@ -14,7 +14,6 @@ export default function Review_Subject({subjects}) {
   const avg_homework = find_avg(homework_rate).toFixed(0);
   const avg_content = find_avg(content_rate).toFixed(0);
   const avg_lecturer = find_avg(lecturer_rate).toFixed(0);
-
   return (
     <>
       <div className=" flex flex-col bg-gray-800   items-center p-6 ">

@@ -1,11 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function CreateReview({ subjects }) {
   const { course_id, eng_name, thai_name } = subjects[0];
+
+  const [comment_info, setComment_info] = useState({
+    // add rating later,
+    course_id: course_id,
+    content: "",
+    section: "",
+    grade: "",
+    _year: "",
+  });
+
+  const handleChange = (e) => {
+    setComment_info({
+      ...comment_info,
+      [e.target.name]: e.target.value,
+    });
+    
+  };
+
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      console.log(comment_info);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
-      <div className=" flex flex-col bg-gray-50   items-center p-6 ">
-        <div className="bg-gray-50 w-full lg:w-3/6  max-h-full rounded-xl flex flex-col  p-6 px-2  shadow-lg my-10 space-y-3 ">
+      <div className=" flex flex-col bg-gray-200   items-center p-6 ">
+        <form
+          type="form"
+          action=""
+          onSubmit={handleSubmit}
+          
+          className="bg-gray-50 w-full lg:w-3/6  max-h-full rounded-xl flex flex-col  p-6 px-2  shadow-lg my-10 space-y-3 "
+        >
           <div className="min-w-full w-4/6 inline-flex items-center px-2 xl:px-6  ">
             <h1 className="font-display font-bold text-lg px-4 py-2 bg-purple-400  rounded-3xl">
               {course_id}
@@ -66,20 +99,85 @@ export default function CreateReview({ subjects }) {
               <SmileIcon className="w-8 h-8"></SmileIcon>
             </div>
           </div>
-        </div>
+          {/* ---------------------------------text area------------------------------ */}
+          <div className=" w-full lg:w-full  max-h-full rounded-xl flex flex-col  p-6 px-10 my-10 space-y-3  ">
+            <h1 className="font-display self-start font-semibold text-xl text-gray-800">
+              เขียนรีวิววิชานี้ <span className="text-red-600 text-3xl">*</span>
+            </h1>
+            <textarea
+              onChange={handleChange}
+              name="content"
+              type="text"
+              placeholder="เขียนรีวิว .....  (โปรดหลีกเลี่ยงถ้อยคำหยาบ คายและพาดพิงผู้อื่น)"
+              className="border-0 px-3 py-3 placeholder-blueGray-300 text-gray-800 bg-white rounded text-lg font-display  shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              rows="4"
+            ></textarea>
+          </div>
+          <div className="w-full lg:w-full max-h-full rounded-xl flex flex-row items-center p-6 px-10    space-x-1 ">
+            <h1 className="font-display self-start font-semibold text-xl text-gray-800 ">
+              เกรดที่ได้
+            </h1>
+            <div className="w-2 h-2 bg-red-300 rounded-full self-start place-self-start "></div>
+            <select
+              onChange={handleChange}
+              className="px-2 w-24 font-display text-lg border-2 border-gray-300 rounded-md"
+              name="grade"
+              id="grade"
+            >
+              <option value="A">A</option>
+              <option value="B+">B+</option>
+              <option value="B">B</option>
+              <option value="C+">C+</option>
+              <option value="C">C</option>
+              <option value="D+">D+</option>
+              <option value="D">D</option>
+              <option value="F">F</option>
+            </select>
+          </div>
+          {/* setion */}
+          <div className="w-full lg:w-full max-h-full rounded-xl flex flex-row items-center p-6 px-10  space-x-1 ">
+            <h1 className="font-display self-start font-semibold text-xl text-gray-800 ">
+              year
+            </h1>
+            <div className="w-2 h-2 bg-red-300 rounded-full self-start place-self-start "></div>
+            <input
+              onChange={handleChange}
+              name="_year"
+              type="text"
+              className="px-2 w-24 font-display text-lg border-2 border-gray-300 rounded-md"
+              placeholder=" เช่น 2562"
+            />
+          </div>
+          {/* setion */}
+          <div className="w-full lg:w-full max-h-full rounded-xl flex flex-row items-center p-6 px-10  space-x-1 ">
+            <h1 className="font-display self-start font-semibold text-xl text-gray-800 ">
+              section
+            </h1>
+            <div className="w-2 h-2 bg-red-300 rounded-full self-start place-self-start "></div>
+            <input
+              onChange={handleChange}
+              name="section"
+              type="text"
+              className="px-2 w-24 font-display text-lg border-2 border-gray-300 rounded-md"
+              placeholder=" เช่น 1"
+            />
+          </div>
+          {/* setion */}
+          <div className="self-end inline-flex min-w-full xl:min-w-2/3 justify-end font-display space-x-4 px-10">
+            <button className=" px-2  md:px-10 py-4 rounded-xl bg-gray-300">
+              {" "}
+              ยกเลิก{" "}
+            </button>
+            <button
+              type="submit"
+              className="px-10 py-4 text-gray-50 rounded-xl bg-green-400 "
+            >
+              {" "}
+              รีวิววิชานี{" "}
+            </button>
+          </div>
+        </form>
         {/* -------------------------commnets section ------------------------------------------------------------*/}
-
-        <div className=" w-full lg:w-3/6  max-h-full rounded-xl flex flex-col  p-6 px-2 my-10 space-y-3 ">
-          <h1 className="font-display self-start font-semibold text-xl text-gray-800">
-            เขียนรีวิววิชานี้ <span className="text-red-600 text-3xl">*</span>
-          </h1>
-          <textarea
-            type="text"
-            placeholder="เขียนรีวิว .....  (โปรดหลีกเลี่ยงถ้อยคำหยาบ คายและพาดพิงผู้อื่น)"
-            className="border-0 px-3 py-3 placeholder-blueGray-300 text-gray-800 bg-white rounded text-lg font-display  shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-            rows="4"
-          ></textarea>
-        </div>
       </div>
     </div>
   );

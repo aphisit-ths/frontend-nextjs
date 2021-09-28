@@ -80,16 +80,15 @@ function Signupform() {
           password: "",
         });
       }
-      console.log(data);
+      
     },
   });
-
+  
   const handleChange = (e) => {
     setuserInfo({
       ...userInfo,
       [e.target.name]: e.target.value,
     });
-    console.log(userInfo);
   };
 
   const handleSubmit = async (e) => {
