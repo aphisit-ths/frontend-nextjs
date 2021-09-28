@@ -2,17 +2,16 @@ module.exports = {
   purge: [
     "components/userproducts/userproducts.jsx",
     "pages/manageproducts/itemslist.jsx",
-    "components/projIndex/index.jsx",
+    "components/navigator_bar/index.jsx",
     "components/signupComponent/signup.jsx",
     "components/signupComponent/signup.jsx",
-    "components/LoggedOutUserMenu/LoggedOutUserMenu.jsx",
+    "components/navigator_bar/LoggedOutUserMenu/LoggedOutUserMenu.jsx",
     "components/homepage/HomePage.jsx",
     "components/select_topic/Select_Topic.jsx",
     "components/subject_review/subject.jsx",
-    "components/subject_review/moreDropdown.jsx",
+    "components/navigator_bar/userDropdown/UserDropdown.jsx",
     "components/homepage/content.jsx",
     "pages/reviewsubjects/index.jsx"
-    
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {

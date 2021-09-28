@@ -9,20 +9,19 @@ function Select_Topic() {
       <div className="flex flex-col  sm:flex-row justify-start bg-gradient-to-tl from-gray-700  to-gray-900 w-screen h-screen p-20 space-y-10 sm:space-y-0 sm:space-x-10  items-center sm:justify-center overflow-y-scroll ">
         <Link href="reviewsubjects" passHref>
           <motion.div
-            initial={{ y: -10, x: -10 }}
-            animate={{ y: 0, x: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.2 }}
             whileHover={{
-              scale: [1,1.4,1.2],
+              scale: [1, 1.4, 1.2],
               rotate: [0, 0, 30, 30, 0],
               transition: { duration: 0.5 },
             }}
-            
             className="w-60 h-60  bg-white block p-4 border-1 border-gray-500 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 "
           >
             <div className="flex flex-row  w-50 h-1/2 space-x-2 items-center justify-center ">
               <div className="mx-2  items-center    justify-center">
-                <Toppic className=" self-center w-16 h-16 rounded-full bg-yellow-100 "></Toppic>
+                <Toppic className=" self-center w-16 h-16 rounded-full bg-yellow-300 "></Toppic>
               </div>
               <div className="flex-1 font-display text-xl text-gray-600 ">
                 วิชาเลือก
@@ -37,17 +36,20 @@ function Select_Topic() {
           </motion.div>
         </Link>
 
-        <motion.div  initial={{ y: -10, x: -10 }}
-            animate={{ y: 0, x: 0 }}
-            transition={{ duration: 0.2 }}
-            whileHover={{
-              scale: [1,1.4,1.2],
-              rotate: [0, 0, 30, 30, 0],
-              transition: { duration: 0.5 },
-            }} className="w-60 h-60  bg-white block p-4 border-1 border-gray-500 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 ">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
+          whileHover={{
+            scale: [1, 1.4, 1.2],
+            rotate: [0, 0, 30, 30, 0],
+            transition: { duration: 0.5 },
+          }}
+          className="w-60 h-60   bg-white block p-4 border-1 border-gray-500 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 "
+        >
           <div className="flex flex-row  w-50 h-1/2 space-x-2 items-center justify-center ">
             <div className="mx-2  items-center    justify-center">
-              <Toppic className=" self-center w-16 h-16 rounded-full bg-yellow-100"></Toppic>
+              <Toppic className=" self-center w-16 h-16 rounded-full bg-yellow-300"></Toppic>
             </div>
             <div className="flex-1 font-display text-xl text-gray-600 ">
               ร้านอาหาร
@@ -60,17 +62,20 @@ function Select_Topic() {
             <RightArrow className=""></RightArrow>
           </div>
         </motion.div>
-        <motion.div  initial={{ y: -10, x: -10 }}
-            animate={{ y: 0, x: 0 }}
-            transition={{ duration: 0.2 }}
-            whileHover={{
-              scale: [1,1.4,1.2],
-              rotate: [0, 0, 30, 30, 0],
-              transition: { duration: 0.5 },
-            }} className="w-60 h-60  bg-white block p-4 border-1 border-gray-500 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 ">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
+          whileHover={{
+            scale: [1, 1.4, 1.2],
+            rotate: [0, 0, 30, 30, 0],
+            transition: { duration: 0.5 },
+          }}
+          className="w-60 h-60   bg-white block p-4 border-1 border-gray-500 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 "
+        >
           <div className="flex flex-row  w-50 h-1/2 space-x-1 items-center justify-center ">
             <div className="mx-2  items-center    justify-center">
-              <Toppic className=" self-center w-16 h-16 rounded-full bg-yellow-100 "></Toppic>
+              <Toppic className=" self-center w-16 h-16 rounded-full bg-yellow-300"></Toppic>
             </div>
             <div className="flex-1 font-display text-lg text-gray-600 ">
               ที่อ่านหนังสือ
@@ -111,6 +116,7 @@ function Toppic(params) {
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
+      
     >
       <path
         strokeLinecap="round"
