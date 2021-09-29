@@ -1,6 +1,5 @@
 module.exports = {
   purge: [
-    
     "components/navigator_bar/index.jsx",
     "components/signupComponent/signup.jsx",
     "components/signupComponent/signup.jsx",

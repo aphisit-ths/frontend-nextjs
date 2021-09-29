@@ -2,7 +2,7 @@ import React from "react";
 
 export default function index() {
   return (
-    <div className=" bg-gray-300 w-screen h-screen flex justify-center  ">
+    <div className=" bg-gray-900 w-screen h-screen flex justify-center  ">
       <div className="flex flex-col  w-1/2 h-1/2 m-10 items-center  ">
         <div className="pt-2  relative text-gray-600">
           <input

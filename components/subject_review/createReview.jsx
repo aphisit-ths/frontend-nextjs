@@ -50,7 +50,7 @@ export default function CreateReview({ subjects }) {
             </h1>
           </div>
           <div className="min-w-full w-4/6 inline-flex items-center px-2 xl:px-6 my-6  justify-between">
-            <h1 className="font-display font-normal text-lg px-4 py-2rounded-3xl ">
+            <h1 className="font-display font-normal text-sm md:text-lg px-4 py-2rounded-3xl ">
               ภาพรวม
             </h1>
             <div className="flex justify-between w-1/2 items-center">
@@ -66,8 +66,8 @@ export default function CreateReview({ subjects }) {
             <h1 className="font-display font-light text-sm lg:text-lg px-4 py-2rounded-3xl ">
               ภาระงาน/การบ้าน
             </h1>
-            <div className="flex justify-between w-1/2 items-center px-5">
-              <SadIcon className="w-8 h-8  rounded-full"></SadIcon>
+            <div className="flex justify-between w-1/2 items-center px-1 md:px-5">
+              <SadIcon className="w-8 h-8 "></SadIcon>
               <SadIcon className="w-8 h-8"></SadIcon>
               <SmileIcon className="w-8 h-8"></SmileIcon>
               <SmileIcon className="w-8 h-8"></SmileIcon>
@@ -78,7 +78,7 @@ export default function CreateReview({ subjects }) {
             <h1 className="font-display font-light text-sm lg:text-lg px-4 py-2rounded-3xl ">
               เนื้อหาที่สอน
             </h1>
-            <div className="flex justify-between w-1/2 items-center px-5">
+            <div className="flex justify-between w-1/2 items-center px-1 md:px-5">
               <SadIcon className="w-8 h-8 rounded-full"></SadIcon>
               <SadIcon className="w-8 h-8"></SadIcon>
               <SmileIcon className="w-8 h-8"></SmileIcon>
@@ -90,7 +90,7 @@ export default function CreateReview({ subjects }) {
             <h1 className="font-display font-light  text-sm lg:text-lg px-4 py-2rounded-3xl ">
               การสอนของอาจารย์
             </h1>
-            <div className="flex justify-between w-1/2 items-center px-5">
+            <div className="flex justify-between w-1/2 items-center  px-1 md:px-5">
               <SadIcon className="w-8 h-8  rounded-full"></SadIcon>
               <SadIcon className="w-8 h-8"></SadIcon>
               <SmileIcon className="w-8 h-8"></SmileIcon>
@@ -99,8 +99,8 @@ export default function CreateReview({ subjects }) {
             </div>
           </div>
           {/* ---------------------------------text area------------------------------ */}
-          <div className=" w-full lg:w-full  max-h-full rounded-xl flex flex-col  p-6 px-10 my-10 space-y-3  ">
-            <h1 className="font-display self-start font-semibold text-xl text-gray-800">
+          <div className=" w-full lg:w-full  max-h-full rounded-xl flex flex-col  p-6  px-5 xl:px-10 my-10 space-y-3  ">
+            <h1 className="font-display self-start font-semibold text-lg md:text-xl text-gray-800">
               เขียนรีวิววิชานี้ <span className="text-red-600 text-3xl">*</span>
             </h1>
             <textarea
@@ -108,12 +108,12 @@ export default function CreateReview({ subjects }) {
               name="content"
               type="text"
               placeholder="เขียนรีวิว .....  (โปรดหลีกเลี่ยงถ้อยคำหยาบ คายและพาดพิงผู้อื่น)"
-              className="border-0 px-3 py-3 placeholder-blueGray-300 text-gray-800 bg-white rounded text-lg font-display  shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              className="border-0 px-3 py-3 placeholder-blueGray-300 text-gray-800 bg-white rounded text-sm md:text-sm font-display  shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
               rows="4"
             ></textarea>
           </div>
-          <div className="w-full lg:w-full max-h-full rounded-xl flex flex-row items-center p-6 px-10    space-x-1 ">
-            <h1 className="font-display self-start font-semibold text-xl text-gray-800 ">
+          <div className="w-full lg:w-full max-h-full rounded-xl flex flex-row items-center p-6 px-5 xl:px-10    space-x-1 ">
+            <h1 className="font-display self-start font-semibold text-lg md:text-xl text-gray-800 ">
               เกรดที่ได้
             </h1>
             <div className="w-2 h-2 bg-red-300 rounded-full self-start place-self-start "></div>
@@ -134,8 +134,8 @@ export default function CreateReview({ subjects }) {
             </select>
           </div>
           {/* setion */}
-          <div className="w-full lg:w-full max-h-full rounded-xl flex flex-row items-center p-6 px-10  space-x-1 ">
-            <h1 className="font-display self-start font-semibold text-xl text-gray-800 ">
+          <div className="w-full lg:w-full max-h-full rounded-xl flex flex-row items-center p-6 px-5 xl:px-10  space-x-1 ">
+            <h1 className="font-display self-start font-semibold text-lg md:text-xl text-gray-800 ">
               year
             </h1>
             <div className="w-2 h-2 bg-red-300 rounded-full self-start place-self-start "></div>
@@ -148,8 +148,8 @@ export default function CreateReview({ subjects }) {
             />
           </div>
           {/* setion */}
-          <div className="w-full lg:w-full max-h-full rounded-xl flex flex-row items-center p-6 px-10  space-x-1 ">
-            <h1 className="font-display self-start font-semibold text-xl text-gray-800 ">
+          <div className="w-full lg:w-full max-h-full rounded-xl flex flex-row items-center p-6 px-5 xl:px-10   space-x-1 ">
+            <h1 className="font-display self-start font-semibold text-lg md:text-xl text-gray-800 ">
               section
             </h1>
             <div className="w-2 h-2 bg-red-300 rounded-full self-start place-self-start "></div>
@@ -162,14 +162,14 @@ export default function CreateReview({ subjects }) {
             />
           </div>
           {/* setion */}
-          <div className="self-end inline-flex min-w-full xl:min-w-2/3 justify-end font-display space-x-4 px-10">
-            <button className=" px-2  md:px-10 py-4 rounded-xl bg-gray-300">
+          <div className=" inline-flex flex-row min-w-full xl:min-w-2/3 justify-end items-end font-display space-x-4 px-10">
+            <button className=" px-2  md:px-10 py-4 rounded-xl bg-gray-300 shadow-sm ">
               {" "}
               ยกเลิก{" "}
             </button>
             <button
               type="submit"
-              className="px-10 py-4 text-gray-50 rounded-xl bg-green-400 "
+              className="px-10 py-4 text-gray-50 rounded-xl bg-green-400 shadow-sm hover:bg-gray-800   "
             >
               {" "}
               รีวิววิชานี{" "}
