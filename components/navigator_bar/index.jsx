@@ -6,10 +6,10 @@ import Link from "next/link";
 export default function ProjectNav() {
   const { user, signout } = useContext(AuthContext);
   return (
-    <div className=" flex bg-gray-50 h-20   w-screen  px-7 py-2 shadow-lg m-0 z-50 ">
+    <div className=" flex bg-gray-100 h-20   w-screen  px-7 py-2 shadow-lg m-0 z-50   ">
       <Link href="/" passHref>
         <div
-          className="flex-col align-middle justify-center w-30 h-full bg-gray-50  cursor-pointer  ease-in
+          className="flex-col align-middle justify-center w-30 h-full   cursor-pointer  ease-in
           duration-150"
         >
           <svg
@@ -31,7 +31,7 @@ export default function ProjectNav() {
         </div>
       </Link>
 
-      <div className="hidden xl:flex flex-row bg-gray-50 w-4/6 h-full items-center xl:text-base justify-end ml-12 ">
+      <div className="hidden xl:flex flex-row w-4/6 h-full items-center xl:text-base justify-end ml-12 ">
         <Link href="/reviewsubjects" passHref>
           <h1 className="px-3 font-display font-normal text-gray-600 text-sm md:text-lg hover:text-yellow-500 xl:text-base cursor-pointer ease-in duration-150  ">
             รีวิววิชาเลือก
@@ -45,7 +45,7 @@ export default function ProjectNav() {
           รีวิวที่อ่านหนังสือ
         </h2>
       </div>
-      <div className="hidden xl:flex flex-row bg-gray-50 w-1/6 h-full items-center justify-center xl:text-base ml-12 cursor-pointer ease-in duration-150  ">
+      <div className="hidden xl:flex flex-row  w-1/6 h-full items-center justify-center xl:text-base ml-12 cursor-pointer ease-in duration-150  ">
         {!user ? (
           <>
             <Link href="/signin" passHref>
@@ -79,3 +79,4 @@ export default function ProjectNav() {
     </div>
   );
 }
+

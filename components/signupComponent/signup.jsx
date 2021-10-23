@@ -83,7 +83,6 @@ function Signupform() {
       
     },
   });
-  
   const handleChange = (e) => {
     setuserInfo({
       ...userInfo,

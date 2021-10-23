@@ -74,7 +74,6 @@ MyApp.getInitialProps = async ({ ctx ,router }) => {
       }
     `,
   };
-
   const response = await fetch("http://localhost:4444/graphql", { 
     //Gql Post เสมอ
     method: "post",
