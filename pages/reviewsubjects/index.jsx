@@ -30,6 +30,7 @@ const GET_COMMENTS = gql`
   }
 `;
 
+
 export default function Subjects_Review() {
   const { loading, error, data } = useQuery(GET_COMMENTS,{pollInterval:5000});
   if (loading) return <Loader></Loader>
@@ -115,7 +116,7 @@ export default function Subjects_Review() {
   ];
   return (
     <div>
-      <SubjectsReviewComponent subjects={subjects} comments={subjectComments} ></SubjectsReviewComponent>
+      <SubjectsReviewComponent  comments={subjectComments} ></SubjectsReviewComponent>
     </div>
   )
 }

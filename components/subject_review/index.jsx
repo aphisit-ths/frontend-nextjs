@@ -1,9 +1,27 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-export default function SubjectsReviewComponent({ subjects, comments }) {
+import { useQuery } from '@apollo/react-hooks';
+import Loader from "../loader/Loader";
+import gql from 'graphql-tag'
+const GET_SUBJECTS = gql`
+    query { 
+      subjects {
+    id
+    course_id
+    eng_name
+    thai_name
+  }
+  }
+`;
+
+export default function SubjectsReviewComponent({  comments }) {
+  const { loading, error, data } = useQuery(GET_SUBJECTS,{pollInterval:5000});
+
+  const {subjects} = data
+  
   const [filteredData, setFillteredData] = useState([]);
   const [wordEntered, setWordEnterd] = useState("");
-  console.log(comments)
+  
   const handleFilter = (event) => {
     const searchWord = event.target.value;
     setWordEnterd(searchWord);
@@ -33,6 +51,9 @@ export default function SubjectsReviewComponent({ subjects, comments }) {
     setFillteredData([]);
     setWordEnterd("");
   };
+
+  if (loading) return <Loader></Loader>
+  if (error) return <h1 className="text-2xl font-display  text-gray-800">ใจเย็นๆเด้อออ ยังไม่ได้เปิดเชิฟฟฟ</h1>
   return (
     <div>
       <div className="w-screen h-screen bg-gray-50 flex flex-col items-center p-2 md:p-10">
@@ -46,7 +67,7 @@ export default function SubjectsReviewComponent({ subjects, comments }) {
             placeholder="กรอกรหัสวิชาหรือชื่อวิชา (ไทย/อังกฤษ)"
             onChange={handleFilter}
           />
-          <div className="p-2 m-1 bg-gray-300 rounded-full cursor-pointer hover:bg-gray-500">
+          <div className="p-2 m-1 bg-yellow-300 rounded-full cursor-pointer hover:bg-yellow-500">
             {filteredData.length == 0 ? (
               <SrcBtt className="w-6 h-6"></SrcBtt>
             ) : (
