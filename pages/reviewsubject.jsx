@@ -1,5 +1,9 @@
 import React from "react";
 import Review_Subject from "../components/subject_review/subject";
+import Loader from "../components/loader/Loader"
+
+
+
 
 export default function SubjectReview() {
   const subjects = [
@@ -55,6 +59,8 @@ export default function SubjectReview() {
       __v: { $numberInt: "0" },
     },
   ];
+
+
   return (
     <div>
       <Review_Subject subjects={subjects} />

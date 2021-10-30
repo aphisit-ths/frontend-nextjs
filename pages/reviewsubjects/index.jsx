@@ -1,6 +1,40 @@
 import React from 'react'
 import SubjectsReviewComponent from '../../components/subject_review'
+import Loader from "../../components/loader/Loader"
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag'
+
+const GET_COMMENTS = gql`
+    query { 
+      subjectComments {
+      id
+      subjectId {
+        id
+        course_id
+        eng_name
+        thai_name
+      }
+      comment
+      grade
+      year
+      semester
+      section
+      owner {
+        id
+        name
+      }
+      homework_rate
+      content_rate
+      lecturer_rate
+    }
+  }
+`;
+
 export default function Subjects_Review() {
+  const { loading, error, data } = useQuery(GET_COMMENTS,{pollInterval:5000});
+  if (loading) return <Loader></Loader>
+  if (error) return <h1 className="text-2xl font-display  text-gray-800">ใจเย็นๆเด้อออ ยังไม่ได้เปิดเชิฟฟฟ</h1>
+  const {subjectComments} = data;
   const subjects = [
     {
       course_id: "90594041",
@@ -81,7 +115,7 @@ export default function Subjects_Review() {
   ];
   return (
     <div>
-      <SubjectsReviewComponent subjects={subjects} ></SubjectsReviewComponent>
+      <SubjectsReviewComponent subjects={subjects} comments={subjectComments} ></SubjectsReviewComponent>
     </div>
   )
 }

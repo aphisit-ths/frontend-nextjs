@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-export default function SubjectsReviewComponent({ subjects }) {
+export default function SubjectsReviewComponent({ subjects, comments }) {
   const [filteredData, setFillteredData] = useState([]);
   const [wordEntered, setWordEnterd] = useState("");
-
+  console.log(comments)
   const handleFilter = (event) => {
     const searchWord = event.target.value;
-    setWordEnterd(searchWord)
+    setWordEnterd(searchWord);
     const newFilter = subjects.filter((value) => {
       return (
         value.course_id
@@ -31,7 +31,7 @@ export default function SubjectsReviewComponent({ subjects }) {
   };
   const clearInput = () => {
     setFillteredData([]);
-    setWordEnterd("")
+    setWordEnterd("");
   };
   return (
     <div>
@@ -56,14 +56,13 @@ export default function SubjectsReviewComponent({ subjects }) {
             )}
           </div>
         </div>
-
         {filteredData.length != 0 && (
-          <div className=" flex flex-col rounded-xl shadow-md overflow-hidden overflow-y-auto w-full md:w-2/3 xl:w-1/3 h-1/3  mx-10 divide-y-1   my-5">
+          <div className=" flex flex-col rounded-xl z-50 bg-gray-50 absolute mt-16 shadow-md overflow-hidden overflow-y-auto w-full md:w-2/3 xl:w-1/3 h-1/3  mx-10 divide-y-1   my-5">
             {filteredData.map((subject, idx) => (
               <>
                 <div
                   key={idx}
-                  className="flex p-2 px-5 space-x-6 min-h-20 max-h-16 h-24 hover:bg-gray-800 hover:text-gray-50  font-display justify-between cursor-pointer"
+                  className="flex  p-2 px-5 space-x-6 min-h-20 max-h-16 h-24 top-7 hover:bg-gray-800 hover:text-gray-50  font-display justify-between cursor-pointer"
                   id="subject"
                 >
                   <div className="inline-flex space-x-5  flex-row overflow-hidden ">
@@ -84,10 +83,55 @@ export default function SubjectsReviewComponent({ subjects }) {
             ))}
           </div>
         )}
+
+        <div className=" bg-gray-50 w-full lg:w-2/5 mt-12 py-4 px-3 md:px-4 ">
+          <div className="flex flex-col">
+            <p className="font-display text-lg">วิชาที่แนะนำ</p>
+            <div className=" w-24 rounded-2xl h-1 bg-green-300"></div>
+          </div>
+        </div>
+        {comments.map((comment, index) => (
+          
+          
+            <div key={index} className="bg-gray-50 w-full lg:w-2/5  max-h-full rounded-xl flex flex-col my-3  p-6 px-2 transition   cursor-pointer r shadow-lg space-y-3 hover:bg-gray-100 hover:scale-100 duration-200 ">
+              <div className=" w-full inline-flex flex-warp font-display items-center px-2 xl:px-6  ">
+                 {comment.subjectId.course_id} {comment.subjectId.eng_name.toUpperCase()}
+              </div>
+              <div  className="min-w-full w-4/6  inline-flex items-center px-2 xl:px-6  my-2   ">
+                <p className="text-sm font-display font-light text-gray-400">
+                  {" "}
+                  {comment.comment}
+                </p>
+              </div>
+
+              <div className="flex justify-start px-2 xl:px-6 my-2 space-x-3  ">
+                <div className="flex justify-center items-center font-display text-xs space-x-2 ">
+                  <div className="rounded-full bg-green-300 hover:bg-green-200 p-2 mr-2 cursor-pointer ">
+                    {" "}
+                  </div>
+                  ภาระงาน : {comment.homework_rate}%
+                </div>
+                <div className="flex justify-center items-center font-display text-xs space-x-4 ">
+                  <div className="rounded-full bg-yellow-300 hover:bg-green-200 p-2 mr-2 cursor-pointer ">
+                    {" "}
+                  </div>
+                  เนื้อหา : {comment.content_rate}%
+                </div>
+                <div className="flex justify-center items-center font-display text-xs space-x-4 ">
+                  <div className="rounded-full bg-red-300 hover:bg-green-200 p-2 mr-2 cursor-pointer ">
+                    {" "}
+                  </div>
+                  การสอน : {comment.lecturer_rate}%
+                </div>
+              </div>
+            </div>
+          
+        ))}
       </div>
     </div>
   );
 }
+
 function SrcBtt(params) {
   return (
     <svg
