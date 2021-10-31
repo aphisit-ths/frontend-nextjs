@@ -17,7 +17,7 @@ const GET_SUBJECTS = gql`
 export default function SubjectsReviewComponent({  comments }) {
   const { loading, error, data } = useQuery(GET_SUBJECTS,{pollInterval:5000});
 
-  const {subjects} = data
+  
   
   const [filteredData, setFillteredData] = useState([]);
   const [wordEntered, setWordEnterd] = useState("");
@@ -51,13 +51,13 @@ export default function SubjectsReviewComponent({  comments }) {
     setFillteredData([]);
     setWordEnterd("");
   };
-
   if (loading) return <Loader></Loader>
-  if (error) return <h1 className="text-2xl font-display  text-gray-800">ใจเย็นๆเด้อออ ยังไม่ได้เปิดเชิฟฟฟ</h1>
+  if (error) return <h1 className="text-2xl font-display  text-gray-800">Server went wrong....</h1>
+  const {subjects} = data
   return (
     <div>
       <div className="w-screen h-screen bg-gray-50 flex flex-col items-center p-2 md:p-10">
-        <div className="px-5  flex flex-row rounded-xl shadow-md items-center  bg-gray-100  justify-between w-full md:w-2/3 xl:w-1/3">
+        <div className="px-5  flex flex-row shadow-md items-center  bg-gray-100  justify-between  w-full lg:w-2/5  max-h-full rounded-xl">
           <input
             className="h-10 font-display text-sm  bg-transparent min-w-2/3 w-2/3 outline-none "
             type="text"
@@ -67,7 +67,7 @@ export default function SubjectsReviewComponent({  comments }) {
             placeholder="กรอกรหัสวิชาหรือชื่อวิชา (ไทย/อังกฤษ)"
             onChange={handleFilter}
           />
-          <div className="p-2 m-1 bg-yellow-300 rounded-full cursor-pointer hover:bg-yellow-500">
+          <div className="p-2 m-1 bg-green-200  rounded-full cursor-pointer hover:bg-green-500">
             {filteredData.length == 0 ? (
               <SrcBtt className="w-6 h-6"></SrcBtt>
             ) : (
@@ -78,7 +78,7 @@ export default function SubjectsReviewComponent({  comments }) {
           </div>
         </div>
         {filteredData.length != 0 && (
-          <div className=" flex flex-col rounded-xl z-50 bg-gray-50 absolute mt-16 shadow-md overflow-hidden overflow-y-auto w-full md:w-2/3 xl:w-1/3 h-1/3  mx-10 divide-y-1   my-5">
+          <div className=" flex flex-col rounded-xl z-50 bg-gray-50 absolute mt-16 shadow-md overflow-hidden overflow-y-auto w-full lg:w-2/5  max-h-full h-1/3  mx-10 divide-y-1   my-5">
             {filteredData.map((subject, idx) => (
               <>
                 <div
@@ -114,7 +114,7 @@ export default function SubjectsReviewComponent({  comments }) {
         {comments.map((comment, index) => (
           
           
-            <div key={index} className="bg-gray-50 w-full lg:w-2/5  max-h-full rounded-xl flex flex-col my-3  p-6 px-2 transition   cursor-pointer r shadow-lg space-y-3 hover:bg-gray-100 hover:scale-100 duration-200 ">
+            <div key={index} className="bg-gray-50 w-full lg:w-2/5  max-h-full rounded-xl flex flex-col my-3  p-6 px-2 transition   cursor-pointer r shadow-lg space-y-3 hover:bg-gray-100  duration-200 ">
               <div className=" w-full inline-flex flex-warp font-display items-center px-2 xl:px-6  ">
                  {comment.subjectId.course_id} {comment.subjectId.eng_name.toUpperCase()}
               </div>

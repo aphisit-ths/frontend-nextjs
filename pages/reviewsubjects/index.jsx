@@ -3,6 +3,7 @@ import SubjectsReviewComponent from '../../components/subject_review'
 import Loader from "../../components/loader/Loader"
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag'
+import Error from '../../components/error';
 
 const GET_COMMENTS = gql`
     query { 
@@ -30,11 +31,10 @@ const GET_COMMENTS = gql`
   }
 `;
 
-
 export default function Subjects_Review() {
   const { loading, error, data } = useQuery(GET_COMMENTS,{pollInterval:5000});
   if (loading) return <Loader></Loader>
-  if (error) return <h1 className="text-2xl font-display  text-gray-800">ใจเย็นๆเด้อออ ยังไม่ได้เปิดเชิฟฟฟ</h1>
+  if (error) return <Error/>
   const {subjectComments} = data;
   const subjects = [
     {
@@ -116,7 +116,7 @@ export default function Subjects_Review() {
   ];
   return (
     <div>
-      <SubjectsReviewComponent  comments={subjectComments} ></SubjectsReviewComponent>
+      <SubjectsReviewComponent subjects={subjects} comments={subjectComments} ></SubjectsReviewComponent>
     </div>
   )
 }

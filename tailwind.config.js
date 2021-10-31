@@ -13,7 +13,8 @@ module.exports = {
     "components/subject_review/createReview.jsx",
     "components/subject_review/moreDropdown.jsx",
     "components/subject_review/index.jsx",
-    "components/loader/Loader.jsx"
+    "components/loader/Loader.jsx",
+    "components/error/index.jsx"
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
