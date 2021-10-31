@@ -127,7 +127,7 @@ function Signupform() {
                             ขอบคุณสำหรับการลงทะเบียน
                           </div>
                           <p className=" font-thin text-xs md:text-sm font-display text-gray-400 leading-none mt-1">
-                            คุณต้องการลงชื่อเข้าใช้เลยหรือไม่ ?
+                            คุณต้องการเข้าสู่ระบบเลยหรือไม่ ?
                           </p>
                         </div>
                         <Link href="/signin" passHref>

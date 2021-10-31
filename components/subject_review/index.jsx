@@ -1,27 +1,27 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from "@apollo/react-hooks";
 import Loader from "../loader/Loader";
-import gql from 'graphql-tag'
+import Link from "next/link";
+import gql from "graphql-tag";
 const GET_SUBJECTS = gql`
-    query { 
-      subjects {
-    id
-    course_id
-    eng_name
-    thai_name
-  }
+  query {
+    subjects {
+      id
+      course_id
+      eng_name
+      thai_name
+    }
   }
 `;
 
-export default function SubjectsReviewComponent({  comments }) {
-  const { loading, error, data } = useQuery(GET_SUBJECTS,{pollInterval:5000});
-
-  
-  
+export default function SubjectsReviewComponent({ comments }) {
+  const { loading, error, data } = useQuery(GET_SUBJECTS, {
+    pollInterval: 5000,
+  });
   const [filteredData, setFillteredData] = useState([]);
   const [wordEntered, setWordEnterd] = useState("");
-  
+
   const handleFilter = (event) => {
     const searchWord = event.target.value;
     setWordEnterd(searchWord);
@@ -51,9 +51,14 @@ export default function SubjectsReviewComponent({  comments }) {
     setFillteredData([]);
     setWordEnterd("");
   };
-  if (loading) return <Loader></Loader>
-  if (error) return <h1 className="text-2xl font-display  text-gray-800">Server went wrong....</h1>
-  const {subjects} = data
+  if (loading) return <Loader></Loader>;
+  if (error)
+    return (
+      <h1 className="text-2xl font-display  text-gray-800">
+        Server went wrong....
+      </h1>
+    );
+  const { subjects } = data;
   return (
     <div>
       <div className="w-screen h-screen bg-gray-50 flex flex-col items-center p-2 md:p-10">
@@ -81,25 +86,27 @@ export default function SubjectsReviewComponent({  comments }) {
           <div className=" flex flex-col rounded-xl z-50 bg-gray-50 absolute mt-16 shadow-md overflow-hidden overflow-y-auto w-full lg:w-2/5  max-h-full h-1/3  mx-10 divide-y-1   my-5">
             {filteredData.map((subject, idx) => (
               <>
-                <div
-                  key={idx}
-                  className="flex  p-2 px-5 space-x-6 min-h-20 max-h-16 h-24 top-7 hover:bg-gray-800 hover:text-gray-50  font-display justify-between cursor-pointer"
-                  id="subject"
-                >
-                  <div className="inline-flex space-x-5  flex-row overflow-hidden ">
-                    <p className="font-display font-normal ">
-                      {" "}
-                      {subject.course_id}{" "}
-                    </p>
-                    <p className="font-display font-light ">
-                      {" "}
-                      {subject.thai_name}{" "}
-                    </p>
+                <Link href={"/reviewsubjects/" + subject.id} passHref>
+                  <div
+                    key={idx}
+                    className="flex  p-2 px-5 space-x-6 min-h-20 max-h-16 h-24 top-7 hover:bg-gray-800 hover:text-gray-50  font-display justify-between cursor-pointer"
+                    id="subject"
+                  >
+                    <div className="inline-flex space-x-5  flex-row overflow-hidden ">
+                      <p className="font-display font-normal ">
+                        {" "}
+                        {subject.course_id}{" "}
+                      </p>
+                      <p className="font-display font-light ">
+                        {" "}
+                        {subject.thai_name}{" "}
+                      </p>
+                    </div>
+                    <motion.div>
+                      <RightArrow className="w-6 h-6 stroke-2"></RightArrow>
+                    </motion.div>
                   </div>
-                  <motion.div>
-                    <RightArrow className="w-6 h-6 stroke-2"></RightArrow>
-                  </motion.div>
-                </div>
+                </Link>
               </>
             ))}
           </div>
@@ -112,41 +119,42 @@ export default function SubjectsReviewComponent({  comments }) {
           </div>
         </div>
         {comments.map((comment, index) => (
-          
-          
-            <div key={index} className="bg-gray-50 w-full lg:w-2/5  max-h-full rounded-xl flex flex-col my-3  p-6 px-2 transition   cursor-pointer r shadow-lg space-y-3 hover:bg-gray-100  duration-200 ">
-              <div className=" w-full inline-flex flex-warp font-display items-center px-2 xl:px-6  ">
-                 {comment.subjectId.course_id} {comment.subjectId.eng_name.toUpperCase()}
-              </div>
-              <div  className="min-w-full w-4/6  inline-flex items-center px-2 xl:px-6  my-2   ">
-                <p className="text-sm font-display font-light text-gray-400">
-                  {" "}
-                  {comment.comment}
-                </p>
-              </div>
+          <div
+            key={index}
+            className="bg-gray-50 w-full lg:w-2/5  max-h-full rounded-xl flex flex-col my-3  p-6 px-2 transition   cursor-pointer r shadow-lg space-y-3 hover:bg-gray-100  duration-200 "
+          >
+            <div className=" w-full inline-flex flex-warp font-display items-center px-2 xl:px-6  ">
+              {comment.subjectId.course_id}{" "}
+              {comment.subjectId.eng_name.toUpperCase()}
+            </div>
+            <div className="min-w-full w-4/6  inline-flex items-center px-2 xl:px-6  my-2   ">
+              <p className="text-sm font-display font-light text-gray-400">
+                {" "}
+                {comment.comment}
+              </p>
+            </div>
 
-              <div className="flex justify-start px-2 xl:px-6 my-2 space-x-3  ">
-                <div className="flex justify-center items-center font-display text-xs space-x-2 ">
-                  <div className="rounded-full bg-green-300 hover:bg-green-200 p-2 mr-2 cursor-pointer ">
-                    {" "}
-                  </div>
-                  ภาระงาน : {comment.homework_rate}%
+            <div className="flex justify-start px-2 xl:px-6 my-2 space-x-3  ">
+              <div className="flex justify-center items-center font-display text-xs space-x-2 ">
+                <div className="rounded-full bg-green-300 hover:bg-green-200 p-2 mr-2 cursor-pointer ">
+                  {" "}
                 </div>
-                <div className="flex justify-center items-center font-display text-xs space-x-4 ">
-                  <div className="rounded-full bg-yellow-300 hover:bg-green-200 p-2 mr-2 cursor-pointer ">
-                    {" "}
-                  </div>
-                  เนื้อหา : {comment.content_rate}%
+                ภาระงาน : {comment.homework_rate}%
+              </div>
+              <div className="flex justify-center items-center font-display text-xs space-x-4 ">
+                <div className="rounded-full bg-yellow-300 hover:bg-green-200 p-2 mr-2 cursor-pointer ">
+                  {" "}
                 </div>
-                <div className="flex justify-center items-center font-display text-xs space-x-4 ">
-                  <div className="rounded-full bg-red-300 hover:bg-green-200 p-2 mr-2 cursor-pointer ">
-                    {" "}
-                  </div>
-                  การสอน : {comment.lecturer_rate}%
+                เนื้อหา : {comment.content_rate}%
+              </div>
+              <div className="flex justify-center items-center font-display text-xs space-x-4 ">
+                <div className="rounded-full bg-red-300 hover:bg-green-200 p-2 mr-2 cursor-pointer ">
+                  {" "}
                 </div>
+                การสอน : {comment.lecturer_rate}%
               </div>
             </div>
-          
+          </div>
         ))}
       </div>
     </div>

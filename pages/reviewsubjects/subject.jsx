@@ -1,29 +1,30 @@
 import { Subject } from "@material-ui/icons";
 import React, { useState } from "react";
-import SelectList from "./commentsList";
-import DropDown from "./moreDropdown";
+import DropDown from "../../components/subject_review/moreDropdown";
 import Link from "next/link";
-export default function Review_Subject({subjects}) {
+export default function Review_Subject({subject}) {
+
   const [like, setLike] = useState(0);
 
-  //  bg-gradient-to-br  from-yellow-200 via-yellow-300 to-yellow-500 p-2 xl-p-10
-  const { comments, homework_rate, content_rate, lecturer_rate } = subjects[0];
+   const { comments, homework_rate, content_rate, lecturer_rate } = subject;
+  
   const find_avg = (arr) => {
     return arr.reduce((sum, value) => sum + value, 0) / arr.length;
   };
-  const avg_homework = find_avg(homework_rate).toFixed(0);
+   const avg_homework = find_avg(homework_rate).toFixed(0);
+  
   const avg_content = find_avg(content_rate).toFixed(0);
   const avg_lecturer = find_avg(lecturer_rate).toFixed(0);
+  
   return (
-    <>
       <div className=" flex flex-col bg-gray-800   items-center p-6 ">
         <div className="bg-gray-50 w-full lg:w-3/6  max-h-full rounded-xl flex flex-col  p-6 px-2  shadow-lg my-10 space-y-3 ">
           <div className="min-w-full w-4/6 inline-flex items-center px-2 xl:px-6  ">
             <h1 className="font-display font-bold text-lg px-4 py-2   bg-purple-400  rounded-3xl">
-              {subjects[0].course_id}
+              {subject.course_id}
             </h1>
             <h1 className="font-display font-bold text-sm lg:text-lg mx-3 py-2   rounded-3xl">
-              {subjects[0].eng_name}
+              {subject.eng_name}
             </h1>
           </div>
           <div className="min-w-full w-4/6 inline-flex items-center px-2 xl:px-6 my-6  justify-between">
@@ -93,9 +94,14 @@ export default function Review_Subject({subjects}) {
               <p>{avg_lecturer}%</p>
             </div>
           </div>
-          <div className="min-w-full w-4/6 inline-flex items-end justify-end px-2 xl:pl-6 my-6 ">
-            <Link href="/createreview" passHref>
-              <h1 className="font-display font-normal shadow-sm text-lg lg:text-base my-6 mr-14 px-5 py-2 rounded-3xl bg-green-400 text-gray-50 transition ease-in  hover:bg-gray-800 hover:text-gray-50 cursor-pointer  ">
+          <div className="min-w-full w-4/6 inline-flex  items-end justify-end px-2 xl:pl-6 my-6 space-x-5">
+            <Link href="/reviewsubjects" passHref>
+              <h1 className="font-display font-normal shadow-sm text-lg lg:text-base my-6 px-5 py-2 rounded-md bg-gray-300 text-gray-800 transition ease-in  hover:shadow-lg  cursor-pointer  ">
+                ย้อนกลับ
+              </h1>
+            </Link>
+            <Link href={"/createreview/" + subject.id}   passHref>
+              <h1 className="font-display font-normal shadow-sm text-lg lg:text-base my-6 px-5 py-2 rounded-md bg-green-500 text-gray-50 transition ease-in  hover:shadow-lg  cursor-pointer  ">
                 รีวิววิชานี้
               </h1>
             </Link>
@@ -113,7 +119,7 @@ export default function Review_Subject({subjects}) {
               <div className="min-w-full w-4/6  inline-flex items-center px-2 xl:px-6  my-2   ">
                 <p  className="text-sm font-display font-light text-gray-400">
                   {" "}
-                  โดย {_comment.owner}{" "}
+                  โดย {_comment.owner.name}{" "}
                 </p>
               </div>
               <div className="flex justify-between px-6 my-2  ">
@@ -124,7 +130,7 @@ export default function Review_Subject({subjects}) {
                       setLike(like + 1);
                     }}
                   >
-                    <Like  className="w-6 h-6 "></Like>
+                    <Like className="w-6 h-6 "></Like>
                   </div>
                   {like}
                 </div>
@@ -134,7 +140,7 @@ export default function Review_Subject({subjects}) {
           </>
         ))}
       </div>
-    </>
+   
   );
 }
 

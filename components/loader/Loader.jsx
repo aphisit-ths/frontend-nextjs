@@ -1,22 +1,36 @@
 import React from "react";
-
+import { motion } from "framer-motion";
 export default function Loader() {
   return (
-    <div className="flex align-middle justify-center pt-10">
-      <div className="bg-white-700 p-2 sm:p-4 sm:h-64 rounded-2xl shadow-lg flex flex-col sm:flex-row gap-5 select-none w-2/5">
-        <div className="h-52 sm:h-full sm:w-5 rounded-xl bg-gray-200 animate-pulse"></div>
-        <div className="flex flex-col flex-1 gap-5 sm:p-2">
-          <div className="flex flex-1 flex-col gap-3">
-            <div className="bg-gray-200 w-2/5 animate-pulse h-14 rounded-2xl"></div>
-            <div className="bg-gray-200 w-2/4 animate-pulse h-3 rounded-2xl"></div>
-            <div className="bg-gray-200 w-2/4 animate-pulse h-3 rounded-2xl"></div>
-            <div className="bg-gray-200 w-2/4 animate-pulse h-3 rounded-2xl"></div>
-            <div className="bg-gray-200 w-2/4 animate-pulse h-3 rounded-2xl"></div>
+    <div className="flex justify-center pt-10">
+      <div className="bg-gray-50 w-1/2  rounded-xl flex flex-col my-3  p-6 px-2 transition animate-pulse    shadow-lg space-y-3 hover:bg-gray-100  duration-200 ">
+       
+        <div className="flex justify-start px-2 xl:px-6 my-2 space-x-1  ">
+          <div className="flex justify-center items-center font-display text-xs space-x-2 ">
+            <motion.div
+              initial={{ y: 1 }}
+              animate={{ y: [1, 5, 1, 5] }}
+              transition={{ duration: 2 }}
+              className="rounded-full bg-green-300 hover:bg-green-200 p-2 mr-2 "
+            >
+              {" "}
+            </motion.div>
           </div>
-          <div className="mt-auto flex gap-3">
-            <div className="bg-gray-200 w-20 h-8 animate-pulse rounded-2/4"></div>
-            <div className="bg-gray-200 w-20 h-8 animate-pulse rounded-2/4"></div>
-            <div className="bg-gray-200 w-20 h-8 animate-pulse rounded-2/4 ml-auto"></div>
+          <div className="flex justify-center items-center font-display text-xs space-x-4 ">
+            <motion.div
+              initial={{ y: 1 }}
+              animate={{ y: [5,1,5,1] }}
+              transition={{ duration: 2 }}
+              className="rounded-full bg-yellow-300 hover:bg-green-200 p-2 mr-2  "
+            ></motion.div>
+          </div>
+          <div className="flex justify-center items-center font-display text-xs space-x-4 ">
+            <motion.div
+              initial={{ y: 1 }}
+              animate={{ y: [1, 8, 4, 3] }}
+              transition={{ duration: 2 }}
+              className="rounded-full bg-red-300 hover:bg-green-200 p-2 mr-2  "
+            ></motion.div>
           </div>
         </div>
       </div>

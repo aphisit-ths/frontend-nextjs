@@ -1,82 +1,94 @@
-import { Fragment, useState } from "react";
-import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-
-export default function SelectList({ people }) {
-  const [selected, setSelected] = useState(people[0]);
-  const [serchTerm, setSerchTerm] = useState("");
-
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { useQuery } from "@apollo/react-hooks";
+import Loader from "../loader/Loader";
+import Link from "next/link";
+import gql from "graphql-tag";
+import Error from "../error";
+const GET_COMMENTS = gql`
+  query {
+    subjectComments {
+      id
+      subjectId {
+        id
+        course_id
+        eng_name
+        thai_name
+      }
+      comment
+      grade
+      year
+      semester
+      section
+      owner {
+        id
+        name
+      }
+      homework_rate
+      content_rate
+      lecturer_rate
+    }
+  }
+`;
+export default function Preview_Comments() {
+  const { loading, error, data } = useQuery(GET_COMMENTS, {
+    pollInterval: 5000,
+  });
+  if (loading) return <Loader></Loader>;
+  if (error) return <Error />;
+  const { subjectComments } = data;
   return (
-    <div className="w-72  top-16 m-6">
-      <Listbox value={selected} onChange={setSelected}>
-        <div className="relative mt-1">
-          <Listbox.Button className="relative w-full py-2  pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">
-            <span>{selected.name}</span>
-            <input
-              onChange={(event) => {
-                setSerchTerm(event.target.value);
-              }}
-              placeholder={selected.name}
-              type="text"
-              className=" z-40 relative w-full py-2 pl-3 pr-10 text-left bg-yellow-300 rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm"
-            />
-          </Listbox.Button>
-
-          <Transition
-            as={Fragment}
-            leave="transition ease-in duration-100"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              {people
-                .filter((person) => {
-                  if (serchTerm == "") {
-                    return person;
-                  } else if (
-                    person.name.toLowerCase().includes(serchTerm.toLowerCase())
-                  ) {
-                    return person;
-                  }
-                })
-                .map((person, personIdx) => (
-                  <Listbox.Option
-                    key={personIdx}
-                    className={({ active }) =>
-                      `${
-                        active ? "text-amber-900 bg-amber-100" : "text-gray-900"
-                      }
-                          cursor-default select-none relative py-2 pl-10 pr-4`
-                    }
-                    value={person}
-                  >
-                    {({ selected, active }) => (
-                      <>
-                        <span
-                          className={`${
-                            selected ? "font-medium" : "font-normal"
-                          } block truncate`}
-                        >
-                          {person.name}
-                        </span>
-                        {selected ? (
-                          <span
-                            className={`${
-                              active ? "text-amber-600" : "text-amber-600"
-                            }
-                                absolute inset-y-0 left-0 flex items-center pl-3`}
-                          >
-                            <CheckIcon className="w-5 h-5" aria-hidden="true" />
-                          </span>
-                        ) : null}
-                      </>
-                    )}
-                  </Listbox.Option>
-                ))}
-            </Listbox.Options>
-          </Transition>
+    <div>
+      <div className="flex flex-col items-center p-2 md:p-10">
+        <div className=" bg-gray-50 w-full lg:w-2/5 mt-5 py-4 px-3 md:px-4 ">
+          <div className="flex flex-col">
+            <p className="font-display text-lg">แนะนำจากเพื่อน ๆ</p>
+            <div className=" w-32 rounded-2xl h-1 bg-green-300"></div>
+          </div>
         </div>
-      </Listbox>
+        {subjectComments.map((comment, index) => (
+          <>
+              <Link href={"reviewsubjects/" + comment.subjectId.id} passHref>
+                <div
+                  key={comment.subjectId.id}
+                  className="bg-gray-50 w-full lg:w-2/5  max-h-full rounded-xl flex flex-col my-3  p-6 px-2 transition   cursor-pointer r shadow-lg space-y-3 hover:bg-gray-100  duration-200 "
+                >
+                  <div className="  inline-flex py-2 w-2/3 flex-warp font-display items-center  z-30 px-2 xl:px-6  ">
+                    {comment.subjectId.course_id}{" "}
+                    {comment.subjectId.eng_name.toUpperCase()}
+                  </div>
+                  <div className="min-w-full w-4/6  inline-flex items-center px-2 xl:px-6  my-2   ">
+                    <p className="text-sm font-display font-light text-gray-400">
+                      {" "}
+                      {comment.comment}
+                    </p>
+                  </div>
+
+                  <div className="flex justify-start px-2 xl:px-6 my-2 space-x-3  ">
+                    <div className="flex justify-center items-center font-display text-xs space-x-2 ">
+                      <div className="rounded-full bg-green-300 hover:bg-green-200 p-2 mr-2 cursor-pointer ">
+                        {" "}
+                      </div>
+                      ภาระงาน : {comment.homework_rate}%
+                    </div>
+                    <div className="flex justify-center items-center font-display text-xs space-x-4 ">
+                      <div className="rounded-full bg-yellow-300 hover:bg-green-200 p-2 mr-2 cursor-pointer ">
+                        {" "}
+                      </div>
+                      เนื้อหา : {comment.content_rate}%
+                    </div>
+                    <div className="flex justify-center items-center font-display text-xs space-x-4 ">
+                      <div className="rounded-full bg-red-300 hover:bg-green-200 p-2 mr-2 cursor-pointer ">
+                        {" "}
+                      </div>
+                      การสอน : {comment.lecturer_rate}%
+                    </div>
+                  </div>
+                </div>
+              </Link>
+          </>
+        ))}
+      </div>
     </div>
   );
 }

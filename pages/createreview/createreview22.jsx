@@ -1,4 +1,4 @@
-import CreateReview from "../components/subject_review/createReview";
+import CreateReview from "../../components/subject_review/createReview";
 
 import React from "react";
 const subjects = [

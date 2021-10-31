@@ -9,15 +9,14 @@ function Select_Topic() {
       <div className="flex flex-col  sm:flex-row justify-start bg-gray-50  w-screen h-screen p-20 space-y-10 sm:space-y-0 sm:space-x-10  items-center sm:justify-center overflow-y-scroll ">
         <Link href="reviewsubjects" passHref>
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0  }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2 }}
             whileHover={{
-              scale: [1.2,1.1],
-              rotate: [0, 3],
+              rotate: [0, 1.1],
               transition: { duration: 0.1 },
             }}
-            className="w-60 h-60  bg-white block p-4 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 "
+            className="w-60 h-60  bg-white block p-4 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer     "
           >
             <div className="flex flex-row  w-50 h-1/2 space-x-2 items-center justify-center ">
               <div className="mx-2  items-center    justify-center">
@@ -41,11 +40,11 @@ function Select_Topic() {
          animate={{ opacity: 1 }}
          transition={{ duration: 0.2 }}
          whileHover={{
-           scale: [1.2,1.1],
-           rotate: [0, 3],
+           
+           rotate: [0, 1.1],
            transition: { duration: 0.1 },
          }}
-          className="w-60 h-60   bg-white block p-4 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 "
+          className="w-60 h-60   bg-white block p-4 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer     "
         >
           <div className="flex flex-row  w-50 h-1/2 space-x-2 items-center justify-center ">
             <div className="mx-2  items-center    justify-center">
@@ -67,11 +66,11 @@ function Select_Topic() {
          animate={{ opacity: 1 }}
          transition={{ duration: 0.2 }}
          whileHover={{
-           scale: [1.2,1.1],
-           rotate: [0, 3],
+           
+           rotate: [0, 1.1],
            transition: { duration: 0.1 },
          }}
-          className="w-60 h-60   bg-white block p-4 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer   hover:-translate-y-2  hover:translate-x-2 "
+          className="w-60 h-60   bg-white block p-4 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer     "
         >
           <div className="flex flex-row  w-50 h-1/2 space-x-1 items-center justify-center ">
             <div className="mx-2  items-center    justify-center">
