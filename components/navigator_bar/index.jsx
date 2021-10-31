@@ -65,7 +65,7 @@ export default function ProjectNav() {
           </>
         )}
       </div>
-      <div className="flex xl:hidden flex-row bg-gray-50 w-full h-full items-center self-center justify-end ml-12 cursor-pointer ease-in duration-150  ">
+      <div className="flex xl:hidden flex-row  w-full h-full items-center self-center justify-end ml-12 cursor-pointer ease-in duration-150  ">
         {!user ? (
           <>
             <LoggedOutUserMenu></LoggedOutUserMenu>
