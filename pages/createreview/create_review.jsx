@@ -1,28 +1,29 @@
 import React, { useState } from "react";
 import Link from "next/link";
+
 export default function CreateReview({ subject }) {
   const yearNow = new Date().getFullYear();
   let currentYearThai = yearNow + 543;
   let emoji = [
     {
       value: 40,
-      emoji: "🥺",
+      emoji: <VerrySadIcon className="w-5 md:w-8 md:h-8"></VerrySadIcon>,
     },
     {
       value: 50,
-      emoji: "🤨",
+      emoji: <SadIcon className="w-5 md:w-8 md:h-8"></SadIcon>,
     },
     {
       value: 60,
-      emoji: "😊",
+      emoji: <NormalIcon className="w-5 md:w-8 md:h-8"></NormalIcon>,
     },
     {
       value: 80,
-      emoji: "😃",
+      emoji: <GoodIcon className="w-5 md:w-8 md:h-8"></GoodIcon>,
     },
     {
       value: 90,
-      emoji: "😎",
+      emoji: <VeryGoodIcon className="w-5 md:w-8 md:h-8"></VeryGoodIcon>,
     },
   ];
   const [lecturer_rate, setLecturer_rate] = useState(emoji[2].value);
@@ -138,7 +139,7 @@ export default function CreateReview({ subject }) {
                 <>
                   <h1
                     onClick={() => changeHomework_rate(feel)}
-                    className={ "text-sm md:text-2xl  rounded-full cursor-pointer " + (homework_rate === feel.value? " bg-red-400 " : " ")}  
+                    className={ "text-sm md:text-2xl  rounded-full cursor-pointer " + (homework_rate === feel.value? " ring-4 ring-green-300" : " ")}  
                     key={i}
                   >
                     {feel.emoji}
@@ -163,7 +164,7 @@ export default function CreateReview({ subject }) {
                     className={
                       "text-sm md:text-2xl  rounded-full cursor-pointer " +
                       (content_rate === feel.value
-                        ? " bg-red-400 "
+                        ? "ring-4 ring-green-300"
                         : " ")
                     }
                     key={i}
@@ -189,7 +190,7 @@ export default function CreateReview({ subject }) {
                     className={
                       "text-sm md:text-2xl  rounded-full cursor-pointer " +
                       (lecturer_rate === feel.value
-                        ? " bg-red-400 "
+                        ? " ring-4 ring-green-300"
                         : " ")
                     }
                     key={i}
@@ -324,21 +325,117 @@ function SmileIcon(props) {
     </svg>
   );
 }
-function SadIcon(props) {
+
+
+
+function VerrySadIcon(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       {...props}
       fill="none"
-      viewBox="0 0 24 24"
-      stroke="#FCA5A5"
+      viewBox="0 0 30 30"
     >
+      <path fill="#fff" d="M8 9H22V11H8z"></path>
+      <circle cx="15" cy="15" r="14" stroke="#000" strokeWidth="2"></circle>
+      <circle cx="9" cy="10" r="1" fill="#000"></circle>
+      <circle cx="21" cy="10" r="1" fill="#000"></circle>
       <path
+        stroke="#000"
         strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-      />
+        strokeWidth="2"
+        d="M9.255 21.036c0-7.95 11.49-7.95 11.49 0"
+      ></path>
+    </svg>
+
+  );
+}
+
+function SadIcon(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+     {...props}
+      fill="none"
+      viewBox="0 0 30 30"
+    >
+      <circle cx="15" cy="15" r="14" stroke="#000" strokeWidth="2"></circle>
+      <path fill="#fff" d="M8 9H22V11H8z"></path>
+      <circle cx="9" cy="10" r="1" fill="#000"></circle>
+      <circle cx="21" cy="10" r="1" fill="#000"></circle>
+      <path
+        stroke="#000"
+        strokeLinecap="round"
+        strokeWidth="2"
+        d="M9.255 21.036c1.596-4.6 9.894-4.76 11.49 0"
+      ></path>
     </svg>
   );
 }
+
+function NormalIcon(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+     {...props}
+      fill="none"
+      viewBox="0 0 30 30"
+    >
+      <circle cx="15" cy="15" r="14" stroke="#000" strokeWidth="2"></circle>
+      <path fill="#fff" d="M8 9H22V11H8z"></path>
+      <circle cx="9" cy="10" r="1" fill="#000"></circle>
+      <circle cx="21" cy="10" r="1" fill="#000"></circle>
+      <path
+        stroke="#000"
+        strokeLinecap="round"
+        strokeWidth="2"
+        d="M9.255 21.064h11.49"
+      ></path>
+    </svg>
+  );
+}
+
+function GoodIcon(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+     {...props}
+      fill="none"
+      viewBox="0 0 30 30"
+    >
+      <circle cx="15" cy="15" r="14" stroke="#000" strokeWidth="2"></circle>
+      <path fill="#fff" d="M8 9H22V11H8z"></path>
+      <circle cx="9" cy="10" r="1" fill="#000"></circle>
+      <circle cx="21" cy="10" r="1" fill="#000"></circle>
+      <path
+        stroke="#000"
+        strokeLinecap="round"
+        strokeWidth="2"
+        d="M9.255 17.526c1.596 4.6 9.894 4.76 11.49 0"
+      ></path>
+    </svg>
+  );
+}
+
+function VeryGoodIcon(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+     {...props}
+      fill="none"
+      viewBox="0 0 30 30"
+    >
+      <circle cx="15" cy="15" r="14" stroke="#000" strokeWidth="2"></circle>
+      <path fill="#fff" d="M8 9H22V11H8z"></path>
+      <circle cx="9" cy="10" r="1" fill="#000"></circle>
+      <circle cx="21" cy="10" r="1" fill="#000"></circle>
+      <path
+        stroke="#000"
+        strokeLinecap="round"
+        strokeWidth="2"
+        d="M9.255 15.073c0 7.95 11.49 7.95 11.49 0"
+      ></path>
+    </svg>
+  );
+}
+
