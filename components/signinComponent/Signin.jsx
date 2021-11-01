@@ -14,17 +14,6 @@ const SIGN_IN = gql`
         id
         email
         name
-        products {
-          id
-        }
-        carts {
-          id
-          product {
-            desc
-            imgUrl
-            price
-          }
-        }
       }
       jwt
     }

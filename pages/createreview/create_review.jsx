@@ -138,12 +138,7 @@ export default function CreateReview({ subject }) {
                 <>
                   <h1
                     onClick={() => changeHomework_rate(feel)}
-                    className={
-                      "text-2xl  rounded-full cursor-pointer " +
-                      (homework_rate === feel.value
-                        ? " ring-4 ring-green-400 "
-                        : " ")
-                    }
+                    className={ "text-sm md:text-2xl  rounded-full cursor-pointer " +(homework_rate === feel.value? " ring-4 ring-green-400 " : " ")}  
                     key={i}
                   >
                     {feel.emoji}
@@ -166,7 +161,7 @@ export default function CreateReview({ subject }) {
                   <h1
                     onClick={() => changeContent_rate(feel)}
                     className={
-                      "text-2xl  rounded-full cursor-pointer " +
+                      "text-sm md:text-2xl  rounded-full cursor-pointer " +
                       (content_rate === feel.value
                         ? " ring-4 ring-green-400 "
                         : " ")
@@ -182,7 +177,7 @@ export default function CreateReview({ subject }) {
           <div className="min-w-full w-4/6 inline-flex items-center px-2 xl:pl-6 my-6  text-gray-500 justify-between">
             <div className="flex flex-row">
               <h1 className="font-display font-light text-sm lg:text-lg pl-4 py-2rounded-3xl ">
-                การสอนของอาจารย์
+                การสอน
               </h1>
               <div className="w-2 h-2 bg-red-300 rounded-full ml-2 self-start place-self-start "></div>
             </div>
@@ -192,7 +187,7 @@ export default function CreateReview({ subject }) {
                   <h1
                     onClick={() => changeLecturer_rate(feel)}
                     className={
-                      "text-2xl  rounded-full cursor-pointer " +
+                      "text-sm md:text-2xl  rounded-full cursor-pointer " +
                       (lecturer_rate === feel.value
                         ? " ring-4 ring-green-400 "
                         : " ")
@@ -298,7 +293,7 @@ export default function CreateReview({ subject }) {
 
             <button
               type="submit"
-              className="px-10 py-3 text-gray-50 rounded-xl bg-green-500 shadow-sm hover:shadow-sm   "
+              className="px-2 py-3 text-gray-50 rounded-xl bg-green-500 shadow-sm hover:shadow-sm   "
             >
               {" "}
               รีวิววิชานี{" "}
