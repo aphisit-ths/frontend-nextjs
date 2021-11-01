@@ -14,12 +14,12 @@ module.exports = {
     "components/subject_review/moreDropdown.jsx",
     "components/subject_review/index.jsx",
     "components/loader/Loader.jsx",
-    "components/error/index.jsx"
+    "components/error/index.jsx",
+    "pages/createreview/create_review.jsx"
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      
       animation: {
         'bounce-slow': 'bounce 3s ease-in-out infinite',
        },
