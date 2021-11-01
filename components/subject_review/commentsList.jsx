@@ -18,7 +18,6 @@ const GET_COMMENTS = gql`
       comment
       grade
       year
-      semester
       section
       owner {
         id
