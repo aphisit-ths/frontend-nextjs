@@ -31,7 +31,6 @@ function MyApp({ Component, pageProps, apollo ,user }) {
 
 MyApp.getInitialProps = async ({ ctx ,router }) => {
   //Client Side
-  console.log(router)
   if (process.browser) {
     return __NEXT_DATA__.props.pageProps;
   }
@@ -59,23 +58,11 @@ MyApp.getInitialProps = async ({ ctx ,router }) => {
           id
           name
           email
-          products {
-            id
-          }
-          carts {
-            id
-            product {
-              desc
-              imgUrl
-              price
-            }
-            quantity
-          }
         }
       }
     `,
   };
-  const response = await fetch("http://localhost:4444/graphql", { 
+  const response = await fetch("https://backend-gql-kmitlreviewer.herokuapp.com/graphql", { 
     //Gql Post เสมอ
     method: "post",
     headers: {
@@ -84,9 +71,10 @@ MyApp.getInitialProps = async ({ ctx ,router }) => {
     },
     body: JSON.stringify(QUERY_USER),
   });
-  x
+  
   if (response.ok) {
     const result = await response.json();
+    console.log(result)
     return { user: result.data.user};
   } else {
     if(router.pathname === '/createreview[subjectid]'){

@@ -6,8 +6,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import fetch from "isomorphic-unfetch";
 import withApollo from "next-with-apollo";
 import cookie from "cookie"
-const uri = "http://localhost:4444/graphql";
-// const uri = "https://backend-gql-kmitlreviewer.herokuapp.com/graphql";
+const uri = "https://backend-gql-kmitlreviewer.herokuapp.com/graphql";
 
 const httpLink = createHttpLink({ uri, fetch });
 //Create Headers

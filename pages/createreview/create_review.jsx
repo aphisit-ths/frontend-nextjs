@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useEffect ,useContext } from "react";
 import Link from "next/link";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import router from "next/router";
+import Router from "next/router";
 import Loader from "../../components/loader/Loader"
+import {AuthContext} from "../../appstate/AuthProvider"
 
 const CREATE_SUBJECTREVIEW = gql`
   mutation CREATE_SUBJECTREVIEW(
@@ -49,6 +50,10 @@ const CREATE_SUBJECTREVIEW = gql`
 `;
 
 export default function CreateReview({ subject }) {
+
+  const {user} = useContext(AuthContext);
+
+  
   const yearNow = new Date().getFullYear();
   let currentYearThai = yearNow + 543;
   let emoji = [
@@ -84,15 +89,16 @@ export default function CreateReview({ subject }) {
     content_rate: content_rate,
     homework_rate: homework_rate,
     subjectId: id,
-    content: "",
+    comment: "",
     section: "1",
     grade: "C",
-    year: currentYearThai,
+    year: currentYearThai.toString(),
   });
 
   let yearList = [{ value: currentYearThai.toString() }];
   for (let index = 0; index < 5; index++) {
     currentYearThai -= 1;
+    currentYearThai = currentYearThai.toString();
     yearList.push({
       value: currentYearThai.toString(),
     });
@@ -134,6 +140,7 @@ export default function CreateReview({ subject }) {
   const [addSubjectComment, { data ,loading, error }] = useMutation(
     CREATE_SUBJECTREVIEW,
     {
+      
       variables: { ...comment_info },
       onCompleted: (data) => {
         if (data) {
