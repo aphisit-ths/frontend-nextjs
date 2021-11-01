@@ -4,28 +4,6 @@ import Link from "next/link";
 export default function CreateReview({ subject }) {
   const yearNow = new Date().getFullYear();
   let currentYearThai = yearNow + 543;
-  let emoji = [
-    {
-      value: 40,
-      emoji: <VerrySadIcon className="w-5 md:w-8 md:h-8"></VerrySadIcon>,
-    },
-    {
-      value: 50,
-      emoji: <SadIcon className="w-5 md:w-8 md:h-8"></SadIcon>,
-    },
-    {
-      value: 60,
-      emoji: <NormalIcon className="w-5 md:w-8 md:h-8"></NormalIcon>,
-    },
-    {
-      value: 80,
-      emoji: <GoodIcon className="w-5 md:w-8 md:h-8"></GoodIcon>,
-    },
-    {
-      value: 90,
-      emoji: <VeryGoodIcon className="w-5 md:w-8 md:h-8"></VeryGoodIcon>,
-    },
-  ];
   const [lecturer_rate, setLecturer_rate] = useState(emoji[2].value);
   const [content_rate, setContent_rate] = useState(emoji[2].value);
   const [homework_rate, setHomework_rate] = useState(emoji[2].value);
