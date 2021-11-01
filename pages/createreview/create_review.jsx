@@ -1,5 +1,52 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import { useMutation } from "@apollo/react-hooks";
+import gql from "graphql-tag";
+import router from "next/router";
+import Loader from "../../components/loader/Loader"
+
+const CREATE_SUBJECTREVIEW = gql`
+  mutation CREATE_SUBJECTREVIEW(
+    $subjectId: ID!
+    $comment: String!
+    $grade: String!
+    $year: String!
+    $section: String!
+    $homework_rate: Int!
+    $content_rate: Int!
+    $lecturer_rate: Int!
+  ) {
+    addSubjectComment(
+      subjectId: $subjectId
+      comment: $comment
+      grade: $grade
+      year: $year
+      section: $section
+      homework_rate: $homework_rate
+      content_rate: $content_rate
+      lecturer_rate: $lecturer_rate
+    ) {
+      id
+      subjectId {
+        id
+        course_id
+        eng_name
+      }
+      comment
+      grade
+      year
+      section
+      owner {
+        id
+        name
+      }
+      createdAt
+      homework_rate
+      content_rate
+      lecturer_rate
+    }
+  }
+`;
 
 export default function CreateReview({ subject }) {
   const yearNow = new Date().getFullYear();
@@ -30,16 +77,16 @@ export default function CreateReview({ subject }) {
   const [content_rate, setContent_rate] = useState(emoji[2].value);
   const [homework_rate, setHomework_rate] = useState(emoji[2].value);
 
-  const { course_id, thai_name, eng_name } = subject;
+  const { id, course_id, thai_name, eng_name } = subject;
   const [comment_info, setComment_info] = useState({
     // add rating later,
     lecturer_rate: lecturer_rate,
     content_rate: content_rate,
     homework_rate: homework_rate,
-    course_id: course_id,
+    subjectId: id,
     content: "",
     section: "1",
-    grade: "A",
+    grade: "C",
     year: currentYearThai,
   });
 
@@ -50,22 +97,14 @@ export default function CreateReview({ subject }) {
       value: currentYearThai.toString(),
     });
   }
+ 
 
   const handleChange = (e) => {
     setComment_info({
       ...comment_info,
       [e.target.name]: e.target.value,
     });
-    console.log(comment_info);
-  };
-
-  const handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      console.log(comment_info);
-    } catch (error) {
-      console.log(error);
-    }
+    
   };
 
   const changeLecturer_rate = (feel) => {
@@ -74,7 +113,7 @@ export default function CreateReview({ subject }) {
       ...comment_info,
       lecturer_rate: feel.value,
     });
-    console.log(comment_info);
+    
   };
   const changeHomework_rate = (feel) => {
     setHomework_rate(feel.value);
@@ -82,7 +121,7 @@ export default function CreateReview({ subject }) {
       ...comment_info,
       homework_rate: feel.value,
     });
-    console.log(comment_info);
+    
   };
   const changeContent_rate = (feel) => {
     setContent_rate(feel.value);
@@ -90,8 +129,40 @@ export default function CreateReview({ subject }) {
       ...comment_info,
       content_rate: feel.value,
     });
-    console.log(comment_info);
+    
   };
+  const [addSubjectComment, { data ,loading, error }] = useMutation(
+    CREATE_SUBJECTREVIEW,
+    {
+      variables: { ...comment_info },
+      onCompleted: (data) => {
+        if (data) {
+          setComment_info({
+            lecturer_rate: 60,
+            content_rate: 60,
+            homework_rate: 60,
+            subjectId: id,
+            comment: "",
+            section: "1",
+            grade: "C",
+            year: currentYearThai,
+          });
+        }
+      },
+    }
+  );
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      console.log(comment_info);
+      await addSubjectComment();
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  if (loading) return (<Loader></Loader> )
+  if (error) return (<p>{error.message}</p>)
   return (
     <div>
       <div className=" flex flex-col bg-gray-200   items-center p-6 ">
@@ -139,7 +210,12 @@ export default function CreateReview({ subject }) {
                 <>
                   <h1
                     onClick={() => changeHomework_rate(feel)}
-                    className={ "text-sm md:text-2xl  rounded-full cursor-pointer " + (homework_rate === feel.value? " ring-4 ring-green-300" : " ")}  
+                    className={
+                      "text-sm md:text-2xl  rounded-full cursor-pointer " +
+                      (homework_rate === feel.value
+                        ? " ring-4 ring-green-300"
+                        : " ")
+                    }
                     key={i}
                   >
                     {feel.emoji}
@@ -211,8 +287,9 @@ export default function CreateReview({ subject }) {
             </div>
             <textarea
               required
+              value={comment_info.comment}
               onChange={handleChange}
-              name="content"
+              name="comment"
               type="text"
               placeholder="เขียนรีวิว .....  (โปรดหลีกเลี่ยงถ้อยคำหยาบ คายและพาดพิงผู้อื่น)"
               className="border-0 px-3 py-3 placeholder-blueGray-300 text-gray-800 bg-white rounded text-sm md:text-sm font-display  shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -229,6 +306,7 @@ export default function CreateReview({ subject }) {
               className="px-2 w-24 font-display text-lg border-2 border-gray-300 rounded-md"
               name="grade"
               id="grade"
+              value={comment_info.grade}
               required
               defaultValue="C"
             >
@@ -255,9 +333,10 @@ export default function CreateReview({ subject }) {
               className="px-2 w-24 font-display text-lg border-2 border-gray-300 rounded-md"
               name="year"
               id="year"
+              value={comment_info.year}
             >
               {yearList.map((year, i) => (
-                <option key={i} value={year.value}>
+                <option key={i} value={year.value.toString()}>
                   {year.value}
                 </option>
               ))}
@@ -301,8 +380,10 @@ export default function CreateReview({ subject }) {
             </button>
           </div>
         </form>
-        {/* -------------------------commnets section ------------------------------------------------------------*/}
+        {error && <ErrorMsg></ErrorMsg>}
+        {data && <ThankMsg></ThankMsg> }
       </div>
+      
     </div>
   );
 }
@@ -326,8 +407,6 @@ function SmileIcon(props) {
   );
 }
 
-
-
 function VerrySadIcon(props) {
   return (
     <svg
@@ -347,7 +426,6 @@ function VerrySadIcon(props) {
         d="M9.255 21.036c0-7.95 11.49-7.95 11.49 0"
       ></path>
     </svg>
-
   );
 }
 
@@ -355,7 +433,7 @@ function SadIcon(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-     {...props}
+      {...props}
       fill="none"
       viewBox="0 0 30 30"
     >
@@ -377,7 +455,7 @@ function NormalIcon(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-     {...props}
+      {...props}
       fill="none"
       viewBox="0 0 30 30"
     >
@@ -399,7 +477,7 @@ function GoodIcon(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-     {...props}
+      {...props}
       fill="none"
       viewBox="0 0 30 30"
     >
@@ -421,7 +499,7 @@ function VeryGoodIcon(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-     {...props}
+      {...props}
       fill="none"
       viewBox="0 0 30 30"
     >
@@ -438,4 +516,42 @@ function VeryGoodIcon(props) {
     </svg>
   );
 }
-
+function ErrorMsg() {
+  return (
+    <div className="flex animate-pulse cursor-pointer mb-6 mx-5 items-center justify-center space-x-3 flex-row w-full h-11  rounded-lg bg-red-400">
+      <Icon></Icon>
+      <h1 className="text-sm font-light font-display text-gray-100 ">
+        พบข้อผิดพลาด ลองไหม่อีกครั้ง
+      </h1>
+    </div>
+  );
+}
+function ThankMsg() {
+  return (
+    <div className="flex animate-pulse cursor-pointer mb-6 mx-5 items-center justify-center space-x-3 flex-row w-full h-11  rounded-lg bg-green-500">
+      <Icon></Icon>
+      <h1 className="text-sm font-light font-display text-gray-100 ">
+        ขอบคุณสำหรับการรีวิว 
+      </h1>
+    </div>
+  );
+}
+function Icon(args) {
+  return (
+    <div>
+      <svg
+        {...args}
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-5 w-5"
+        viewBox="0 0 20 20"
+        fill="white"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+  );
+}

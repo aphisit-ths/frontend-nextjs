@@ -3,7 +3,6 @@ import signupStyle from "../../styles/signup.module.scss";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import Link from "next/link";
-import { Alert, AlertTitle } from "@material-ui/lab";
 import { motion } from "framer-motion";
 
 const SIGN_UP = gql`

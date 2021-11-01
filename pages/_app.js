@@ -31,15 +31,16 @@ function MyApp({ Component, pageProps, apollo ,user }) {
 
 MyApp.getInitialProps = async ({ ctx ,router }) => {
   //Client Side
-  
+  console.log(router)
   if (process.browser) {
     return __NEXT_DATA__.props.pageProps;
   }
   const { headers } = ctx.req;
   const cookies = headers && cookie.parse(headers.cookie || "");
   const token = cookies && cookies.jwt;
+
   if(!token){
-    if(router.pathname === '/userprofile' || router.pathname === '/555'){
+    if(router.pathname === '/createreview/[subjectid]'){
       ctx.res.writeHead(302,{location:"/signin"})
       ctx.res.end()
     }
@@ -83,12 +84,12 @@ MyApp.getInitialProps = async ({ ctx ,router }) => {
     },
     body: JSON.stringify(QUERY_USER),
   });
-
+  x
   if (response.ok) {
     const result = await response.json();
     return { user: result.data.user};
   } else {
-    if(router.pathname === '/cart' || router.pathname === '/manageproducts'){
+    if(router.pathname === '/createreview[subjectid]'){
       ctx.res.writeHead(302,{location:"/signin"})
       ctx.res.end()
     }
