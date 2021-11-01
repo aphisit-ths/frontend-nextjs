@@ -138,7 +138,7 @@ export default function CreateReview({ subject }) {
                 <>
                   <h1
                     onClick={() => changeHomework_rate(feel)}
-                    className={ "text-sm md:text-2xl  rounded-full cursor-pointer " +(homework_rate === feel.value? " ring-4 ring-green-400 " : " ")}  
+                    className={ "text-sm md:text-2xl  rounded-full cursor-pointer " + (homework_rate === feel.value? " bg-red-400 " : " ")}  
                     key={i}
                   >
                     {feel.emoji}
@@ -163,7 +163,7 @@ export default function CreateReview({ subject }) {
                     className={
                       "text-sm md:text-2xl  rounded-full cursor-pointer " +
                       (content_rate === feel.value
-                        ? " ring-4 ring-green-400 "
+                        ? " bg-red-400 "
                         : " ")
                     }
                     key={i}
@@ -189,7 +189,7 @@ export default function CreateReview({ subject }) {
                     className={
                       "text-sm md:text-2xl  rounded-full cursor-pointer " +
                       (lecturer_rate === feel.value
-                        ? " ring-4 ring-green-400 "
+                        ? " bg-red-400 "
                         : " ")
                     }
                     key={i}
