@@ -15,7 +15,8 @@ module.exports = {
     "components/subject_review/index.jsx",
     "components/loader/Loader.jsx",
     "components/error/index.jsx",
-    "pages/createreview/create_review.jsx"
+    "pages/createreview/create_review.jsx",
+    "pages/createreview/[subjectid].jsx"
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
