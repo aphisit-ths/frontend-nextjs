@@ -11,14 +11,10 @@ export default function Review_Subject({ subject }) {
     return arr.reduce((sum, value) => sum + value, 0) / arr.length;
   };
   const avg_homework = find_avg(homework_rate).toFixed(0);
-
   const avg_content = find_avg(content_rate).toFixed(0);
   const avg_lecturer = find_avg(lecturer_rate).toFixed(0);
-
   return (
     <div className=" flex flex-col bg-gray-50   items-center p-6 ">
-      <div class="w-96 h-full bg-indigo-200 bg-opacity-20 absolute -bottom-96 right-64 rounded-full pointer-events-none -rotate-45 transform"></div>{" "}
-      <div class="w-96 h-screen bg-indigo-200 bg-opacity-20 absolute rounded-full pointer-events-none bottom-1/3 rotate-45 transform"></div>{" "}
       <div className="bg-gray-100 w-full lg:w-3/6 z-40 max-h-full rounded-xl flex flex-col  p-6 px-2  shadow-lg my-10 space-y-3 ">
         <div className="min-w-full w-4/6 inline-flex items-center px-2 xl:px-6  ">
           <h1 className="font-display font-bold text-lg px-4 py-2   bg-purple-400  rounded-3xl">
