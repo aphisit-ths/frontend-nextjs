@@ -6,6 +6,7 @@ import Error from "../../components/error";
 import Link from "next/link";
 import gql from "graphql-tag";
 import Preview_Comments from "../../components/subject_review/commentsList";
+import LoadComponent from "../../components/loader/LoadComment";
 const GET_SUBJECTS = gql`
   query {
     subjects {
@@ -17,10 +18,11 @@ const GET_SUBJECTS = gql`
   }
 `;
 
-export default function SearchSubject() {
-  const { loading, error, data } = useQuery(GET_SUBJECTS, {
+export default  function SearchSubject() {
+  const { loading, error, data } =  useQuery(GET_SUBJECTS, {
     pollInterval: 5000,
   });
+  
   const [filteredData, setFillteredData] = useState([]);
   const [wordEntered, setWordEnterd] = useState("");
   const handleFilter = (event) => {
@@ -52,10 +54,10 @@ export default function SearchSubject() {
     setFillteredData([]);
     setWordEnterd("");
   };
-  if (loading) return <Loader></Loader>;
+  
   if (error) return <Error></Error>;
-  const { subjects } = data;
-
+  if (loading) return <LoadComponent loading={loading} />;
+  const {subjects} = data;
   return (
     <div>
       <div className="w-screen h-screen bg-gray-50 flex flex-col items-center p-2 md:p-10">
@@ -114,7 +116,7 @@ export default function SearchSubject() {
             ))}
           </div>
         )}
-        
+
         <Preview_Comments></Preview_Comments>
       </div>
       

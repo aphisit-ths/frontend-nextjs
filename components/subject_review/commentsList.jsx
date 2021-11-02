@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useQuery } from "@apollo/react-hooks";
-import Loader from "../loader/Loader";
+import LoadComment from "../loader/LoadComment";
 import Link from "next/link";
 import gql from "graphql-tag";
 import Error from "../error";
@@ -33,10 +33,11 @@ export default function Preview_Comments() {
   const { loading, error, data } = useQuery(GET_COMMENTS, {
     pollInterval: 5000,
   });
-  if (loading) return <Loader></Loader>;
+  if (loading) return <LoadComment loading={loading}></LoadComment>;
   if (error) return <Error />;
   const { subjectComments } = data;
   return (
+    
     <div>
       <div className="flex flex-col items-center p-2 md:p-10">
         <div className=" bg-gray-50 w-full lg:w-2/5 mt-5 py-4 px-3 md:px-4 ">

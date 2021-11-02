@@ -13,6 +13,7 @@ module.exports = {
     "components/subject_review/createReview.jsx",
     "components/subject_review/moreDropdown.jsx",
     "components/subject_review/index.jsx",
+    "components/loader/LoadComment.jsx",
     "components/loader/Loader.jsx",
     "components/error/index.jsx",
     "pages/createreview/create_review.jsx",
