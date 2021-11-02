@@ -1,10 +1,9 @@
-import React, { useState,useEffect ,useContext } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import Router from "next/router";
-import Loader from "../../components/loader/Loader"
-import {AuthContext} from "../../appstate/AuthProvider"
+import Loader from "../loader/Loader"
+
 
 const CREATE_SUBJECTREVIEW = gql`
   mutation CREATE_SUBJECTREVIEW(
@@ -51,7 +50,7 @@ const CREATE_SUBJECTREVIEW = gql`
 
 export default function CreateReview({ subject }) {
 
-  const {user} = useContext(AuthContext);
+  
 
   
   const yearNow = new Date().getFullYear();
