@@ -74,10 +74,10 @@ MyApp.getInitialProps = async ({ ctx ,router }) => {
   
   if (response.ok) {
     const result = await response.json();
-    console.log(result)
+    
     return { user: result.data.user};
   } else {
-    if(router.pathname === '/createreview[subjectid]'){
+    if(router.pathname === '/createreview[createId]'){
       ctx.res.writeHead(302,{location:"/signin"})
       ctx.res.end()
     }

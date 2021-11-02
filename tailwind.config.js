@@ -2,22 +2,23 @@ module.exports = {
   purge: [
     "components/navigator_bar/index.jsx",
     "components/signupComponent/signup.jsx",
-    "components/signupComponent/signup.jsx",
     "components/navigator_bar/LoggedOutUserMenu/LoggedOutUserMenu.jsx",
     "components/homepage/HomePage.jsx",
     "components/select_topic/Select_Topic.jsx",
     "components/subject_review/subject.jsx",
     "components/navigator_bar/userDropdown/UserDropdown.jsx",
-    "components/homepage/content.jsx",
-    "pages/reviewsubjects/index.jsx",
-    "components/subject_review/createReview.jsx",
     "components/subject_review/moreDropdown.jsx",
-    "components/subject_review/index.jsx",
     "components/loader/LoadComment.jsx",
     "components/loader/Loader.jsx",
     "components/error/index.jsx",
-    "pages/createreview/create_review.jsx",
-    "pages/createreview/[subjectid].jsx"
+    "components/createreviewComponent/create_review.jsx",
+    "components/subject_review/commentsList.jsx",
+    "pages/createreview/[createId].jsx",
+    "pages/testui.jsx",
+    "pages/reviewsubjects/index.jsx",
+    "pages/reviewsubjects",
+    "pages/reviewsubjects/subject.jsx",
+    
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {

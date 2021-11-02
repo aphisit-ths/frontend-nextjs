@@ -49,9 +49,6 @@ const CREATE_SUBJECTREVIEW = gql`
 `;
 
 export default function CreateReview({ subject }) {
-
-  
-
   
   const yearNow = new Date().getFullYear();
   let currentYearThai = yearNow + 543;

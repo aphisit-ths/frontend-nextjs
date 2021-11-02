@@ -97,7 +97,7 @@ export default function Review_Subject({ subject }) {
               ย้อนกลับ
             </h1>
           </Link>
-          <Link href={"/createreview/" + subject.id} passHref>
+          <Link href={"/createreview/[createId]"} as={`/createreview/${subject.id}`}>
             <h1 className="font-display font-normal shadow-lg text-sm md:text-lg my-6 px-5 py-2 rounded-md bg-green-500 text-gray-50 transition ease-in  hover:shadow-lg  cursor-pointer  ">
               รีวิววิชานี้
             </h1>
