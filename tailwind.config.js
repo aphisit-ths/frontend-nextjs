@@ -16,7 +16,6 @@ module.exports = {
     "pages/createreview/[createId].jsx",
     "pages/testui.jsx",
     "pages/reviewsubjects/index.jsx",
-    "pages/reviewsubjects",
     "pages/reviewsubjects/subject.jsx",
     
   ],
