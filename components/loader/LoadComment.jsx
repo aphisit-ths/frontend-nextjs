@@ -28,7 +28,7 @@ export default function LoadComponent({loading}) {
         <FadeIn   >
             <div style={{ display: "flex" }}>
               
-              {!loading ? (<>
+              {loading ? (<>
                 <Lottie options={defaultOptions} height={500} width={500} />
               </>
               ) : (
