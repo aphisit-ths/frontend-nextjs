@@ -21,6 +21,9 @@ const GET_SUBJECT_DETAIL = gql`
             grade
             section
             year
+            homework_rate
+            lecturer_rate
+            content_rate
             owner {
                 id
               name

@@ -2,6 +2,7 @@ import { Subject } from "@material-ui/icons";
 import React, { useState } from "react";
 import DropDown from "../../../components/subject_review/moreDropdown";
 import Link from "next/link";
+import { motion } from "framer-motion";
 export default function Review_Subject({ subject }) {
   const [like, setLike] = useState(0);
 
@@ -106,13 +107,18 @@ export default function Review_Subject({ subject }) {
       </div>
       {/* -------------------------commnets section ------------------------------------------------------------*/}
       {comments.map((_comment, index) => (
-        <>
-          <div
+        <>   
+          <motion.div
+            
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.8 }}
+            
             keys={index}
-            className="bg-gray-100 w-full lg:w-2/5   max-h-full rounded-xl flex flex-col  p-6 px-2  shadow-lg my-10   space-y-3 "
+            className="bg-gray-50 w-full lg:w-2/5  max-h-full rounded-xl flex flex-col my-3  p-6 px-2 transition   cursor-pointer r shadow-lg space-y-3 hover:bg-gray-100  duration-200  "
           >
-            <div className=" w-full inline-flex flex-warp font-display  items-center px-2 xl:px-6  ">
-              {_comment.comment}
+            <div className="min-w-full inline-flex  flex-warp font-display  items-center px-2 xl:px-6  ">
+              <p className="overflow-ellipsis   break-words font-display font-light ">{_comment.comment}</p>
+
             </div>
             <div className="min-w-full w-4/6  inline-flex items-center px-2 xl:px-6  my-2   ">
               <p className="text-sm font-display font-light text-gray-400">
@@ -120,21 +126,32 @@ export default function Review_Subject({ subject }) {
                 โดย {_comment.owner.name}{" "}
               </p>
             </div>
-            <div className="flex justify-between px-6 my-2  ">
-              <div className="flex justify-center items-center">
-                <div
-                  className="rounded-full bg-green-300 hover:bg-green-200 p-2 mr-2 cursor-pointer "
-                  onClick={() => {
-                    setLike(like + 1);
-                  }}
-                >
-                  <Like className="w-6 h-6 "></Like>
-                </div>
-                {like}
-              </div>
+            <div className="flex justify-between items-center px- my-2  ">
+             
+              <div className="flex justify-start px-2 xl:px-6 my-2 space-x-3  ">
+                    <div className="flex justify-center items-center font-display text-xs space-x-2 ">
+                      <div className="rounded-full bg-green-300 m-1 hover:bg-green-200 p-1 md:p-2  md:mr-2 cursor-pointer ">
+                        {" "}
+                      </div>
+                      ภาระงาน : {_comment.homework_rate}%
+                    </div>
+                    <div className="flex justify-center items-center font-display text-xs space-x-4 ">
+                      <div className="rounded-full bg-yellow-300 m-1 hover:bg-green-200 p-1 md:p-2 mr-1 md:mr-2 cursor-pointer ">
+                        {" "}
+                      </div>
+                      เนื้อหา : {_comment.content_rate}%
+                    </div>
+                    <div className="flex justify-center items-center font-display text-xs space-x-4 ">
+                      <div className="rounded-full bg-red-300 m-1  hover:bg-green-200 p-1 md:p-2  md:mr-2 cursor-pointer ">
+                        {" "}
+                      </div>
+                      การสอน : {_comment.lecturer_rate}%
+                    </div>
+                  </div>
               <DropDown comment={_comment}></DropDown>
             </div>
-          </div>
+          </motion.div>
+          
         </>
       ))}
     </div>
