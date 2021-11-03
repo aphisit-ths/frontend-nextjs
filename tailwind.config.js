@@ -12,7 +12,6 @@ module.exports = {
     "components/subject_review/moreDropdown.jsx",
     "components/homepage/content.jsx",
     "pages/reviewsubjects/index.jsx"
-    
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
