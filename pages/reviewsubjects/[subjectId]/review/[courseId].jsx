@@ -19,6 +19,13 @@ const GET_SUBJECT = gql`
   }`;
 export default function Review() {
 
+      const {user} = useContext(AuthContext);
+      useEffect(() => {
+        if(!user){
+          Router.push("/signin")
+        }
+      }, [])
+
     const route = useRouter()
     const {subjectId} = route.query;
     const {loading , error , data} = useQuery(GET_SUBJECT,{variables:{subjectId}})
