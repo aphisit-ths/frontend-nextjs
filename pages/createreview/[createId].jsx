@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import Error from "../../components/error/index";
 import Loader from "../../components/loader/Loader";
-import CreateReview from "../../components/createreviewComponent/create_review"
+import CreateReview from "./create_review"
 import { AuthContext } from '../../appstate/AuthProvider';
 const GET_SUBJECT = gql`
   query Subject($createId: ID!) {

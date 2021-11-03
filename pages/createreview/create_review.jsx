@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import Loader from "../loader/Loader"
+import Loader from "../../components/loader/Loader"
 
 
 const CREATE_SUBJECTREVIEW = gql`

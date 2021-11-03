@@ -15,7 +15,7 @@ export default function Review_Subject({ subject }) {
   const avg_lecturer = find_avg(lecturer_rate).toFixed(0);
   return (
     <div className=" flex flex-col bg-gray-50   items-center p-6 ">
-      <div className="bg-gray-100 w-full lg:w-3/6 z-40 max-h-full rounded-xl flex flex-col  p-6 px-2  shadow-lg my-10 space-y-3 ">
+      <div className="bg-gray-100 w-full lg:w-3/6  max-h-full rounded-xl flex flex-col  p-6 px-2  shadow-lg my-10 space-y-3 ">
         <div className="min-w-full w-4/6 inline-flex items-center px-2 xl:px-6  ">
           <h1 className="font-display font-bold text-lg px-4 py-2   bg-purple-400  rounded-3xl">
             {subject.course_id}
@@ -109,7 +109,7 @@ export default function Review_Subject({ subject }) {
         <>
           <div
             keys={index}
-            className="bg-gray-100 w-full lg:w-2/5 z-40  max-h-full rounded-xl flex flex-col  p-6 px-2  shadow-lg my-10   space-y-3 "
+            className="bg-gray-100 w-full lg:w-2/5   max-h-full rounded-xl flex flex-col  p-6 px-2  shadow-lg my-10   space-y-3 "
           >
             <div className=" w-full inline-flex flex-warp font-display  items-center px-2 xl:px-6  ">
               {_comment.comment}
