@@ -1,6 +1,6 @@
 import { Subject } from "@material-ui/icons";
 import React, { useState } from "react";
-import DropDown from "../../components/subject_review/moreDropdown";
+import DropDown from "../../../components/subject_review/moreDropdown";
 import Link from "next/link";
 export default function Review_Subject({ subject }) {
   const [like, setLike] = useState(0);
@@ -97,7 +97,7 @@ export default function Review_Subject({ subject }) {
               ย้อนกลับ
             </h1>
           </Link>
-          <Link href={"/createreview/[createId]"} as={`/createreview/${subject.id}`}>
+          <Link href={"/reviewsubjects/[subjectId]/review/[courseId]"} as={`/reviewsubjects/${subject.id}/review/${subject.course_id}`}>
             <h1 className="font-display font-normal shadow-lg text-sm md:text-lg my-6 px-5 py-2 rounded-md bg-green-500 text-gray-50 transition ease-in  hover:shadow-lg  cursor-pointer  ">
               รีวิววิชานี้
             </h1>

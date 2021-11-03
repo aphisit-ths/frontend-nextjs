@@ -13,10 +13,11 @@ module.exports = {
     "components/error/index.jsx",
     "components/createreviewComponent/create_review.jsx",
     "components/subject_review/commentsList.jsx",
-    "pages/createreview/[createId].jsx",
+
     "pages/testui.jsx",
     "pages/reviewsubjects/index.jsx",
-    "pages/reviewsubjects/subject.jsx",
+    "pages/reviewsubjects/[subjectId]/subject.jsx",
+    
     
   ],
   darkMode: false, // or 'media' or 'class'

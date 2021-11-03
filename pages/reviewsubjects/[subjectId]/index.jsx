@@ -2,8 +2,8 @@ import React from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import Error from "../../components/error/index";
-import Loader from "../../components/loader/Loader";
+import Error from "../../../components/error/index";
+import Loader from "../../../components/loader/Loader";
 import Review_Subject from "./subject";
 const GET_SUBJECT_DETAIL = gql`
   query Subject($subjectId: ID!) {
@@ -31,7 +31,6 @@ const GET_SUBJECT_DETAIL = gql`
 `;
 export default function SubjectDetail() {
   const router = useRouter();
-
   const { subjectId } = router.query;
   const {loading , error , data} = useQuery(GET_SUBJECT_DETAIL,{variables:{subjectId}})
   console.log(error)
@@ -41,6 +40,7 @@ export default function SubjectDetail() {
   
   return (
     <div>
+       
           <Review_Subject subject={subject} ></Review_Subject>
     </div>
   );

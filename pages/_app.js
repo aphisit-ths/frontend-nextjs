@@ -39,7 +39,7 @@ MyApp.getInitialProps = async ({ ctx ,router }) => {
   const token = cookies && cookies.jwt;
 
   if(!token){
-    if(router.pathname === '/createreview/[subjectid]'){
+    if(router.pathname === '/reviewsubjects/[subjectId]/review/[courseId]'){
       ctx.res.writeHead(302,{location:"/signin"})
       ctx.res.end()
     }
@@ -77,7 +77,7 @@ MyApp.getInitialProps = async ({ ctx ,router }) => {
     console.log(result)
     return { user: result.data.user};
   } else {
-    if(router.pathname === '/createreview[createId]'){
+    if(router.pathname === '/reviewsubjects/[subjectId]/review/[courseId]'){
       ctx.res.writeHead(302,{location:"/signin"})
       ctx.res.end()
     }
