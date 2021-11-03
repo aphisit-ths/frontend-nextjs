@@ -113,32 +113,31 @@ function Signupform() {
             )}
             {popup && (
               <>
-                <div className=" flex-col space-y-4 min-w-screen h-screen px-5 md:px-16 fixed  left-0 top-0 flex justify-center items-center transition-opacity duration-200 bg-gray-600 bg-opacity-30 inset-0 z-50 outline-none focus:outline-none ">
+                <div className=" flex-col space-y-4 min-w-screen h-screen px-5  md:px-16 fixed  left-0 top-0 flex justify-center items-center transition-opacity duration-200 bg-gray-600 bg-opacity-30 inset-0 z-50 outline-none focus:outline-none ">
                   <motion.div
-                    animate={{ scale: 1.2 }}
+                    animate={{ scale: [1.1,1.3,1.1] }}
                     transition={{ duration: 0.5 }}
-                    className="flex flex-col p-6 lg:p-8  w-full sm:w-full lg:w-4/6 xl:w-2/6 h-1/5  max-h-full justify-between items-center  bg-white shadow-md hover:shodow-lg rounded-2xl opacity-100"
+                    className="flex flex-col p-2 lg:p-8  w-full sm:w-full lg:w-4/6 xl:w-2/6 h-1/5  max-h-full justify-between items-center  bg-white shadow-md hover:shodow-lg rounded-2xl opacity-100"
                   >
-                    <div className="flex flex-col items-center justify-evenly space-x-5 mb-2 px-2">
-                      <div className="flex items-center space-x-6 mx-0 md:mx-11">
-                        <div className="flex flex-col ">
-                          <div className="font-display text-xs  md:text-sm xl:text-xl leading-none">
+                      <div className="flex flex-col items-center justify-evenly space-y-5  ">
+                        <div className="flex flex-col items-center justify-center ">
+                          <p className="font-display text-xs md:text-sm xl:text-xl leading-none">
                             ขอบคุณสำหรับการลงทะเบียน
-                          </div>
+                          </p>
                           <p className=" font-thin text-xs md:text-sm font-display text-gray-400 leading-none mt-1">
                             คุณต้องการเข้าสู่ระบบเลยหรือไม่ ?
                           </p>
                         </div>
                         <Link href="/signin" passHref>
-                          <button className="flex-no-shrink font-display bg-kmitl-normal px-3 py-2 font-thin text-xs md:text-sm shadow-sm hover:shadow-lg  tracking-wider  text-white rounded-full">
+                          <button className="font-display bg-kmitl-normal px-3 py-2 font-thin text-xs md:text-sm shadow-sm hover:shadow-lg    text-white rounded-full">
                             เข้าสู่ระบบ
                           </button>
                         </Link>
                       </div>
-                    </div>
+                    
                     <p
-                      onClick={closePopup}
-                      className="flex w-6 h-6 items-center  justify-center rounded-full cursor-pointer bg-gray-200 "
+                      onClick={() => setPopup(!popup)}
+                      className="flex w-6 h-6 items-center m-2 md:m-5 justify-center rounded-full cursor-pointer bg-gray-200 "
                     >
                       X
                     </p>

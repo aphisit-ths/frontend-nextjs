@@ -61,7 +61,7 @@ function Signin() {
   return (
 <div className="flex justify-center p-5  w-screen ">
       <div className="flex flex-col rounded-md shadow-md w-full sm:w-full md:w-2/3 xl:w-1/3   py-10  ">
-        <div className="flex flex-col items-center w-full  ">
+        <div className="flex flex-col items-center my-10 w-full  ">
           <h1 className=" text-2xl md:text-3xl text-displaycolor font-display font-normal py-3">
             เข้าสู่ระบบ
           </h1>
