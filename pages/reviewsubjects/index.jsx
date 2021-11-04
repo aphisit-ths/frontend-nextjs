@@ -19,12 +19,10 @@ const GET_SUBJECTS = gql`
     }
   }
 `;
-
 export default function SearchSubject() {
   const { loading, error, data } = useQuery(GET_SUBJECTS, {
     pollInterval: 50000,
   });
-
   const [filteredData, setFillteredData] = useState([]);
   const [wordEntered, setWordEnterd] = useState("");
   const handleFilter = (event) => {
