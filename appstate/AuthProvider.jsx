@@ -4,10 +4,8 @@ import cookies from "js-cookie"
 import Router from "next/router"
 
 export const AuthContext = createContext()
-
 export default function AuthProvider({children ,userData}) {
     const [user, setUser] = useState(userData)
-
     useEffect(() => {
         const syncLogout = e =>{
             if(e.key === 'logout'){
