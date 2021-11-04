@@ -13,10 +13,12 @@ module.exports = {
     "components/error/index.jsx",
     "components/createreviewComponent/create_review.jsx",
     "components/subject_review/commentsList.jsx",
+    "components/scroll/ScrollToTop.jsx",
 
     "pages/testui.jsx",
     "pages/reviewsubjects/index.jsx",
     "pages/reviewsubjects/[subjectId]/subject.jsx",
+    "pages/createsubject",
     
     
   ],

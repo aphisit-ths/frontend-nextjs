@@ -6,7 +6,9 @@ import Error from "../../components/error";
 import Link from "next/link";
 import gql from "graphql-tag";
 import Preview_Comments from "../../components/subject_review/commentsList";
-import LoadComponent from "../../components/loader/LoadComment";
+import DotLoader from "../../components/loader/DotLoader";
+import { ScrollToTop } from "../../components/scroll/ScrollToTop";
+import { PlusIcon } from "@heroicons/react/outline";
 const GET_SUBJECTS = gql`
   query {
     subjects {
@@ -18,11 +20,11 @@ const GET_SUBJECTS = gql`
   }
 `;
 
-export default  function SearchSubject() {
-  const { loading, error, data } =  useQuery(GET_SUBJECTS, {
-    pollInterval: 5000,
+export default function SearchSubject() {
+  const { loading, error, data } = useQuery(GET_SUBJECTS, {
+    pollInterval: 50000,
   });
-  
+
   const [filteredData, setFillteredData] = useState([]);
   const [wordEntered, setWordEnterd] = useState("");
   const handleFilter = (event) => {
@@ -51,16 +53,19 @@ export default  function SearchSubject() {
     }
   };
   const clearInput = () => {
-    setFillteredData([]);
+    setFillteredData([]); 
     setWordEnterd("");
   };
-  
+
   if (error) return <Error></Error>;
-  if (loading) return <LoadComponent loading={loading} />;
-  const {subjects} = data;
+  if (loading) return <DotLoader loading={loading} />;
+  const { subjects } = data;
   return (
     <div>
-      <div className="w-screen h-screen bg-gray-50 flex flex-col items-center p-2 md:p-10">
+      
+      <div className="w-screen bg-gray-50 flex flex-col 0 items-center p-2 md:p-10">
+        <ScrollToTop></ScrollToTop>
+
         <div className="px-5  flex flex-row shadow-md items-center  bg-gray-100  justify-between  w-full lg:w-2/5  max-h-full rounded-xl">
           <input
             className="h-10 font-display text-sm  bg-transparent min-w-2/3 w-2/3 outline-none "
@@ -71,7 +76,7 @@ export default  function SearchSubject() {
             placeholder="กรอกรหัสวิชาหรือชื่อวิชา (ไทย/อังกฤษ)"
             onChange={handleFilter}
           />
-          <div className="p-2 m-1 bg-green-200  rounded-full cursor-pointer hover:bg-green-500">
+          <div className="p-2 m-1 bg-gray-200  rounded-full cursor-pointer hover:bg-gray-500">
             {filteredData.length == 0 ? (
               <SrcBtt className="w-6 h-6"></SrcBtt>
             ) : (
@@ -119,7 +124,6 @@ export default  function SearchSubject() {
 
         <Preview_Comments></Preview_Comments>
       </div>
-      
     </div>
   );
 }

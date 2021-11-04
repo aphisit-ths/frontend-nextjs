@@ -109,10 +109,7 @@ export default function Review_Subject({ subject }) {
       {comments.map((_comment, index) => (
         <>   
           <motion.div
-            
-            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.8 }}
-            
             keys={index}
             className="bg-gray-50 w-full lg:w-2/5  max-h-full rounded-xl flex flex-col my-3  p-6 px-2 transition   cursor-pointer r shadow-lg space-y-3 hover:bg-gray-100  duration-200  "
           >

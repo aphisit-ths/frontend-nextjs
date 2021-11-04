@@ -5,6 +5,8 @@ import gql from "graphql-tag";
 import Error from "../../../components/error/index";
 import Loader from "../../../components/loader/Loader";
 import Review_Subject from "./subject";
+import {ScrollToTop} from '../../../components/scroll/ScrollToTop'
+
 const GET_SUBJECT_DETAIL = gql`
   query Subject($subjectId: ID!) {
     subject(id: $subjectId) {
@@ -43,8 +45,8 @@ export default function SubjectDetail() {
   
   return (
     <div>
-       
           <Review_Subject subject={subject} ></Review_Subject>
+          <ScrollToTop></ScrollToTop>
     </div>
   );
 }

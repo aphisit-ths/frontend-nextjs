@@ -233,7 +233,6 @@ export default function CreateReview({ subject }) {
               </h1>
               <div className="w-2 h-2 bg-red-300 rounded-full ml-2 self-start place-self-start "></div>
             </div>
-
             <div className="flex justify-between w-1/2 items-center px-1 md:px-5">
               {emoji.map((feel, i) => (
                 <>
@@ -366,7 +365,7 @@ export default function CreateReview({ subject }) {
           </div>
           {/* setion */}
           <div className=" inline-flex flex-row min-w-full xl:min-w-2/3 justify-end items-end font-display space-x-4 px-10">
-            <Link href="/reviewsubjects" passHref>
+            <Link href={"/reviewsubjects/"+ id} passHref>
               <p className=" px-2 md:px-10 py-3 rounded-xl cursor-pointer font-display  bg-gray-300 hover:shadow-sm ">
                 {" "}
                 ย้อนกลับ{" "}

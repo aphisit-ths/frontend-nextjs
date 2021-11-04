@@ -62,6 +62,7 @@ MyApp.getInitialProps = async ({ ctx ,router }) => {
       }
     `,
   };
+  
   const response = await fetch("https://backend-gql-kmitlreviewer.herokuapp.com/graphql", { 
     //Gql Post เสมอ
     method: "post",
