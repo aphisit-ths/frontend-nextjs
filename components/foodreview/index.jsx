@@ -1,11 +1,13 @@
+import { green } from "@material-ui/core/colors";
+import { getArgumentValues } from "graphql/execution/values";
 import React from "react";
 
 export default function FoodReview() {
   return (
-    <div className="flex flex-col w-screen h-screen" id="root">
+    <div>
       <div
         id="headcontainer"
-        className="flex w-full h-1/3 p-10 my-10 bg-gray-700  items-center justify-center"
+        className="flex w-full h-1/3 py-20 mb-10 bg-gray-700  items-center justify-center"
       >
         <input
           className="min-w-2/3 xl:w-1/3 px-2 h-14 rounded-2xl mx-6 "
@@ -19,5 +21,7 @@ export default function FoodReview() {
         </div>
       </div>
     </div>
+
+
   );
 }

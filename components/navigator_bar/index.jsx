@@ -38,9 +38,11 @@ export default function ProjectNav() {
           </h1>
         </Link>
 
+        <Link href="/reviewfood" passHref>
         <span className="px-3 font-display font-normal text-gray-600 hover:font-semibold  hover:text-yellow-500 cursor-pointer ease-in duration-150 ">
           รีวิวร้านอาหาร{" "}
         </span>
+        </Link>
         <h2 className="px-3 font-display font-normal text-gray-600 hover:text-yellow-500 cursor-pointer ease-in duration-150   ">
           รีวิวที่อ่านหนังสือ
         </h2>
