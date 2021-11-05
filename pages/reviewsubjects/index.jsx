@@ -9,7 +9,8 @@ import Preview_Comments from "../../components/subject_review/commentsList";
 import DotLoader from "../../components/loader/DotLoader";
 import { ScrollToTop } from "../../components/scroll/ScrollToTop";
 import { PlusIcon } from "@heroicons/react/outline";
-const GET_SUBJECTS = gql`
+
+export const GET_SUBJECTS = gql`
   query {
     subjects {
       id

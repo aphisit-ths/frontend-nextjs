@@ -48,7 +48,7 @@ export default function DropDown({ comment ,index }) {
             <div className="px-1 py-1 ">
               <Menu.Item>
                 {({ active }) => (
-                  <button className="text-red-500 group flex rounded-md items-center w-full px-5 py-2 text-xs font-display">
+                  <button className="text-red-500 group  flex rounded-md items-center w-full px-5 py-2 text-xs font-display"  >
                     แจ้งลบ
                   </button>
                 )}

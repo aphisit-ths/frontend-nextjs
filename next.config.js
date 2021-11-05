@@ -1,8 +1,7 @@
 
 module.exports = {
-  generateBuildId: () => 'build',
   reactStrictMode: true,
-  swcMinify: true,
+  swcMinify: false,
   images: {
     domains: ['ouch-cdn2.icons8.com'],
   },
