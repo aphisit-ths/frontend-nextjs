@@ -48,7 +48,7 @@ export default function Preview_Comments() {
             </div>
             <Link href="/createsubject" passHref >
               <div className="flex flex-col">
-                <p className="font-display p-1 text-white shadow-md hover:shadow-lg  bg-green-300 hover:bg-green-400 cursor-pointer rounded-md text-lg">
+                <p className="font-display p-1 text-white shadow-md hover:shadow-lg  bg-green-400 hover:bg-green-500 cursor-pointer rounded-md text-lg">
                   + เพิ่มรายวิชา{" "}
                 </p>
               </div>

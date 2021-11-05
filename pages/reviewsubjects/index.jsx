@@ -9,7 +9,8 @@ import Preview_Comments from "../../components/subject_review/commentsList";
 import DotLoader from "../../components/loader/DotLoader";
 import { ScrollToTop } from "../../components/scroll/ScrollToTop";
 import { PlusIcon } from "@heroicons/react/outline";
-const GET_SUBJECTS = gql`
+
+export const GET_SUBJECTS = gql`
   query {
     subjects {
       id
@@ -19,12 +20,10 @@ const GET_SUBJECTS = gql`
     }
   }
 `;
-
 export default function SearchSubject() {
   const { loading, error, data } = useQuery(GET_SUBJECTS, {
     pollInterval: 50000,
   });
-
   const [filteredData, setFillteredData] = useState([]);
   const [wordEntered, setWordEnterd] = useState("");
   const handleFilter = (event) => {

@@ -14,6 +14,7 @@ module.exports = {
     "components/createreviewComponent/create_review.jsx",
     "components/subject_review/commentsList.jsx",
     "components/scroll/ScrollToTop.jsx",
+    "components/createsubject-comp/index.jsx",
 
     "pages/testui.jsx",
     "pages/reviewsubjects/index.jsx",
