@@ -1,23 +1,30 @@
 module.exports = {
   purge: [
-    "components/userproducts/userproducts.jsx",
-    "pages/manageproducts/itemslist.jsx",
-    "components/projIndex/index.jsx",
+    "components/navigator_bar/index.jsx",
     "components/signupComponent/signup.jsx",
-    "components/signupComponent/signup.jsx",
-    "components/LoggedOutUserMenu/LoggedOutUserMenu.jsx",
+    "components/navigator_bar/LoggedOutUserMenu/LoggedOutUserMenu.jsx",
     "components/homepage/HomePage.jsx",
     "components/select_topic/Select_Topic.jsx",
     "components/subject_review/subject.jsx",
+    "components/navigator_bar/userDropdown/UserDropdown.jsx",
     "components/subject_review/moreDropdown.jsx",
-    "components/homepage/content.jsx",
+    "components/loader/LoadComment.jsx",
+    "components/loader/Loader.jsx",
+    "components/error/index.jsx",
+    "components/createreviewComponent/create_review.jsx",
+    "components/subject_review/commentsList.jsx",
+    "components/scroll/ScrollToTop.jsx",
+
+    "pages/testui.jsx",
     "pages/reviewsubjects/index.jsx",
-    "components/foodreview/index.jsx"
+    "pages/reviewsubjects/[subjectId]/subject.jsx",
+    "pages/createsubject",
+    
+    
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      
       animation: {
         'bounce-slow': 'bounce 3s ease-in-out infinite',
        },
@@ -46,5 +53,8 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss'),
+    require('autoprefixer')
+  ],
 };

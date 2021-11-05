@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function cart() {
+export default function TestUI() {
     return (
         <div>
-            <h1>Cart Page</h1>
+            
         </div>
     )
 }

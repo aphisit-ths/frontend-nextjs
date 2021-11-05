@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import signinStyle from "../../styles/signin.module.scss";
 import Link from "next/link";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
@@ -15,17 +14,6 @@ const SIGN_IN = gql`
         id
         email
         name
-        products {
-          id
-        }
-        carts {
-          id
-          product {
-            desc
-            imgUrl
-            price
-          }
-        }
       }
       jwt
     }
@@ -37,7 +25,7 @@ function Signin() {
     password: "",
   });
   const { setAuthUser } = useContext(AuthContext);
-
+  
   const [login, { loading, error, data }] = useMutation(SIGN_IN, {
     variables: { ...userInfo },
     onCompleted: (data) => {
@@ -53,7 +41,7 @@ function Signin() {
       }
     },
   });
-  
+
   const [success, setSuccess] = useState(false);
   const handleChange = (e) => {
     setuserInfo({
@@ -73,7 +61,7 @@ function Signin() {
   return (
 <div className="flex justify-center p-5  w-screen ">
       <div className="flex flex-col rounded-md shadow-md w-full sm:w-full md:w-2/3 xl:w-1/3   py-10  ">
-        <div className="flex flex-col items-center w-full  ">
+        <div className="flex flex-col items-center my-10 w-full  ">
           <h1 className=" text-2xl md:text-3xl text-displaycolor font-display font-normal py-3">
             เข้าสู่ระบบ
           </h1>

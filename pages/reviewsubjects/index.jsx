@@ -1,39 +1,186 @@
-import React from "react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { useQuery } from "@apollo/react-hooks";
+import Loader from "../../components/loader/Loader";
+import Error from "../../components/error";
+import Link from "next/link";
+import gql from "graphql-tag";
+import Preview_Comments from "../../components/subject_review/commentsList";
+import DotLoader from "../../components/loader/DotLoader";
+import { ScrollToTop } from "../../components/scroll/ScrollToTop";
+import { PlusIcon } from "@heroicons/react/outline";
+const GET_SUBJECTS = gql`
+  query {
+    subjects {
+      id
+      course_id
+      eng_name
+      thai_name
+    }
+  }
+`;
 
-export default function index() {
+export default function SearchSubject() {
+  const { loading, error, data } = useQuery(GET_SUBJECTS, {
+    pollInterval: 50000,
+  });
+
+  const [filteredData, setFillteredData] = useState([]);
+  const [wordEntered, setWordEnterd] = useState("");
+  const handleFilter = (event) => {
+    const searchWord = event.target.value;
+    setWordEnterd(searchWord);
+    const newFilter = subjects.filter((value) => {
+      return (
+        value.course_id
+          .toLowerCase()
+          .trim()
+          .includes(searchWord.toLowerCase().trim()) ||
+        value.eng_name
+          .toLowerCase()
+          .trim()
+          .includes(searchWord.toLowerCase().trim()) ||
+        value.thai_name
+          .toLowerCase()
+          .trim()
+          .includes(searchWord.toLowerCase().trim())
+      );
+    });
+    if (searchWord === "") {
+      setFillteredData([]);
+    } else {
+      setFillteredData(newFilter);
+    }
+  };
+  const clearInput = () => {
+    setFillteredData([]); 
+    setWordEnterd("");
+  };
+
+  if (error) return <Error></Error>;
+  if (loading) return <DotLoader loading={loading} />;
+  const { subjects } = data;
   return (
-    <div className=" bg-gray-300 w-screen h-screen flex justify-center  ">
-      <div className="flex flex-col  w-1/2 h-1/2 m-10 items-center  ">
-        <div className="pt-2  relative text-gray-600">
+    <div>
+      
+      <div className="w-screen bg-gray-50 flex flex-col 0 items-center p-2 md:p-10">
+        <ScrollToTop></ScrollToTop>
+
+        <div className="px-5  flex flex-row shadow-md items-center  bg-gray-100  justify-between  w-full lg:w-2/5  max-h-full rounded-xl">
           <input
-            className="border-2 border-gray-300 bg-white h-10 w-full  px-5 pr-16 rounded-lg text-sm focus:outline-none"
-            type="search"
-            name="search"
-            placeholder="กรอกรหัสวิชา ชื่อภาษาไทย / อังกฤษ"
+            className="h-10 font-display text-sm  bg-transparent min-w-2/3 w-2/3 outline-none "
+            type="text"
+            name=""
+            id=""
+            value={wordEntered}
+            placeholder="กรอกรหัสวิชาหรือชื่อวิชา (ไทย/อังกฤษ)"
+            onChange={handleFilter}
           />
-          <button type="submit" className="absolute right-0 top-0 mt-5 mr-4">
-            <SrcIcon className="text-gray-600 h-4 w-4 fill-current"></SrcIcon>
-          </button>
+          <div className="p-2 m-1 bg-gray-200  rounded-full cursor-pointer hover:bg-gray-500">
+            {filteredData.length == 0 ? (
+              <SrcBtt className="w-6 h-6"></SrcBtt>
+            ) : (
+              <div onClick={clearInput}>
+                <CloseIcon className="w-6 h-6"></CloseIcon>
+              </div>
+            )}
+          </div>
         </div>
+        {filteredData.length != 0 && (
+          <div className=" flex flex-col rounded-xl z-50 bg-gray-50 absolute mt-16 shadow-md overflow-hidden overflow-y-auto w-full lg:w-2/5  max-h-full h-1/3  mx-10 divide-y-1   my-5">
+            {filteredData.map((subject, idx) => (
+              <>
+                <div key={subject.id}>
+                  <Link
+                    href={"/reviewsubjects/" + subject.id}
+                    key={subject.id}
+                    passHref
+                  >
+                    <div
+                      key={subject.id}
+                      className="flex  p-2 px-5 space-x-6 min-h-20 max-h-16 h-24 top-7 hover:bg-gray-800 hover:text-gray-50  font-display justify-between cursor-pointer"
+                      id="subject"
+                    >
+                      <div className="inline-flex space-x-5  flex-row overflow-hidden ">
+                        <p className="font-display font-normal ">
+                          {" "}
+                          {subject.course_id}{" "}
+                        </p>
+                        <p className="font-display font-light ">
+                          {" "}
+                          {subject.thai_name}{" "}
+                        </p>
+                      </div>
+                      <motion.div>
+                        <RightArrow className="w-6 h-6 stroke-2"></RightArrow>
+                      </motion.div>
+                    </div>
+                  </Link>
+                </div>
+              </>
+            ))}
+          </div>
+        )}
+
+        <Preview_Comments></Preview_Comments>
       </div>
     </div>
   );
 }
 
-function SrcIcon(props) {
+function SrcBtt(params) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
-      x="0"
-      y="0"
-      className="text-gray-600 h-4 w-4 fill-current"
-      enableBackground="new 0 0 56.966 56.966"
-      version="1.1"
-      viewBox="0 0 56.966 56.966"
-      xmlSpace="preserve"
+      {...params}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
     >
-      <path d="M55.146 51.887L41.588 37.786A22.926 22.926 0 0046.984 23c0-12.682-10.318-23-23-23s-23 10.318-23 23 10.318 23 23 23c4.761 0 9.298-1.436 13.177-4.162l13.661 14.208c.571.593 1.339.92 2.162.92.779 0 1.518-.297 2.079-.837a3.004 3.004 0 00.083-4.242zM23.984 6c9.374 0 17 7.626 17 17s-7.626 17-17 17-17-7.626-17-17 7.626-17 17-17z"></path>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+      />
+    </svg>
+  );
+}
+
+function RightArrow(params) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      {...params}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M9 5l7 7-7 7"
+      />
+    </svg>
+  );
+}
+
+function CloseIcon(params) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      {...params}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M6 18L18 6M6 6l12 12"
+      />
     </svg>
   );
 }
