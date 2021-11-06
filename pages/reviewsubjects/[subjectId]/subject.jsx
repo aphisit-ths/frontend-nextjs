@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import DropDown from "../../../components/subject_review/moreDropdown";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import SadLoader from "../../../components/loader/sadLoad"
 export default function Review_Subject({ subject }) {
   const [like, setLike] = useState(0);
+
 
   const { comments, homework_rate, content_rate, lecturer_rate } = subject;
 
@@ -106,6 +108,13 @@ export default function Review_Subject({ subject }) {
         </div>
       </div>
       {/* -------------------------commnets section ------------------------------------------------------------*/}
+      {comments.length === 0 ? (
+      <div className="flex flex-col justify-center items-center">
+        <p className="font-display text-gray-500 text-4xl">วิชานี้ยังไม่มีรีวิวเลย งื้อออ</p>
+        <SadLoader ></SadLoader>
+      </div>
+    
+      ) : null}
       {comments.map((_comment, index) => (
         <>   
           <motion.div

@@ -5,8 +5,11 @@ import gql from "graphql-tag";
 import { Alert, AlertTitle } from "@material-ui/lab";
 import Cookies from "js-cookie";
 import Router from "next/router";
-import Image from "next/image"
+import Image from "next/image";
 import { AuthContext } from "../../appstate/AuthProvider";
+import { useForm } from "react-hook-form";
+import { XIcon } from "@heroicons/react/solid";
+
 const SIGN_IN = gql`
   mutation SIGN_IN($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -18,92 +21,102 @@ const SIGN_IN = gql`
       jwt
     }
   }
-`
+`;
 function Signin() {
-  const [userInfo, setuserInfo] = useState({
-    email: "",
-    password: "",
-  });
+
   const { setAuthUser } = useContext(AuthContext);
-  
   const [login, { loading, error, data }] = useMutation(SIGN_IN, {
-    variables: { ...userInfo },
     onCompleted: (data) => {
       if (data) {
         setAuthUser(data.login.user);
         Cookies.set("jwt", data.login.jwt);
-        setSuccess(true),
-          setuserInfo({
-            email: "",
-            password: "",
-          });
+        console.log("==> loged in")
         Router.push("/select-topic");
       }
     },
   });
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({reValidateMode:"onChange"});
 
-  const [success, setSuccess] = useState(false);
-  const handleChange = (e) => {
-    setuserInfo({
-      ...userInfo,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
+  const onSubmit = async (info) => {
     try {
-      e.preventDefault();
-      await login();
+      await login({variables:{...info}});
+      reset();
     } catch (error) {
       console.log(error);
     }
   };
+
   return (
-<div className="flex justify-center p-5  w-screen ">
+    <div className="flex justify-center p-5  w-screen ">
       <div className="flex flex-col rounded-md shadow-md w-full sm:w-full md:w-2/3 xl:w-1/3   py-10  ">
         <div className="flex flex-col items-center my-10 w-full  ">
           <h1 className=" text-2xl md:text-3xl text-displaycolor font-display font-normal py-3">
             เข้าสู่ระบบ
           </h1>
           <form
-            action=""
-            className="flex flex-col w-2/3 m-3 p-3  "
+            className="flex flex-col w-2/3 m-3 p-3 space-x-5  "
             type="form"
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
           >
             <span className="font-display mx-5 tracking-wide font-normal text-sm xl:text-xl">
               อีเมล:
-            </span> 
+            </span>
             <input
-              className=" border-2 h-10 w-full md:h-14 mb-6 mx-5 p-5 rounded-md  outline-none bg-gray-50"
+              className={` border-2 h-8 w-full md:h-14  mx-5 p-5  ${errors.email && " border-red-400 ring-2 ring-red-400"}   rounded-lg outline-none  bg-gray-50 `}
               type="text"
-              name="email"  
               placeholder="อีเมล"
-              value={userInfo.email}
-              onChange={handleChange}
-              required
+              {...register("email", {
+                required: true,
+                minLength: 3,
+                maxLength:100,
+                pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+              })}
             />
-            <span className="font-display tracking-wide mx-5 mb-2 font-normal text-sm xl:text-xl">
+            <div className="my-2">
+              {errors.email?.type === "required" && (
+                <InCurrect args="จำเป็นต้องกรอกอีเมล"></InCurrect>
+              )}
+              {errors.email?.type === "pattern" && (
+                <InCurrect args="รูปแบบอีเมลไม่ถูกต้อง"></InCurrect>
+              )}
+            </div>
+
+            <span className="font-display tracking-wide mx-5  mt-6 font-normal text-sm xl:text-xl">
               รหัสผ่าน:
             </span>
             <input
-              className="  border-2 h-8 w-full md:h-14 mb-6 mx-5 p-5  rounded-lg outline-none bg-gray-50 "
+            {...register("password", {
+              required: true,
+              minLength: 6,
+            })}
+              className={` border-2 h-8 w-full md:h-14  mx-5 p-5 ${errors.email && " border-red-400 ring-2 ring-red-400"}    rounded-lg outline-none  bg-gray-50 `}
               type="password"
-              name="password"
               placeholder="รหัสผ่าน"
-              value={userInfo.password}
-              onChange={handleChange}
-              required
             />
-            
+            <div className="my-2">
+              {errors.password?.type === "required" && (
+                <InCurrect args="จำเป็นต้องกรอกรหัสผ่าน"></InCurrect>
+              )}
+              {errors.password?.type === "minLength" && (
+                <InCurrect args="กรอกรหัสผ่านอย่างน้อย 6 ตัวอักษร"></InCurrect>
+              )}
+            </div>
+
             {error && (
-              <Alert className="mb-5" severity="error">{error.graphQLErrors[0].message}</Alert>
+              <Alert className="mb-5" severity="error">
+                {error.message.split("GraphQL error:")}
+              </Alert>
             )}
-            
+
             <button
               type="submit"
               disabled={loading}
-              className=" mx-4  bg-kmitl-normal hover:bg-kmitl-hover hover:shadow-xl ease-in duration-150 text-gray-50  hover:text-white py-4 border font-display text-sm xl:font-normal  w-full  rounded-3xl"
+              className=" mx-4 mt-6 bg-kmitl-normal hover:bg-kmitl-hover hover:shadow-xl ease-in duration-150 text-gray-50  hover:text-white py-4 border font-display text-sm xl:font-normal  w-full  rounded-3xl"
             >
               เข้าสู่ระบบ
             </button>
@@ -120,18 +133,27 @@ function Signin() {
             <span className="font-display text-xs md:text-sm font-light cursor-pointer text-gray-400">
               ยังไม่มีบัญชีผู้ใช้ ?{" "}
               <span className="font-display text-xs  md:text-sm  font-medium text-gray-500">
-                ลงทะเบียน  
+                ลงทะเบียน
               </span>{" "}
             </span>
           </Link>
         </div>
       </div>
     </div>
-  
   );
 }
 
 export default Signin;
+function InCurrect({ args }) {
+  return (
+    <div className="flex flex-row items-center space-x-2">
+      <p className="ml-2 font-display text-xs md:text-sm text-red-400">
+        {args}
+      </p>{" "}
+      <XIcon className="w-3 h-3  bg-red-300 rounded-full "></XIcon>
+    </div>
+  );
+}
 const Googlesvg = () => {
   return (
     <>
