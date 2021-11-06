@@ -8,7 +8,8 @@ import ErrorMsg from "../../components/error/errorMsg";
 import DotLoader from "../../components/loader/DotLoader";
 import DoneMsg from "../successful/done";
 import Link from "next/link";
-import {GET_SUBJECTS} from "../../pages/reviewsubjects/index"
+
+import { GET_SUBJECTS } from "../../pages/reviewsubjects/index";
 
 const ADD_SUBJECT = gql`
   mutation ADD_SUBJECT(
@@ -32,21 +33,16 @@ const ADD_SUBJECT = gql`
 
 export default function CreateSubject() {
   const [addSubject, { data, error, loading }] = useMutation(ADD_SUBJECT, {
-    
     onCompleted: (data) => {
       console.log("add subject ===> successful");
     },
-    refetchQueries:[{query: GET_SUBJECTS}],
+    refetchQueries: [{ query: GET_SUBJECTS }],
   });
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
+
+  const {register,handleSubmit,reset,formState: { errors },} = useForm();
 
   const onSubmit = async (info) => {
-   await addSubject({ variables: { ...info } });
+    await addSubject({ variables: { ...info } });
     reset();
   };
 
@@ -78,17 +74,18 @@ export default function CreateSubject() {
                 รหัสวิชา :
               </p>
               <input
+              {...register("course_id", {
+                required: true,
+                minLength: 8,
+                maxLength: 8,
+                pattern: /[0-9]/i,
+              })}
                 placeholder="รหัสวิชา 8 หลัก เช่น 90010001"
                 className={` w-5/6  bg-gray-200 outline-none p-2 text-xs sm:text-lg ${
                   errors.course_id && "ring-2  ring-red-300"
                 }  md:text-sm font-display h-10 rounded-md`}
                 type="text"
-                {...register("course_id", {
-                  required: true,
-                  minLength: 8,
-                  maxLength: 8,
-                  pattern: /[0-9]/i,
-                })}
+                
               />
               {errors.course_id?.type === "required" && (
                 <InCurrect args="จำเป็นต้องใส่รหัสวิชา"></InCurrect>
@@ -168,22 +165,21 @@ export default function CreateSubject() {
           </div>
 
           <div className="space-x-3 flex py-3">
-          <Link href="/reviewsubjects" passHref>
-            <p
-              type="button"
-              className="py-3 px-6 text-gray-600 rounded-lg text-xs sm:text-lg  cursor-pointer md:text-sm font-display bg-gray-200 hover:bg-gray-300 shadow-md block md:inline-block"
-            >
-              ย้อนกลับ
-            </p>
+            <Link href="/reviewsubjects" passHref>
+              <p
+                type="button"
+                className="py-3 px-6 text-gray-600 rounded-lg text-xs sm:text-lg  cursor-pointer md:text-sm font-display bg-gray-200 hover:bg-gray-300 shadow-md block md:inline-block"
+              >
+                ย้อนกลับ
+              </p>
             </Link>
 
-              <button
-                type="submit"
-                className="py-3 px-6 text-white rounded-lg cursor-pointer  text-xs sm:text-lg  md:text-sm font-display hover:bg-yellow-400 bg-yellow-300 shadow-md block md:inline-block"
-              >
-                เพิ่มรายวิชา
-              </button>
-           
+            <button
+              type="submit"
+              className="py-3 px-6 text-white rounded-lg cursor-pointer  text-xs sm:text-lg  md:text-sm font-display hover:bg-yellow-400 bg-yellow-300 shadow-md block md:inline-block"
+            >
+              เพิ่มรายวิชา
+            </button>
           </div>
           {loading && <DotLoader></DotLoader>}
           {error && <ErrorMsg args={error.message.split("GraphQL error:")} />}
@@ -204,10 +200,11 @@ function Currect({ args }) {
       <p className="ml-2 font-display text-xs md:text-sm text-green-400">
         {args}
       </p>{" "}
-      <CheckIcon className="w-3 h-3  bg-green-300 rounded-full "></CheckIcon>
+      <CheckIcon className="w-3 h-3 bg-green-300 rounded-full "></CheckIcon>
     </div>
   );
 }
+
 function InCurrect({ args }) {
   return (
     <div className="flex flex-row items-center space-x-2">
