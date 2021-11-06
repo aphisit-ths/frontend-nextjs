@@ -23,14 +23,9 @@ const SIGN_IN = gql`
   }
 `;
 function Signin() {
-  const [userInfo, setuserInfo] = useState({
-    email: "",
-    password: "",
-  });
-  const { setAuthUser } = useContext(AuthContext);
 
+  const { setAuthUser } = useContext(AuthContext);
   const [login, { loading, error, data }] = useMutation(SIGN_IN, {
-    variables: { ...userInfo },
     onCompleted: (data) => {
       if (data) {
         setAuthUser(data.login.user);
@@ -45,9 +40,7 @@ function Signin() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
-
-
+  } = useForm({reValidateMode:"onChange"});
 
   const onSubmit = async (info) => {
     try {
@@ -57,7 +50,7 @@ function Signin() {
       console.log(error);
     }
   };
-  console.log(errors);
+
   return (
     <div className="flex justify-center p-5  w-screen ">
       <div className="flex flex-col rounded-md shadow-md w-full sm:w-full md:w-2/3 xl:w-1/3   py-10  ">
@@ -80,6 +73,7 @@ function Signin() {
               {...register("email", {
                 required: true,
                 minLength: 3,
+                maxLength:100,
                 pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
               })}
             />

@@ -5,7 +5,7 @@ import LoadComment from "../loader/LoadComment";
 import Link from "next/link";
 import gql from "graphql-tag";
 import Error from "../error";
-const GET_COMMENTS = gql`
+export const GET_COMMENTS = gql`
   query {
     subjectComments {
       id
@@ -48,7 +48,7 @@ export default function Preview_Comments() {
             </div>
             <Link href="/createsubject" passHref >
               <div className="flex flex-col">
-                <p className="font-display p-1 text-white shadow-md hover:shadow-lg  bg-green-400 hover:bg-green-500 cursor-pointer rounded-md text-lg">
+                <p className="font-display p-1 text-white font-lg shadow-sm hover:shadow-lg  bg-gray-800 hover:bg-gray-500 cursor-pointer rounded-md text-sm">
                   + เพิ่มรายวิชา{" "}
                 </p>
               </div>

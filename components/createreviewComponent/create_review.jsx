@@ -3,8 +3,10 @@ import Link from "next/link";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import Loader from "../../components/loader/Loader"
-
-
+import {useForm} from "react-hook-form"
+import ErrorMsg from "../error/errorMsg"
+import InCurrect from "../error/error_validate"
+import { GET_COMMENTS } from "../subject_review/commentsList";
 const CREATE_SUBJECTREVIEW = gql`
   mutation CREATE_SUBJECTREVIEW(
     $subjectId: ID!
@@ -76,7 +78,7 @@ export default function CreateReview({ subject }) {
   const [lecturer_rate, setLecturer_rate] = useState(emoji[2].value);
   const [content_rate, setContent_rate] = useState(emoji[2].value);
   const [homework_rate, setHomework_rate] = useState(emoji[2].value);
-
+  const {register,reset,handleSubmit ,formState:{errors}} = useForm({mode:"onChange"})
   const { id, course_id, thai_name, eng_name } = subject;
   const [comment_info, setComment_info] = useState({
     // add rating later,
@@ -84,7 +86,6 @@ export default function CreateReview({ subject }) {
     content_rate: content_rate,
     homework_rate: homework_rate,
     subjectId: id,
-    comment: "",
     section: "1",
     grade: "C",
     year: currentYearThai.toString(),
@@ -98,16 +99,12 @@ export default function CreateReview({ subject }) {
       value: currentYearThai.toString(),
     });
   }
- 
-
   const handleChange = (e) => {
     setComment_info({
       ...comment_info,
       [e.target.name]: e.target.value,
     });
-    
   };
-
   const changeLecturer_rate = (feel) => {
     setLecturer_rate(feel.value);
     setComment_info({
@@ -135,8 +132,7 @@ export default function CreateReview({ subject }) {
   const [addSubjectComment, { data ,loading, error }] = useMutation(
     CREATE_SUBJECTREVIEW,
     {
-      
-      variables: { ...comment_info },
+      refetchQueries:[{query:GET_COMMENTS}],
       onCompleted: (data) => {
         if (data) {
           setComment_info({
@@ -153,25 +149,29 @@ export default function CreateReview({ subject }) {
       },
     }
   );
-  const handleSubmit = async (e) => {
+  const [textAreacount, setTextAreacount] = useState(0)
+
+  const onSubmit = async (validateInfo) => {
     try {
-      e.preventDefault();
-      console.log(comment_info);
-      await addSubjectComment();
-      
+      const finalInfo = {...comment_info,
+        ...validateInfo
+      }
+      await addSubjectComment({variables:finalInfo});
+      reset();
     } catch (error) {
       console.log(error);
     }
   };
   if (loading) return (<Loader></Loader> )
   if (error) return (<p>{error.message}</p>)
+  console.log(errors)
   return (
     <div>
       <div className=" flex flex-col bg-gray-200   items-center p-6 ">
         <form
           type="form"
           action=""
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           className="bg-gray-50 w-full lg:w-3/6  max-h-full rounded-xl flex flex-col  p-6 px-2  shadow-lg my-10 space-y-3 "
         >
           <div className="min-w-full w-4/6 inline-flex items-center px-2 xl:px-6  ">
@@ -280,22 +280,32 @@ export default function CreateReview({ subject }) {
           </div>
           {/* ---------------------------------text area------------------------------ */}
           <div className=" w-full lg:w-full  max-h-full rounded-xl flex flex-col  p-6  px-5 xl:px-10 my-10 space-y-3  ">
-            <div className="flex flex-row">
+            <div className="flex flex-row justify-between">
+              <div className="flex flex-row ">
               <h1 className="font-display self-start font-semibold text-lg md:text-xl text-gray-800">
                 เขียนรีวิววิชานี้
               </h1>
               <div className="w-2 h-2 bg-red-300 rounded-full ml-2 self-start place-self-start "></div>
+              </div>
+              <div>
+                <p className={`font-display ${errors.comment ? "text-red-400 " : "text-gray-400"  } text-sm  `} >({textAreacount}/500) ตัวอักษร</p>
+              </div>
             </div>
             <textarea
-              required
-              value={comment_info.comment}
-              onChange={handleChange}
-              name="comment"
+              {...register("comment", {
+                required: true,
+                minLength: 10,
+                maxLength:500,
+                onChange:(e) => setTextAreacount(e.target.value.length),
+              })}
               type="text"
               placeholder="เขียนรีวิว .....  (โปรดหลีกเลี่ยงถ้อยคำหยาบ คายและพาดพิงผู้อื่น)"
-              className="border-0 px-3 py-3 placeholder-blueGray-300 text-gray-800 bg-white rounded text-sm md:text-sm font-display  shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              className={`border-0 px-3 h-2/3 max-h-80 min-h-full  py-3 placeholder-blueGray-300 text-gray-800 bg-white ${errors.comment && " ring-red-400 "} rounded text-sm md:text-lg font-display  shadow focus:outline-none focus:ring w-full `}
               rows="4"
             ></textarea>
+            {errors.comment?.type === "required" && <InCurrect args="จำเป็นต้องกรอกฟิลด์นี้" ></InCurrect>}
+            {errors.comment?.type === "minLength" && <InCurrect args="ต้องรีวิวตั้งแต่ 10 ตัวอักษรขี้นไป" ></InCurrect>}
+            {errors.comment?.type === "maxLength" && <InCurrect args="รีวิวต้องน้อยกว่า 500 ตัวอักษร" ></InCurrect>}
           </div>
           <div className="w-full lg:w-full max-h-full rounded-xl flex flex-row items-center p-6 px-5 xl:px-10    space-x-1 ">
             <h1 className="font-display self-start font-semibold text-lg md:text-xl text-gray-800 ">
@@ -374,39 +384,24 @@ export default function CreateReview({ subject }) {
 
             <button
               type="submit"
-              className="px-2 py-3 text-gray-50 rounded-xl bg-green-500 shadow-sm hover:shadow-sm   "
+              className="px-2 md:px-10  py-3 text-gray-50 rounded-xl bg-green-500 shadow-sm hover:shadow-sm   "
             >
               {" "}
               รีวิววิชานี{" "}
             </button>
           </div>
         </form>
-        {error && <ErrorMsg></ErrorMsg>}
-        {data && <ThankMsg></ThankMsg> }
+        <div className="w-1/2" >
+          {error && <ErrorMsg args={error.message.split("GraphQL error:")}></ErrorMsg>}
+          {data && <ThankMsg></ThankMsg> }
+        </div>
+        
       </div>
       
     </div>
   );
 }
 
-function SmileIcon(props) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="#FCA5A5"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-      />
-    </svg>
-  );
-}
 
 function VerrySadIcon(props) {
   return (
@@ -517,16 +512,7 @@ function VeryGoodIcon(props) {
     </svg>
   );
 }
-function ErrorMsg() {
-  return (
-    <div className="flex animate-pulse cursor-pointer mb-6 mx-5 items-center justify-center space-x-3 flex-row w-full h-11  rounded-lg bg-red-400">
-      <Icon></Icon>
-      <h1 className="text-sm font-light font-display text-gray-100 ">
-        พบข้อผิดพลาด ลองไหม่อีกครั้ง
-      </h1>
-    </div>
-  );
-}
+
 function ThankMsg() {
   return (
     <div className="flex animate-pulse cursor-pointer mb-6 mx-5 items-center justify-center space-x-3 flex-row w-full h-11  rounded-lg bg-green-500">

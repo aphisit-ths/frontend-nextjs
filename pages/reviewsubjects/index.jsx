@@ -86,9 +86,11 @@ export default function SearchSubject() {
           </div>
         </div>
         {filteredData.length != 0 && (
+          
           <div className=" flex flex-col rounded-xl z-50 bg-gray-50 absolute mt-16 shadow-md overflow-hidden overflow-y-auto w-full lg:w-2/5  max-h-full h-1/3  mx-10 divide-y-1   my-5">
             {filteredData.map((subject, idx) => (
               <>
+              {loading && <DotLoader loading={loading} ></DotLoader>}
                 <div key={subject.id}>
                   <Link
                     href={"/reviewsubjects/" + subject.id}

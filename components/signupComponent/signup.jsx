@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import signupStyle from "../../styles/signup.module.scss";
+
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
+import { useForm } from "react-hook-form";
+import InCurrect from "../error/error_validate"
+import ErrorMsg from "../error/errorMsg"
 const SIGN_UP = gql`
   mutation SIGN_UP($name: String!, $email: String!, $password: String!) {
     signup(name: $name, email: $email, password: $password) {
@@ -16,46 +18,27 @@ const SIGN_UP = gql`
 `;
 
 function Signupform() {
-  const [userInfo, setuserInfo] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const {register,reset,handleSubmit ,formState:{errors}} = useForm({reValidateMode:"onChange"});
   const [popup, setPopup] = useState(false);
-  
-  const closePopup = () => {
-    setPopup(false);
-  };
 
   const [signup, { loading, error }] = useMutation(SIGN_UP, {
-    variables: { ...userInfo },
     onCompleted: (data) => {
       if (data) {
-        setuserInfo({
-          name: "",
-          email: "",
-          password: "",
-        });
+        setPopup(true);
+        console.log("register sucessfull ===>")
       }
-      setPopup(true);
     },
   });
-  const handleChange = (e) => {
-    setuserInfo({
-      ...userInfo,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
+ 
+  const onSubmit = async (info) => {
     try {
-      e.preventDefault();
-      await signup();
+      await signup({variables:info});
+      reset()
     } catch (error) {
       console.log(error);
     }
+    
   };
-
   return (
     <div className="flex justify-center p-5 w-screen ">
       <div className="flex flex-col rounded-md shadow-md w-full sm:w-full md:w-2/3 xl:w-1/3 min-h-1/2 py-6  ">
@@ -67,49 +50,98 @@ function Signupform() {
             action=""
             className="flex flex-col w-2/3 m-3 p-3  "
             type="form"
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
           >
             <span className="font-display tracking-wide mx-5 font-normal text-sm xl:text-lg text-displaycolor  ">
               ชื่อเล่น:
             </span>
             <input
-              className="border-2 h-10 w-full md:h-14 mb-6 mx-5 p-5 rounded-md outline-none bg-gray-50    "
+             className={` border-2 h-8 w-full md:h-14  mx-5 p-5  ${errors.name && " border-red-400  "}   rounded-lg outline-none  bg-gray-50 `}
               type="text"
               name="name"
               placeholder="นามแฝงที่จะใช้ในแอพพลิเคชั่น"
-              value={userInfo.name}
-              onChange={handleChange}
-              required
+              {...register("name", {
+                required: true,
+                minLength: 3,
+                maxLength:12,
+                pattern: /^[A-Za-z][A-Za-z0-9]*$/,
+              })}
             />
+             <div className="my-2 ">
+              {errors.name?.type === "required" && (
+                <InCurrect args="จำเป็นต้องชื่อเล่น"></InCurrect>
+              )}
+              {errors.name?.type === "pattern" && (
+                <InCurrect args="รูปแบบชื่อเล่นต้องเป็นภาษาอังกฤษและตัวเลขเท่านั้น"></InCurrect>
+              )}
+              {errors.name?.type === "minLength" && (
+                <InCurrect args="ชื่อเล่นต้องมีตั้งแต่ 3 ตัวอักษรขึ้นไป"></InCurrect>
+              )}
+              {errors.name?.type === "maxLenhth" && (
+                <InCurrect args="ชื่อเล่นต้องมีไม่เกิน 12 ตัวอักษร"></InCurrect>
+              )}
+            </div>
             <span className="font-display tracking-wide mx-5 font-normal text-sm xl:text-lg text-displaycolor ">
               อีเมล:
             </span>
             <input
-              className=" border-2 h-10 w-full md:h-14 mb-6 mx-5 p-5 rounded-md  outline-none bg-gray-50"
+            {...register("email", {
+                required: true,
+                minLength: 3,
+                maxLength:50,
+                pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+              })}
+              className={` border-2 h-8 w-full md:h-14  mx-5 p-5  ${errors.email && " border-red-400  "}   rounded-lg outline-none  bg-gray-50 `}
               type="text"
               name="email"
               placeholder="อีเมล"
-              value={userInfo.email}
-              onChange={handleChange}
-              required
             />
+            <div className="my-2">
+              {errors.email?.type === "required" && (
+                <InCurrect args="จำเป็นต้องกรอกอีเมล"></InCurrect>
+              )}
+              {errors.email?.type === "pattern" && (
+                <InCurrect args="รูปแบบอีเมลไม่ถูกต้อง"></InCurrect>
+              )}
+              {errors.email?.type === "minLength" && (
+                <InCurrect args="อีเมลต้องมีตั้งแต่ 3 ตัวอักษรขึ้นไป"></InCurrect>
+              )}
+              {errors.email?.type === "maxLength" && (
+                <InCurrect args="อีเมลต้องมีไม่เกิน 50 ตัวอักษร"></InCurrect>
+              )}
+            </div>
             <span className="font-display tracking-wide mx-5 font-normal text-sm xl:text-lg text-displaycolor ">
               รหัสผ่าน:
             </span>
             <input
-              className=" border-2 h-10 w-full md:h-14 mb-6 mx-5 p-5  rounded-lg outline-none bg-gray-50 "
+            {...register("password", {
+              required: true,
+              minLength: 6,
+              maxLength:50
+            })}
+            className={` border-2 h-8 w-full md:h-14  mx-5 p-5  ${errors.password && " border-red-400  "}   rounded-lg outline-none  bg-gray-50 `}
               type="password"
               name="password"
               placeholder="รหัสผ่าน"
-              value={userInfo.password}
-              onChange={handleChange}
-              required
+              
             />
+            <div className="my-2">
+              {errors.password?.type === "required" && (
+                <InCurrect args="จำเป็นต้องกรอกรหัสผ่าน"></InCurrect>
+              )}
+              {errors.password?.type === "minLength" && (
+                <InCurrect args="กรอกรหัสผ่านอย่างน้อย 6 ตัวอักษร"></InCurrect>
+              )}
+              {errors.password?.type === "maxLength" && (
+                <InCurrect args="รหัสผ่านต้องมีไม่เกิน 50 ตัวอักษร"></InCurrect>
+              )}
+            </div>
+
             {error && (
-              <>
+              <div  className="mx-5 w-full ">
                 {" "}
-                <ErrorMsg></ErrorMsg>{" "}
-              </>
+                <ErrorMsg args={error.message.split("GraphQL error:")}></ErrorMsg>{" "}
+              </div>
             )}
             {popup && (
               <>
@@ -145,19 +177,6 @@ function Signupform() {
                 </div>
               </>
             )}
-
-            <label className="inline-flex items-center space-x-3 mb-5">
-              <input
-                className="form-checkbox focus:ring-4 rounded-xl"
-                type="checkbox"
-              />
-              <h1 className="font-display text-lg font-light">
-                ยอมรับ{" "}
-                <span className="font-display text-lg text-yellow-300 cursor-pointer ">
-                  ข้อตกลงของเรา
-                </span>{" "}
-              </h1>
-            </label>
             <button
               type="submit"
               disabled={loading}
@@ -174,7 +193,6 @@ function Signupform() {
               ลงทะเบียนด้วย Google
             </button>
           </form>
-
           <Link href="/signin" passHref>
             <span className="font-display  text-xs md:text-sm font-light cursor-pointer text-gray-400">
               หากมีผู้ใช้บัญชีผู้ใช้อยู่แล้ว ?{" "}
@@ -258,15 +276,6 @@ function Icon(args) {
     </div>
   );
 }
-function ErrorMsg() {
-  return (
-    <div className="flex animate-pulse cursor-pointer mb-6 mx-5 items-center justify-center space-x-3 flex-row w-full h-11  rounded-lg bg-red-500">
-      <Icon></Icon>
-      <h1 className="text-sm font-light font-display text-gray-100 ">
-        พบข้อผิดพลาด กรุณาลองใหม่อีก
-      </h1>
-    </div>
-  );
-}
+
 
 export default Signupform;

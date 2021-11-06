@@ -39,7 +39,7 @@ export default function CreateSubject() {
     refetchQueries: [{ query: GET_SUBJECTS }],
   });
 
-  const {register,handleSubmit,reset,formState: { errors },} = useForm();
+  const {register,handleSubmit,reset,formState: { errors },} = useForm({reValidateMode:"onChange"});
 
   const onSubmit = async (info) => {
     await addSubject({ variables: { ...info } });
@@ -146,7 +146,7 @@ export default function CreateSubject() {
                   required: true,
                   minLength: 5,
                   maxLength: 50,
-                  pattern: /[a-zA-Z0-9]/,
+                  pattern: /^[A-Za-z][A-Za-z0-9]*$/,
                 })}
               />
               {errors.eng_name?.type === "required" && (

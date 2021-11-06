@@ -13,7 +13,7 @@ export default function ErrorMsg({args}) {
 
 function Icon(args) {
   return (
-    <div>
+    <div  >
       <svg
         {...args}
         xmlns="http://www.w3.org/2000/svg"
