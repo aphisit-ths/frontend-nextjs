@@ -15,7 +15,7 @@ module.exports = {
     "components/subject_review/commentsList.jsx",
     "components/scroll/ScrollToTop.jsx",
     "components/createsubject-comp/index.jsx",
-
+    
     "pages/testui.jsx",
     "pages/reviewsubjects/index.jsx",
     "pages/reviewsubjects/[subjectId]/subject.jsx",

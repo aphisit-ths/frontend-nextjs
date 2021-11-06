@@ -120,7 +120,8 @@ export default function Review_Subject({ subject }) {
           <motion.div
             whileTap={{ scale: 0.8 }}
             keys={index}
-            className="bg-gray-50 w-full lg:w-2/5  max-h-full rounded-xl flex flex-col my-3  p-6 px-2 transition   cursor-pointer r shadow-lg space-y-3 hover:bg-gray-100  duration-200  "
+            className="bg-gray-50 w-5/6 md:w-2/3  max-w-sm md:max-w-3xl overflow-ellipsis overflow-hidden   max-h-full rounded-xl flex flex-col my-3  p-6 px-2 transition   cursor-pointer r shadow-lg space-y-3 hover:bg-gray-100  duration-200 "
+
           >
             <div className="min-w-full inline-flex  flex-warp font-display  items-center px-2 xl:px-6  ">
               <p className="overflow-ellipsis   break-words font-display font-light ">{_comment.comment}</p>

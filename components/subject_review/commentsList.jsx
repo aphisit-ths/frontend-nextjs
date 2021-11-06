@@ -5,6 +5,7 @@ import LoadComment from "../loader/LoadComment";
 import Link from "next/link";
 import gql from "graphql-tag";
 import Error from "../error";
+
 export const GET_COMMENTS = gql`
   query {
     subjectComments {
@@ -39,8 +40,8 @@ export default function Preview_Comments() {
   
   return (
     <div>
-      <div className="flex flex-col items-center p-1 justify-center md:p-10">
-        <div className=" bg-gray-50 w-full lg:w-2/5 mt-5 py-4 px-3 md:px-4 ">
+      <div className="flex flex-col items-center p-1 overflow-ellipsis overflow-hidden justify-center md:p-10">
+        <div className=" bg-gray-50 w-5/6 md:w-2/3   mt-5 py-4 px-3 md:px-4 ">
           <div className="flex justify-between">
             <div className="flex flex-col">
               <p className="font-display  text-lg">แนะนำล่าสุด</p>
@@ -61,14 +62,14 @@ export default function Preview_Comments() {
               <motion.div
                 whileTap={{ scale: 0.8 }}
                 key={comment.subjectId.id}
-                className="bg-gray-50 w-full lg:w-2/5  max-h-full rounded-xl flex flex-col my-3  p-6 px-2 transition   cursor-pointer r shadow-lg space-y-3 hover:bg-gray-100  duration-200 "
+                className="bg-gray-50 w-5/6 md:w-2/3  max-w-sm md:max-w-3xl overflow-ellipsis overflow-hidden   max-h-full rounded-xl flex flex-col my-3  p-6 px-2 transition   cursor-pointer r shadow-lg space-y-3 hover:bg-gray-100  duration-200 "
               >
                 <div className="  inline-flex py-2 w-2/3 flex-warp font-display items-center  z-30 px-2 xl:px-6  ">
                   {comment.subjectId.course_id}{" "}
                   {comment.subjectId.eng_name.toUpperCase()}
                 </div>
-                <div className="min-w-full w-4/6  inline-flex items-center px-2 xl:px-6  my-2   ">
-                  <p className="text-sm font-display font-light text-gray-400">
+                <div className=" w-full overflow-clip overflow-hidden inline-flex items-center px-2 Truncate xl:px-6  my-2   ">
+                  <p className="text-sm font-display font-light text-gray-400 overflow-hidden inline-flex  ">
                     {" "}
                     {comment.comment}
                   </p>

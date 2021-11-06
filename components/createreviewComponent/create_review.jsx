@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import Loader from "../../components/loader/Loader"
-import {useForm} from "react-hook-form"
-import ErrorMsg from "../error/errorMsg"
-import InCurrect from "../error/error_validate"
+import Loader from "../../components/loader/Loader";
+import { useForm } from "react-hook-form";
+import ErrorMsg from "../error/errorMsg";
+import InCurrect from "../error/error_validate";
 import { GET_COMMENTS } from "../subject_review/commentsList";
+import { GET_SUBJECT_DETAIL } from "../../pages/reviewsubjects/[subjectId]";
 const CREATE_SUBJECTREVIEW = gql`
   mutation CREATE_SUBJECTREVIEW(
     $subjectId: ID!
@@ -55,19 +56,19 @@ export default function CreateReview({ subject }) {
   let currentYearThai = yearNow + 543;
   let emoji = [
     {
-      value: 40,
+      value: 30,
       emoji: <VerrySadIcon className="w-5 md:w-8 md:h-8"></VerrySadIcon>,
     },
     {
-      value: 50,
+      value: 40,
       emoji: <SadIcon className="w-5 md:w-8 md:h-8"></SadIcon>,
     },
     {
-      value: 60,
+      value: 50,
       emoji: <NormalIcon className="w-5 md:w-8 md:h-8"></NormalIcon>,
     },
     {
-      value: 80,
+      value: 75,
       emoji: <GoodIcon className="w-5 md:w-8 md:h-8"></GoodIcon>,
     },
     {
@@ -78,7 +79,12 @@ export default function CreateReview({ subject }) {
   const [lecturer_rate, setLecturer_rate] = useState(emoji[2].value);
   const [content_rate, setContent_rate] = useState(emoji[2].value);
   const [homework_rate, setHomework_rate] = useState(emoji[2].value);
-  const {register,reset,handleSubmit ,formState:{errors}} = useForm({mode:"onChange"})
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: "onChange" });
   const { id, course_id, thai_name, eng_name } = subject;
   const [comment_info, setComment_info] = useState({
     // add rating later,
@@ -111,7 +117,6 @@ export default function CreateReview({ subject }) {
       ...comment_info,
       lecturer_rate: feel.value,
     });
-    
   };
   const changeHomework_rate = (feel) => {
     setHomework_rate(feel.value);
@@ -119,7 +124,6 @@ export default function CreateReview({ subject }) {
       ...comment_info,
       homework_rate: feel.value,
     });
-    
   };
   const changeContent_rate = (feel) => {
     setContent_rate(feel.value);
@@ -127,12 +131,14 @@ export default function CreateReview({ subject }) {
       ...comment_info,
       content_rate: feel.value,
     });
-    
   };
-  const [addSubjectComment, { data ,loading, error }] = useMutation(
+  const [addSubjectComment, { data, loading, error }] = useMutation(
     CREATE_SUBJECTREVIEW,
     {
-      refetchQueries:[{query:GET_COMMENTS}],
+      refetchQueries: [
+        { query: GET_COMMENTS }
+       
+      ],
       onCompleted: (data) => {
         if (data) {
           setComment_info({
@@ -149,22 +155,20 @@ export default function CreateReview({ subject }) {
       },
     }
   );
-  const [textAreacount, setTextAreacount] = useState(0)
+  const [textAreacount, setTextAreacount] = useState(0);
 
   const onSubmit = async (validateInfo) => {
     try {
-      const finalInfo = {...comment_info,
-        ...validateInfo
-      }
-      await addSubjectComment({variables:finalInfo});
+      const finalInfo = { ...comment_info, ...validateInfo };
+      await addSubjectComment({ variables: finalInfo });
       reset();
     } catch (error) {
       console.log(error);
     }
   };
-  if (loading) return (<Loader></Loader> )
-  if (error) return (<p>{error.message}</p>)
-  console.log(errors)
+  if (loading) return <Loader></Loader>;
+  if (error) return <p>{error.message}</p>;
+  console.log(errors);
   return (
     <div>
       <div className=" flex flex-col bg-gray-200   items-center p-6 ">
@@ -282,30 +286,44 @@ export default function CreateReview({ subject }) {
           <div className=" w-full lg:w-full  max-h-full rounded-xl flex flex-col  p-6  px-5 xl:px-10 my-10 space-y-3  ">
             <div className="flex flex-row justify-between">
               <div className="flex flex-row ">
-              <h1 className="font-display self-start font-semibold text-lg md:text-xl text-gray-800">
-                เขียนรีวิววิชานี้
-              </h1>
-              <div className="w-2 h-2 bg-red-300 rounded-full ml-2 self-start place-self-start "></div>
+                <h1 className="font-display self-start font-semibold text-lg md:text-xl text-gray-800">
+                  เขียนรีวิววิชานี้
+                </h1>
+                <div className="w-2 h-2 bg-red-300 rounded-full ml-2 self-start place-self-start "></div>
               </div>
               <div>
-                <p className={`font-display ${errors.comment ? "text-red-400 " : "text-gray-400"  } text-sm  `} >({textAreacount}/500) ตัวอักษร</p>
+                <p
+                  className={`font-display ${
+                    errors.comment ? "text-red-400 " : "text-gray-400"
+                  } text-sm  `}
+                >
+                  ({textAreacount}/500) ตัวอักษร
+                </p>
               </div>
             </div>
             <textarea
               {...register("comment", {
                 required: true,
                 minLength: 10,
-                maxLength:500,
-                onChange:(e) => setTextAreacount(e.target.value.length),
+                maxLength: 500,
+                onChange: (e) => setTextAreacount(e.target.value.length),
               })}
               type="text"
               placeholder="เขียนรีวิว .....  (โปรดหลีกเลี่ยงถ้อยคำหยาบ คายและพาดพิงผู้อื่น)"
-              className={`border-0 px-3 h-2/3 max-h-80 min-h-full  py-3 placeholder-blueGray-300 text-gray-800 bg-white ${errors.comment && " ring-red-400 "} rounded text-sm md:text-lg font-display  shadow focus:outline-none focus:ring w-full `}
+              className={`border-0 px-3 h-2/3 max-h-80 min-h-full  py-3 placeholder-blueGray-300 text-gray-800 bg-white ${
+                errors.comment && " ring-red-400 "
+              } rounded text-sm md:text-lg font-display  shadow focus:outline-none focus:ring w-full `}
               rows="4"
             ></textarea>
-            {errors.comment?.type === "required" && <InCurrect args="จำเป็นต้องกรอกฟิลด์นี้" ></InCurrect>}
-            {errors.comment?.type === "minLength" && <InCurrect args="ต้องรีวิวตั้งแต่ 10 ตัวอักษรขี้นไป" ></InCurrect>}
-            {errors.comment?.type === "maxLength" && <InCurrect args="รีวิวต้องน้อยกว่า 500 ตัวอักษร" ></InCurrect>}
+            {errors.comment?.type === "required" && (
+              <InCurrect args="จำเป็นต้องกรอกฟิลด์นี้"></InCurrect>
+            )}
+            {errors.comment?.type === "minLength" && (
+              <InCurrect args="ต้องรีวิวตั้งแต่ 10 ตัวอักษรขี้นไป"></InCurrect>
+            )}
+            {errors.comment?.type === "maxLength" && (
+              <InCurrect args="รีวิวต้องน้อยกว่า 500 ตัวอักษร"></InCurrect>
+            )}
           </div>
           <div className="w-full lg:w-full max-h-full rounded-xl flex flex-row items-center p-6 px-5 xl:px-10    space-x-1 ">
             <h1 className="font-display self-start font-semibold text-lg md:text-xl text-gray-800 ">
@@ -375,7 +393,7 @@ export default function CreateReview({ subject }) {
           </div>
           {/* setion */}
           <div className=" inline-flex flex-row min-w-full xl:min-w-2/3 justify-end items-end font-display space-x-4 px-10">
-            <Link href={"/reviewsubjects/"+ id} passHref>
+            <Link href={"/reviewsubjects/" + id} passHref>
               <p className=" px-2 md:px-10 py-3 rounded-xl cursor-pointer font-display  bg-gray-300 hover:shadow-sm ">
                 {" "}
                 ย้อนกลับ{" "}
@@ -391,17 +409,16 @@ export default function CreateReview({ subject }) {
             </button>
           </div>
         </form>
-        <div className="w-1/2" >
-          {error && <ErrorMsg args={error.message.split("GraphQL error:")}></ErrorMsg>}
-          {data && <ThankMsg></ThankMsg> }
+        <div className="w-1/2">
+          {error && (
+            <ErrorMsg args={error.message.split("GraphQL error:")}></ErrorMsg>
+          )}
+          {data && <ThankMsg></ThankMsg>}
         </div>
-        
       </div>
-      
     </div>
   );
 }
-
 
 function VerrySadIcon(props) {
   return (
@@ -518,7 +535,7 @@ function ThankMsg() {
     <div className="flex animate-pulse cursor-pointer mb-6 mx-5 items-center justify-center space-x-3 flex-row w-full h-11  rounded-lg bg-green-500">
       <Icon></Icon>
       <h1 className="text-sm font-light font-display text-gray-100 ">
-        ขอบคุณสำหรับการรีวิว 
+        ขอบคุณสำหรับการรีวิว
       </h1>
     </div>
   );

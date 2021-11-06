@@ -7,7 +7,7 @@ import Loader from "../../../components/loader/Loader";
 import Review_Subject from "./subject";
 import {ScrollToTop} from '../../../components/scroll/ScrollToTop'
 
-const GET_SUBJECT_DETAIL = gql`
+export const GET_SUBJECT_DETAIL = gql`
   query Subject($subjectId: ID!) {
     subject(id: $subjectId) {
         id
@@ -34,6 +34,7 @@ const GET_SUBJECT_DETAIL = gql`
     }
   }
 `;
+
 export default function SubjectDetail() {
   const router = useRouter();
   const { subjectId } = router.query;
