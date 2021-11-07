@@ -61,10 +61,8 @@ export default function SearchSubject() {
   const { subjects } = data;
   return (
     <div>
-      
       <div className="w-screen bg-gray-50 flex flex-col 0 items-center p-2 md:p-10">
         <ScrollToTop></ScrollToTop>
-
         <div className="px-5  flex flex-row shadow-md items-center  bg-gray-100  justify-between  w-full lg:w-2/5  max-h-full rounded-xl">
           <input
             className="h-10 font-display text-sm  bg-transparent min-w-2/3 w-2/3 outline-none "

@@ -37,7 +37,7 @@ const GET_SUBJECT_DETAIL = gql`
 export default function SubjectDetail() {
   const router = useRouter();
   const { subjectId } = router.query;
-  const {loading , error , data} = useQuery(GET_SUBJECT_DETAIL,{variables:{subjectId}})
+  const {loading , error , data} = useQuery(GET_SUBJECT_DETAIL,{variables:{subjectId},pollInterval: 2000})
   console.log(error)
   if (loading) return <Loader></Loader>
   if (error) return <Error></Error>
