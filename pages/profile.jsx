@@ -1,9 +1,9 @@
 import React from 'react'
-import HomePage from "../components/homepage/HomePage"
-export default function index() {
+import Profilelayout from "../components/profilecomp/Profilelayout"
+export default function profile() {
     return (
         <div>
-            <HomePage></HomePage>
+            <Profilelayout></Profilelayout>
         </div>
     )
 }
