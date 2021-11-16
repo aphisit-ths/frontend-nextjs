@@ -1,6 +1,6 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { ChevronDownIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon , ViewGridAddIcon } from "@heroicons/react/solid";
 import Link from "next/link"
 
 import React from "react";
@@ -125,6 +125,37 @@ export default function UserDropdown({ user, signout }) {
                 )}
               </Menu.Item>
             </div>
+            {!user.isAdmin && (
+            <>
+              <div className="px-1 py-1  font-display">
+              <Menu.Item>
+                {({ active }) => (
+                  <Link href="https://dashboard-kmitl-reviewer.netlify.app/" passHref={true}>
+                  <button
+                    className={`${
+                      active ? "bg-gray-500 text-white" : "text-purple-500"
+                    } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                  >
+                    {active ? (
+                      <ViewGridAddIcon
+                        className="w-5 h-5 mr-2"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      <ViewGridAddIcon
+                        className="w-5 h-5 mr-2"
+                        aria-hidden="true"
+                      />
+                    )}
+                    Admin
+                  </button>
+                  </Link>
+                )}
+              </Menu.Item>
+              </div>
+            </>) 
+            
+            }
             <div className="px-1 py-1  font-display">
               <Menu.Item>
                 {({ active }) => (
