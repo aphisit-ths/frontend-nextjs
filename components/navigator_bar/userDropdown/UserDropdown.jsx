@@ -1,6 +1,7 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import Link from "next/link"
 
 import React from "react";
 export default function UserDropdown({ user, signout }) {
@@ -29,6 +30,7 @@ export default function UserDropdown({ user, signout }) {
             <div className="px-1 py-1 font-display  ">
               <Menu.Item>
                 {({ active }) => (
+                  <Link href="/profile" >
                   <button
                     className={`${
                       active ? "bg-gray-500 text-white" : "text-gray-900"
@@ -47,6 +49,7 @@ export default function UserDropdown({ user, signout }) {
                     )}
                     แก้ใขโปรไฟล์
                   </button>
+                  </Link>
                 )}
               </Menu.Item>
               <Menu.Item>

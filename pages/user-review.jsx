@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 import { AuthContext } from "../appstate/AuthProvider"
+import UserReviewComp from '../components/profilecomp/UserReviewComp'
 import Profilelayout from "../components/profilecomp/Profilelayout"
-export default function profile() {
+export default function userreview() {
     const { user, signout } = useContext(AuthContext);
-      
-        return (
-        <div>
-            <Profilelayout user={user}></Profilelayout>
-        </div>
+    return (
+        <>
+            <UserReviewComp user={user}></UserReviewComp>
+        </>
     )
 }

@@ -40,7 +40,7 @@ function Signin() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm({reValidateMode:"onChange"});
+  } = useForm({mode:"onChange"});
 
   const onSubmit = async (info) => {
     try {
@@ -74,7 +74,7 @@ function Signin() {
                 required: true,
                 minLength: 3,
                 maxLength:100,
-                pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                pattern: /^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/,
               })}
             />
             <div className="my-2">
@@ -120,14 +120,7 @@ function Signin() {
             >
               เข้าสู่ระบบ
             </button>
-            <button
-              type="submit"
-              disabled={loading}
-              className=" mx-4 my-4 flex flex-row items-center justify-center bg-gray-200 hover:bg-gray-400 ease-in duration-150 hover:shadow-xl  text-gray-600  hover:text-white py-4 w-full border font-display text-xs xl:text-sm rounded-3xl"
-            >
-              <Googlesvg></Googlesvg>
-              เข้าสู่ระบบนด้วย Google
-            </button>
+            
           </form>
           <Link href="/signup" passHref>
             <span className="font-display text-xs md:text-sm font-light cursor-pointer text-gray-400">
