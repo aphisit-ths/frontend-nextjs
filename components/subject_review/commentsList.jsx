@@ -57,7 +57,7 @@ export default function Preview_Comments() {
           </div>
         </div>
 
-        {subjectComments.map((comment, index) => (
+        {subjectComments.slice(0,10).map((comment, index) => (
           <>
             <Link href={"reviewsubjects/" + comment.subjectId.id} passHref>
               <motion.div

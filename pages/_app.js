@@ -39,7 +39,7 @@ MyApp.getInitialProps = async ({ ctx ,router }) => {
   const token = cookies && cookies.jwt;
 
   if(!token){
-    if(router.pathname === '/reviewsubjects/[subjectId]/review/[courseId]' || router.pathname === '/createsubject'){
+    if(router.pathname === '/reviewsubjects/[subjectId]/review/[courseId]' || router.pathname === '/createsubject' || router.pathname === '/user-review'){
       ctx.res.writeHead(302,{location:"/signin"})
       ctx.res.end()
     }
@@ -58,6 +58,24 @@ MyApp.getInitialProps = async ({ ctx ,router }) => {
           id
           name
           email
+          isAdmin
+           subject_comments {
+            id
+            comment
+            grade
+            year
+            section
+            content_rate
+            lecturer_rate
+            homework_rate
+            createdAt
+            subjectId {
+              id
+              course_id
+              eng_name
+              thai_name
+            }
+          }
         }
       }
     `,
@@ -78,7 +96,7 @@ MyApp.getInitialProps = async ({ ctx ,router }) => {
     
     return { user: result.data.user};
   } else {
-    if(router.pathname === '/reviewsubjects/[subjectId]/review/[courseId]' || router.pathname === '/createsubject'){
+    if(router.pathname === '/reviewsubjects/[subjectId]/review/[courseId]' || router.pathname === '/createsubject' || router.pathname === '/user-review' ){
       ctx.res.writeHead(302,{location:"/signin"})
       ctx.res.end()
     }

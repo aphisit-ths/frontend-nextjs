@@ -18,7 +18,7 @@ const SIGN_UP = gql`
 `;
 
 function Signupform() {
-  const {register,reset,handleSubmit ,formState:{errors}} = useForm({reValidateMode:"onChange"});
+  const {register,reset,handleSubmit ,formState:{errors}} = useForm({mode:"onChange"});
   const [popup, setPopup] = useState(false);
 
   const [signup, { loading, error }] = useMutation(SIGN_UP, {
@@ -69,10 +69,10 @@ function Signupform() {
             />
              <div className="my-2 ">
               {errors.name?.type === "required" && (
-                <InCurrect args="จำเป็นต้องชื่อเล่น"></InCurrect>
+                <InCurrect args="จำเป็นต้องมีชื่อเล่น"></InCurrect>
               )}
               {errors.name?.type === "pattern" && (
-                <InCurrect args="รูปแบบชื่อเล่นต้องเป็นภาษาอังกฤษและตัวเลขเท่านั้น"></InCurrect>
+                <InCurrect args="รูปแบบชื่อเล่นต้องขึ้นต้นเป็นภาษาอังกฤษเท่านั้น"></InCurrect>
               )}
               {errors.name?.type === "minLength" && (
                 <InCurrect args="ชื่อเล่นต้องมีตั้งแต่ 3 ตัวอักษรขึ้นไป"></InCurrect>
@@ -89,7 +89,7 @@ function Signupform() {
                 required: true,
                 minLength: 3,
                 maxLength:50,
-                pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,4}$/,
               })}
               className={` border-2 h-8 w-full md:h-14  mx-5 p-5  ${errors.email && " border-red-400  "}   rounded-lg outline-none  bg-gray-50 `}
               type="text"
@@ -184,14 +184,7 @@ function Signupform() {
             >
               ลงทะเบียนผู้ใช้
             </button>
-            <button
-              type="submit"
-              disabled={loading}
-              className=" mx-4 my-4 flex flex-row items-center justify-center bg-gray-200 hover:bg-gray-400 ease-in duration-150 hover:shadow-xl  text-gray-600  hover:text-white py-3 w-full border font-display text-xs xl:text-sm rounded-3xl"
-            >
-              <Googlesvg></Googlesvg>
-              ลงทะเบียนด้วย Google
-            </button>
+            
           </form>
           <Link href="/signin" passHref>
             <span className="font-display  text-xs md:text-sm font-light cursor-pointer text-gray-400">
