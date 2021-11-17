@@ -140,7 +140,7 @@ export default function CreateSubject() {
               <input
                 placeholder="ชื่อวิชาภาษาอังกฤษ เช่น Love kmitl"
                 className={` w-5/6  bg-gray-200 outline-none p-2 text-xs sm:text-lg ${
-                  errors.thai_name && "ring-2  ring-red-300"
+                  errors.eng_name && "ring-2  ring-red-300"
                 }  md:text-sm font-display h-10 rounded-md`}
                 type="text"
                 {...register("eng_name", {
