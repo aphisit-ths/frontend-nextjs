@@ -94,7 +94,7 @@ function Signin() {
               required: true,
               minLength: 6,
             })}
-              className={` border-2 h-8 w-full md:h-14  mx-5 p-5 ${errors.email && " border-red-400 ring-2 ring-red-400"}    rounded-lg outline-none  bg-gray-50 `}
+              className={` border-2 h-8 w-full md:h-14  mx-5 p-5 ${errors.password && " border-red-400 ring-2 ring-red-400"}    rounded-lg outline-none  bg-gray-50 `}
               type="password"
               placeholder="รหัสผ่าน"
             />
