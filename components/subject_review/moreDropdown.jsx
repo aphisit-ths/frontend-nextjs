@@ -1,10 +1,40 @@
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState, useContext } from "react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import { AuthContext } from "../../appstate/AuthProvider";
+import gql from "graphql-tag";
+import { useMutation } from "@apollo/react-hooks";
+import Loader from "../../components/loader/Loader"
 
-export default function DropDown({ comment ,index }) {
+export const DELETE_COMMENT = gql`
+  mutation DELETE_COMMENT($id: ID!, $subjectId: String!) {
+    deleteCommentByUser(id: $id, subjectId: $subjectId) {
+      id
+      comment
+    }
+  }
+`;
+export default function DropDown({ comment, index,subjectId }) {
+  console.log(subjectId)
+  const { user } = useContext(AuthContext);
+  const [deleteCommentByUser,{loading,error,data}] = useMutation(DELETE_COMMENT)
+  const isOwner = user.id == comment.owner.id;
+  const handleClick = async (e) =>{
+    try {
+      await deleteCommentByUser({variables:{
+        id:comment.id,
+        subjectId:subjectId
+      }})
+    } catch (error) {
+      console.log(error)
+    }
+    
+  }
   return (
-    <div key={index} className="bg-gray-200 rounded-xl shadow-sm flex justify-center items-center ">
+    <div
+      key={index}
+      className="bg-gray-200 rounded-xl shadow-sm flex justify-center items-center "
+    >
       <Menu as="div" className=" inline-block text-left">
         <div className="rounded-sm  ">
           <Menu.Button className="flex flex-row px-3 ">
@@ -45,15 +75,31 @@ export default function DropDown({ comment ,index }) {
                 )}
               </Menu.Item>
             </div>
-            <div className="px-1 py-1 ">
-              <Menu.Item>
-                {({ active }) => (
-                  <button className="text-red-500 group  flex rounded-md items-center w-full px-5 py-2 text-xs font-display"  >
-                    แจ้งลบ
-                  </button>
-                )}
-              </Menu.Item>
-            </div>
+            {isOwner ? (
+              <>
+                <div className="px-1 py-1 ">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button onClick={handleClick} className="text-red-500 group  flex rounded-md items-center w-full px-5 py-2 text-xs font-display">
+                        ลบความคิดเห็นนี้
+                      </button>
+                    )}
+                  </Menu.Item>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="px-1 py-1 ">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button className="text-red-500 group  flex rounded-md items-center w-full px-5 py-2 text-xs font-display">
+                        แจ้งลบ
+                      </button>
+                    )}
+                  </Menu.Item>
+                </div>
+              </>
+            )}
           </Menu.Items>
         </Transition>
       </Menu>

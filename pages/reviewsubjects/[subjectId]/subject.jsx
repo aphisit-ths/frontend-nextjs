@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import SadLoader from "../../../components/loader/sadLoad"
 export default function Review_Subject({ subject }) {
   const [like, setLike] = useState(0);
-
+  
 
   const { comments, homework_rate, content_rate, lecturer_rate } = subject;
 
@@ -118,7 +118,7 @@ export default function Review_Subject({ subject }) {
       {comments.map((_comment, index) => (
         <>   
           <motion.div
-            whileTap={{ scale: 0.8 }}
+            
             keys={index}
             className="bg-gray-50 w-5/6 md:w-2/3  max-w-sm md:max-w-3xl overflow-ellipsis overflow-hidden   max-h-full rounded-xl flex flex-col my-3  p-6 px-2 transition   cursor-pointer r shadow-lg space-y-3 hover:bg-gray-100  duration-200 "
 
@@ -155,7 +155,7 @@ export default function Review_Subject({ subject }) {
                       การสอน : {_comment.lecturer_rate}%
                     </div>
                   </div>
-              <DropDown comment={_comment}></DropDown>
+              <DropDown comment={_comment} subjectId={subject.id}></DropDown>
             </div>
           </motion.div>
           

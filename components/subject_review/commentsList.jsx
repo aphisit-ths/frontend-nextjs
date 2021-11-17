@@ -39,7 +39,6 @@ export default function Preview_Comments() {
   const { subjectComments } = data;
   
   return (
-    
       <div className="flex flex-col w-full md:w-4/5  items-center p-1 justify-center md:p-10">
         <div className=" bg-gray-50 flex w-4/5  md:w-3/5 justify-between  mt-5 py-4 px-3 md:px-4 ">
           <div className="flex w-full  justify-between ">
