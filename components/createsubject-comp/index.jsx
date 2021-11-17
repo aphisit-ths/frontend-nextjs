@@ -147,7 +147,7 @@ export default function CreateSubject() {
                   required: true,
                   minLength: 5,
                   maxLength: 50,
-                  pattern: "[a-zA-Z0-9 ]+",
+                  pattern: /^[a-zA-Z0-9]/,
                 })}
               />
               {errors.eng_name?.type === "required" && (
