@@ -111,7 +111,7 @@ export default function CreateSubject() {
                   minLength: 5,
                   maxLength: 50,
                   pattern:
-                    /^[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์0-9]+$/i,
+                    /^[กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯะัาำิีึืฺุูเแโใไๅๆ็่้๊๋์0-9\s]+$/i,
                 })}
                 placeholder="ชื่อวิชาภาษาไทย เช่น รัก สจล."
                 className={` w-5/6  bg-gray-200 outline-none p-2 text-xs sm:text-lg ${
@@ -147,7 +147,7 @@ export default function CreateSubject() {
                   required: true,
                   minLength: 5,
                   maxLength: 50,
-                  pattern: /^[A-Za-z][A-Za-z0-9]*$/,
+                  pattern: "[a-zA-Z0-9 ]+",
                 })}
               />
               {errors.eng_name?.type === "required" && (
