@@ -125,7 +125,7 @@ export default function UserDropdown({ user, signout }) {
                 )}
               </Menu.Item>
             </div>
-            {!user.isAdmin && (
+            {user.isAdmin && (
             <>
               <div className="px-1 py-1  font-display">
               <Menu.Item>
