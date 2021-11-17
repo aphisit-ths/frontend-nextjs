@@ -1,13 +1,14 @@
 import { Subject } from "@material-ui/icons";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import DropDown from "../../../components/subject_review/moreDropdown";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import SadLoader from "../../../components/loader/sadLoad"
+import SadLoader from "../../../components/loader/sadLoad";
+import { AuthContext } from "../../../appstate/AuthProvider";
+
 export default function Review_Subject({ subject }) {
   const [like, setLike] = useState(0);
-  
-
+  const { user } = useContext(AuthContext);
   const { comments, homework_rate, content_rate, lecturer_rate } = subject;
 
   const find_avg = (arr) => {
@@ -100,7 +101,10 @@ export default function Review_Subject({ subject }) {
               ย้อนกลับ
             </h1>
           </Link>
-          <Link href={"/reviewsubjects/[subjectId]/review/[courseId]"} as={`/reviewsubjects/${subject.id}/review/${subject.course_id}`}>
+          <Link
+            href={"/reviewsubjects/[subjectId]/review/[courseId]"}
+            as={`/reviewsubjects/${subject.id}/review/${subject.course_id}`}
+          >
             <h1 className="font-display font-normal shadow-lg text-sm md:text-lg my-6 px-5 py-2 rounded-md bg-green-500 text-gray-50 transition ease-in  hover:shadow-lg  cursor-pointer  ">
               รีวิววิชานี้
             </h1>
@@ -108,34 +112,36 @@ export default function Review_Subject({ subject }) {
         </div>
       </div>
       {/* -------------------------commnets section ------------------------------------------------------------*/}
-      {comments.length === 0 ? (
-      <div className="flex flex-col justify-center items-center">
-        <p className="font-display text-gray-500 text-4xl">วิชานี้ยังไม่มีรีวิวเลย งื้อออ</p>
-        <SadLoader ></SadLoader>
-      </div>
-    
-      ) : null}
-      {comments.map((_comment, index) => (
-        <>   
-          <motion.div
-            
-            keys={index}
-            className="bg-gray-50 w-5/6 md:w-2/3  max-w-sm md:max-w-3xl overflow-ellipsis overflow-hidden   max-h-full rounded-xl flex flex-col my-3  p-6 px-2 transition   cursor-pointer r shadow-lg space-y-3 hover:bg-gray-100  duration-200 "
 
-          >
-            <div className="min-w-full inline-flex  flex-warp font-display  items-center px-2 xl:px-6  ">
-              <p className="overflow-ellipsis   break-words font-display font-light ">{_comment.comment}</p>
-
-            </div>
-            <div className="min-w-full w-4/6  inline-flex items-center px-2 xl:px-6  my-2   ">
-              <p className="text-sm font-display font-light text-gray-400">
-                {" "}
-                โดย {_comment.owner.name}{" "}
+      {user ? (
+        <>
+          {comments.length === 0 ? (
+            <div className="flex flex-col justify-center items-center">
+              <p className="font-display text-gray-500 text-4xl">
+                วิชานี้ยังไม่มีรีวิวเลย งื้อออ
               </p>
+              <SadLoader></SadLoader>
             </div>
-            <div className="flex justify-between items-center px- my-2  ">
-             
-              <div className="flex justify-start px-2 xl:px-6 my-2 space-x-3  ">
+          ) : null}
+          {comments.map((_comment, index) => (
+            <>
+              <motion.div
+                keys={index}
+                className="bg-gray-50 w-5/6 md:w-2/3  max-w-sm md:max-w-3xl overflow-ellipsis overflow-hidden   max-h-full rounded-xl flex flex-col my-3  p-6 px-2 transition   cursor-pointer r shadow-lg space-y-3 hover:bg-gray-100  duration-200 "
+              >
+                <div className="min-w-full inline-flex  flex-warp font-display  items-center px-2 xl:px-6  ">
+                  <p className="overflow-ellipsis   break-words font-display font-light ">
+                    {_comment.comment}
+                  </p>
+                </div>
+                <div className="min-w-full w-4/6  inline-flex items-center px-2 xl:px-6  my-2   ">
+                  <p className="text-sm font-display font-light text-gray-400">
+                    {" "}
+                    โดย {_comment.owner.name}{" "}
+                  </p>
+                </div>
+                <div className="flex justify-between items-center px- my-2  ">
+                  <div className="flex justify-start px-2 xl:px-6 my-2 space-x-3  ">
                     <div className="flex justify-center items-center font-display text-xs space-x-2 ">
                       <div className="rounded-full bg-green-300 m-1 hover:bg-green-200 p-1 md:p-2  md:mr-2 cursor-pointer ">
                         {" "}
@@ -155,12 +161,25 @@ export default function Review_Subject({ subject }) {
                       การสอน : {_comment.lecturer_rate}%
                     </div>
                   </div>
-              <DropDown comment={_comment} subjectId={subject.id}></DropDown>
-            </div>
-          </motion.div>
-          
+                  <DropDown
+                    comment={_comment}
+                    subjectId={subject.id}
+                  ></DropDown>
+                </div>
+              </motion.div>
+            </>
+          ))}
         </>
-      ))}
+      ) : (
+        <>
+          <div className="flex flex-col justify-center items-center">
+            <p className="font-display text-gray-500 text-4xl">
+              ต้องลงชื่อเข้าใช้ถึงจะให้เห็นรีวิวของเพื่อนๆ
+            </p>
+            <SadLoader></SadLoader>
+          </div>
+        </>
+      )}
     </div>
   );
 }

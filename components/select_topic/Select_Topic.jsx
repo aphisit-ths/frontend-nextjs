@@ -39,12 +39,8 @@ function Select_Topic() {
          initial={{ opacity: 0 }}
          animate={{ opacity: 1 }}
          transition={{ duration: 0.2 }}
-         whileHover={{
-           
-           rotate: [0, 1.1],
-           transition: { duration: 0.1 },
-         }}
-          className="w-60 h-60   bg-white block p-4 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer     "
+         
+          className="w-60 h-60   bg-white block p-4 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-not-allowed     "
         >
           <div className="flex flex-row  w-50 h-1/2 space-x-2 items-center justify-center ">
             <div className="mx-2  items-center    justify-center">
@@ -65,14 +61,9 @@ function Select_Topic() {
          initial={{ opacity: 0 }}
          animate={{ opacity: 1 }}
          transition={{ duration: 0.2 }}
-         whileHover={{
-           
-           rotate: [0, 1.1],
-           transition: { duration: 0.1 },
-         }}
-          className="w-60 h-60   bg-white block p-4 shadow-xl border-opacity-20 transform transition ease-in rounded-xl cursor-pointer     "
+          className="w-60 h-60   bg-white block p-4 shadow-xl border-opacity-20 transform transition bg-opacity-75 ease-in rounded-xl cursor-not-allowed      "
         >
-          <div className="flex flex-row  w-50 h-1/2 space-x-1 items-center justify-center ">
+          <div className="flex flex-row  w-50 h-1/2 space-x-1 items-center  justify-center ">
             <div className="mx-2  items-center    justify-center">
               <Toppic className=" self-center w-16 h-16 rounded-full bg-yellow-300"></Toppic>
             </div>

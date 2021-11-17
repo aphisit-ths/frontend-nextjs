@@ -5,6 +5,7 @@ import Link from "next/link"
 
 import React from "react";
 export default function UserDropdown({ user, signout }) {
+  console.log(user)
   return (
     <div className="text-right z-30 ">
       <Menu as="div" className="relative inline-block text-left">

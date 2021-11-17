@@ -105,10 +105,18 @@ export default function SearchSubject() {
                           {" "}
                           {subject.course_id}{" "}
                         </p>
+                        <div className="flex flex-col items-start">
+                       
+                        <p className="font-display font-light ">
+                          {" "}
+                          {subject.eng_name}{" "}
+                        </p>
                         <p className="font-display font-light ">
                           {" "}
                           {subject.thai_name}{" "}
                         </p>
+                        </div>
+                        
                       </div>
                       <motion.div>
                         <RightArrow className="w-6 h-6 stroke-2"></RightArrow>
