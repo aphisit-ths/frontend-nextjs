@@ -74,11 +74,12 @@ export default function CreateSubject() {
                 รหัสวิชา :
               </p>
               <input
+              
               {...register("course_id", {
                 required: true,
                 minLength: 8,
                 maxLength: 8,
-                pattern: /[0-9]/i,
+                pattern: /^[0-9]+$/
               })}
                 placeholder="รหัสวิชา 8 หลัก เช่น 90010001"
                 className={` w-5/6  bg-gray-200 outline-none p-2 text-xs sm:text-lg ${
